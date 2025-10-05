@@ -32,8 +32,22 @@ export const metadata: Metadata = {
     description:
         "Crafting premium digital experiences that drive results. Specialized in scalable architectures and conversion optimization.",
     icons: {
-        icon: "/favicon.ico",
-        apple: "/apple-touch-icon.png",
+        icon: [
+            { url: "/favicon.ico", sizes: "any" },
+            {
+                url: "/favicon/favicon.ico",
+                sizes: "32x32",
+                type: "image/x-icon",
+            },
+        ],
+        apple: [
+            {
+                url: "/apple-touch-icon.png",
+                sizes: "180x180",
+                type: "image/png",
+            },
+        ],
+        shortcut: "/favicon.ico",
     },
     openGraph: {
         type: "website",
