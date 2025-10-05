@@ -113,7 +113,7 @@ export function Navbar() {
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <Image
-                                    src="/logo.png"
+                                    src="/images/logo.png"
                                     alt="Bechara El Maalouf Logo"
                                     fill
                                     className="object-contain"
