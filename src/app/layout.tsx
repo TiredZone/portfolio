@@ -1,5 +1,6 @@
 // app/layout.tsx
 import type { Metadata, Viewport } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
@@ -96,6 +97,7 @@ export default function RootLayout({
                 >
                     {children}
                 </ThemeProvider>
+                <SpeedInsights />
 
                 {/* GA4 (optional) */}
                 {process.env.NEXT_PUBLIC_GA4_ID && (
