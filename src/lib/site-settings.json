@@ -1,0 +1,25 @@
+{
+    "site": {
+        "name": "Bechara El Maalouf",
+        "title": "Full-Stack Developer • React/Node.js • Shopify Expert",
+        "description": "Crafting premium digital experiences that drive results. Specialized in Shopify Plus optimization, web application development, and automation solutions.",
+        "url": "https://becharaelmaalouf.dev",
+        "email": "contact@becharaelmaalouf.dev",
+        "phone": "+961 71 998 976",
+        "location": "Zouk Mosbeh, Lebanon",
+        "timezone": "EET (UTC+2)"
+    },
+    "social": {
+        "linkedin": "https://www.linkedin.com/in/bechara-el-maalouf-920645200/",
+        "github": "https://github.com/TiredZone"
+    },
+    "analytics": {
+        "ga4": "G-XXXXXXXXXX",
+        "cloudflare": "xxxxxxxxxxxxxxxxx"
+    },
+    "booking": {
+        "calcom": "becharaelmaalouf",
+        "defaultDuration": 30,
+        "availability": "Mon-Fri, 9am-5pm EET"
+    }
+}

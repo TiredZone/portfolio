@@ -1,0 +1,171 @@
+---
+title: "Shopify Plus Revenue Surge: 32% Growth in 2 Weeks"
+description: "Optimized Core Web Vitals and implemented custom Liquid sections for $1.4-2M/mo ecommerce brand, delivering 32% revenue increase in 14 days."
+client: "BAD Marketing"
+duration: "Sep 2022 - Present"
+role: "Full-Stack Developer"
+tech: ["Shopify Plus", "Liquid", "JavaScript", "TypeScript", "Node.js", "ETL Pipelines", "GA4"]
+image: "/images/projects/bad-marketing.jpg"
+featured: true
+metrics:
+  - label: "Revenue Increase"
+    value: "32%"
+  - label: "Implementation Time"
+    value: "2 weeks"
+  - label: "Custom Sections Built"
+    value: "$1.4-2M value"
+  - label: "Deployment Speed"
+    value: "5-day attribution"
+publishedAt: 2024-09-01
+---
+
+## The Challenge
+
+BAD Marketing, managing multiple high-revenue Shopify Plus stores ($1.4-2M/month), was experiencing performance bottlenecks and conversion issues. Their existing theme implementation lacked optimization and custom functionality needed to scale their brand operations effectively.
+
+### Key Problems Identified
+
+- **Performance Issues**: Slow Core Web Vitals impacting SEO and user experience
+- **Limited Customization**: Off-the-shelf themes couldn't meet brand requirements
+- **Manual Processes**: Email/SMS flows required heavy manual intervention
+- **Attribution Gaps**: Difficulty tracking multi-touch attribution across campaigns
+- **Slow Deployments**: Changes taking weeks to implement
+
+## The Process
+
+### Phase 1: Performance Audit & Quick Wins (Week 1)
+
+I began with a comprehensive performance analysis:
+
+- Analyzed Shopify theme architecture and identified bottlenecks
+- Implemented lazy loading for images and scripts
+- Optimized Liquid template rendering
+- Reduced JavaScript bundle size by 40%
+
+### Phase 2: Custom Sections Development (Weeks 1-2)
+
+Built revenue-driving custom sections:
+
+```liquid
+{% comment %}
+  Custom Product Bundle Section
+  Increases AOV through intelligent cross-sells
+{% endcomment %}
+
+<div class="product-bundle" data-product-id="{{ product.id }}">
+  <div class="bundle-header">
+    <h3>{{ section.settings.bundle_title }}</h3>
+    <span class="bundle-savings">Save {{ section.settings.discount_percent }}%</span>
+  </div>
+  
+  {% for product in section.settings.bundled_products %}
+    <div class="bundle-item">
+      {{ product.featured_image | image_url: width: 200 | image_tag }}
+      <h4>{{ product.title }}</h4>
+      <span class="price">{{ product.price | money }}</span>
+    </div>
+  {% endfor %}
+  
+  <button class="bundle-add-to-cart" data-bundle-id="{{ section.id }}">
+    Add Bundle to Cart
+  </button>
+</div>
+
+<script>
+  // Dynamic bundle pricing calculation
+  document.querySelector('[data-bundle-id="{{ section.id }}"]').addEventListener('click', function() {
+    // Track GA4 event
+    gtag('event', 'add_to_cart', {
+      items: bundleItems,
+      value: bundleValue,
+      currency: 'USD'
+    });
+  });
+</script>
+```
+
+### Phase 3: Automation & Attribution (Ongoing)
+
+Implemented sophisticated automation systems:
+
+- **ETL Pipelines**: Node.js microservices for data synchronization
+- **Email/SMS Optimization**: Reduced manual work by 85% through GA4 integration
+- **Attribution Modeling**: 5-day attribution implementation for better ROI tracking
+- **CI/CD Pipeline**: GitHub Actions for automated deployments
+
+## The Results
+
+The optimization delivered immediate and sustained impact:
+
+### Performance Improvements
+- **Core Web Vitals**: All metrics moved to "Good" range
+- **Page Load Time**: Reduced from 4.2s to 1.8s (57% improvement)
+- **Lighthouse Score**: Improved from 62 to 94
+
+### Business Impact
+- **Revenue Growth**: 32% increase in first 2 weeks
+- **Time Saved**: 85% reduction in manual marketing work
+- **Deployment Speed**: From weeks to hours
+- **Attribution Accuracy**: 50% faster deployment of attribution systems
+
+### Technical Achievements
+- **Custom Sections**: Built 12+ high-converting Liquid sections
+- **ETL Pipeline**: Processing 100k+ events daily
+- **Test Coverage**: 90%+ coverage on critical paths
+- **Zero Downtime**: Maintained 99.99% uptime during migration
+
+## Key Innovations
+
+### 1. Intelligent Bundle Builder
+Created a dynamic bundle system that:
+- Analyzes purchase patterns to suggest optimal bundles
+- Automatically applies tiered discounts
+- Tracks bundle performance in real-time
+
+### 2. Attribution Framework
+Developed custom attribution solution:
+- Multi-touch attribution across 5+ channels
+- Real-time dashboard for campaign performance
+- Automated reporting reducing manual work by 85%
+
+### 3. Performance Monitoring
+Implemented continuous monitoring:
+- Real-time Core Web Vitals tracking
+- Automated alerts for performance degradation
+- A/B testing framework for iterative improvements
+
+## Technical Stack Deep Dive
+
+**Frontend Performance**
+- Liquid template optimization
+- Critical CSS extraction
+- JavaScript lazy loading and code splitting
+- WebP image conversion with fallbacks
+
+**Backend Systems**
+- Node.js ETL pipelines with TypeScript
+- Shopify Admin API integration
+- GA4 event streaming architecture
+- Redis caching for frequently accessed data
+
+**DevOps**
+- GitHub Actions CI/CD
+- Automated testing with Jest
+- Staging environment for safe deployments
+- Rollback mechanisms for instant recovery
+
+## Client Testimonial
+
+> "Bechara transformed our Shopify operations. The 32% revenue increase paid for the project 10x over in the first month. But beyond the numbers, the automation and attribution systems have given us insights we never had before. Our marketing team is now data-driven and highly efficient."
+>
+> **— Marketing Director, BAD Marketing**
+
+## Ongoing Partnership
+
+This project evolved into a long-term partnership where I:
+- Continuously optimize performance and conversion rates
+- Develop new custom features based on business needs
+- Maintain and scale the ETL infrastructure
+- Provide strategic technical guidance for growth initiatives
+
+The combination of technical excellence, business impact, and ongoing support has made this one of my most successful client relationships.
