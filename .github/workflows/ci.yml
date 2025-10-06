@@ -7,14 +7,14 @@ on:
     branches: [main]
 
 env:
-  NODE_VERSION: '20.x'
+  NODE_VERSION: "20.x"
 
 jobs:
   # Type checking and linting
   quality:
     name: Code Quality
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -39,7 +39,7 @@ jobs:
     name: Build Test
     runs-on: ubuntu-latest
     needs: quality
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -48,7 +48,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -57,7 +57,7 @@ jobs:
         run: npm run build
         env:
           SKIP_ENV_VALIDATION: true
-          
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     if: github.ref == 'refs/heads/main'
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -80,7 +80,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -94,8 +94,8 @@ jobs:
         uses: treosh/lighthouse-ci-action@v10
         with:
           urls: |
-            http://localhost:3000
-            http://localhost:3000/work
-            http://localhost:3000/contact
+            https://www.becharaelmaalouf.dev/
+            https://www.becharaelmaalouf.dev/work
+            https://www.becharaelmaalouf.dev/contact
           uploadArtifacts: true
           temporaryPublicStorage: true
