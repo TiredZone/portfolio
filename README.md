@@ -422,7 +422,7 @@ CMD ["npm", "start"]
 - **Robots.txt**: Configured for optimal crawling
 - **Meta Tags**: Dynamic for all pages
 
-## � Integrations & Services
+## 🔗 Integrations & Services
 
 ### Email Service (Resend)
 
