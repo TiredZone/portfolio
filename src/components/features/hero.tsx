@@ -167,7 +167,8 @@ export function Hero() {
                         <Sparkles className="w-4 h-4" />
                     </motion.div>
                     <span>
-                        Full-Stack Developer • React/Node.js • Shopify Expert
+                        Full-Stack Developer • React/Node.js/.NET • Mobile •
+                        Cloud
                     </span>
                     <motion.div
                         animate={{ scale: [1, 1.2, 1] }}
@@ -217,9 +218,9 @@ export function Hero() {
                             animate={{ opacity: [1, 0.7, 1] }}
                             transition={{ duration: 2, repeat: Infinity }}
                         >
-                            high-performance
+                            scalable applications
                         </motion.span>{" "}
-                        web applications and ecommerce experiences.
+                        across web, mobile, and cloud platforms.
                     </p>
                     <motion.p
                         initial={{ opacity: 0 }}

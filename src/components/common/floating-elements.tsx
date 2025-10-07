@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 interface FloatingElementsProps {
     className?: string;
@@ -8,11 +9,23 @@ interface FloatingElementsProps {
     colors?: "royal" | "gold" | "mixed";
 }
 
+// Seeded random function for consistent server/client rendering
+function seededRandom(seed: number) {
+    const x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
+}
+
 export function FloatingElements({
     className = "",
     density = "medium",
     colors = "mixed",
 }: FloatingElementsProps) {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     const elementCount = {
         light: 8,
         medium: 12,
@@ -41,14 +54,16 @@ export function FloatingElements({
         { size: "w-3 h-3", borderRadius: "rounded-sm rotate-45" },
     ];
 
+    // Generate elements with seeded random for consistency
     const elements = Array.from({ length: elementCount[density] }, (_, i) => {
+        const seed = i * 1000; // Use index as seed for consistency
         const randomColor =
             colorVariants[colors][i % colorVariants[colors].length];
         const randomShape = shapes[i % shapes.length];
-        const randomX = Math.random() * 100;
-        const randomY = Math.random() * 100;
-        const randomDelay = Math.random() * 20;
-        const randomDuration = 15 + Math.random() * 25;
+        const randomX = seededRandom(seed + 1) * 100;
+        const randomY = seededRandom(seed + 2) * 100;
+        const randomDelay = seededRandom(seed + 3) * 20;
+        const randomDuration = 15 + seededRandom(seed + 4) * 25;
 
         return {
             id: i,
@@ -60,6 +75,15 @@ export function FloatingElements({
             duration: randomDuration,
         };
     });
+
+    // Don't render animations until mounted to prevent hydration mismatch
+    if (!mounted) {
+        return (
+            <div
+                className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+            />
+        );
+    }
 
     return (
         <div

@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <div className="mt-12 pt-8 border-t border-royal-200 dark:border-royal-800">
                             <div className="flex items-start gap-4">
                                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gold-400 to-royal-600 flex items-center justify-center text-white text-2xl font-bold">
-                                    B
+                                    BM
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-royal-900 dark:text-white mb-2">

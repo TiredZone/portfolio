@@ -28,11 +28,11 @@ export const metadata: Metadata = {
         process.env.NEXT_PUBLIC_SITE_URL ?? "https://becharaelmaalouf.dev"
     ),
     title: {
-        default: "Bechara El Maalouf – Senior Web Architect",
+        default: "Bechara El Maalouf – Full‑Stack Developer",
         template: "%s · Bechara El Maalouf",
     },
     description:
-        "Crafting premium digital experiences that drive results. Specialized in scalable architectures and conversion optimization.",
+        "Full‑Stack Developer building scalable web, mobile, and automation systems — React/Next.js, Node.js, .NET Core, Shopify, React Native/Flutter, Docker & Kubernetes, and AI automation.",
     icons: {
         icon: [
             { url: "/favicon.ico", sizes: "any" },
@@ -51,22 +51,48 @@ export const metadata: Metadata = {
         ],
         shortcut: "/favicon.ico",
     },
+    keywords: [
+        "Bechara El Maalouf",
+        "Full-Stack Developer",
+        "React",
+        "Next.js",
+        "Node.js",
+        ".NET Core",
+        "Shopify",
+        "React Native",
+        "Flutter",
+        "Docker",
+        "Kubernetes",
+        "AI",
+        "Automation",
+        "DevOps",
+        "MongoDB",
+        "MS SQL Server",
+    ],
+    authors: [{ name: "Bechara El Maalouf" }],
     openGraph: {
         type: "website",
         url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://becharaelmaalouf.dev",
         siteName: "Bechara El Maalouf",
-        title: "Bechara El Maalouf – Senior Web Architect",
+        title: "Bechara El Maalouf – Full‑Stack Developer",
         description:
-            "Crafting premium digital experiences that drive results. Specialized in scalable architectures and conversion optimization.",
-        images: [{ url: "/images/og/cover.jpg", width: 1200, height: 630 }],
+            "Full‑Stack Developer building scalable web, mobile, and automation systems — React/Next.js, Node.js, .NET Core, Shopify, mobile apps, cloud & DevOps, and AI automation.",
+        images: [
+            {
+                url: "/images/og/cover.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Bechara El Maalouf — Full-Stack Developer",
+            },
+        ],
     },
     twitter: {
         card: "summary_large_image",
         site: "@becharaelm",
         creator: "@becharaelm",
-        title: "Bechara El Maalouf – Senior Web Architect",
+        title: "Bechara El Maalouf – Full‑Stack Developer",
         description:
-            "Crafting premium digital experiences that drive results. Specialized in scalable architectures and conversion optimization.",
+            "Full‑Stack Developer building scalable web, mobile, and automation systems (React, Node, .NET, Shopify, Docker, Kubernetes, AI).",
         images: ["/images/og/cover.jpg"],
     },
 };
@@ -90,6 +116,7 @@ export default function RootLayout({
                     playfair.variable, // gives you font-serif via --font-playfair
                     "antialiased",
                 ].join(" ")}
+                suppressHydrationWarning
             >
                 <ThemeProvider
                     attribute="class"

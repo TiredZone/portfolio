@@ -99,4 +99,4 @@ jobs:
             https://www.becharaelmaalouf.dev/contact
           uploadArtifacts: true
           temporaryPublicStorage: true
-          artifactName: lighthouse-report
+          artifactName: lighthouse_report

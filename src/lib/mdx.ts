@@ -30,6 +30,7 @@ export interface BlogPostFrontmatter {
     publishedAt: string;
     tags?: string[];
     featured?: boolean;
+    readingTime?: number;
 }
 
 export interface BlogPost {

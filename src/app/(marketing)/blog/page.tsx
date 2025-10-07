@@ -3,22 +3,10 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Badge } from "@/components/common/badge";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { Clock, ArrowRight } from "lucide-react";
 import { NewsletterSignup } from "@/components/features/newsletter-signup";
-
-// Temporary type definitions until contentlayer import is fixed
-interface BlogPost {
-    title: string;
-    description: string;
-    slug: string;
-    url: string;
-    publishedAt: string;
-    tags: string[];
-    readingTime: number;
-}
-
-// Temporary empty array until contentlayer import is fixed
-const allBlogPosts: BlogPost[] = [];
+import { getAllBlogPosts } from "@/lib/mdx";
+import { FloatingElements } from "@/components/common/floating-elements";
 
 export const metadata: Metadata = {
     title: "Blog – Technical Articles & Insights",
@@ -26,53 +14,41 @@ export const metadata: Metadata = {
         "Articles about web development, Shopify optimization, automation, and modern web technologies.",
 };
 
-interface PostsByYear {
-    [year: number]: typeof allBlogPosts;
-}
-
 export default function BlogPage() {
-    const posts = allBlogPosts.sort(
-        (a, b) =>
-            new Date(b.publishedAt).getTime() -
-            new Date(a.publishedAt).getTime()
-    );
-
-    // Group posts by year
-    const postsByYear = posts.reduce((acc: PostsByYear, post) => {
-        const year = new Date(post.publishedAt).getFullYear();
-        if (!acc[year]) {
-            acc[year] = [];
-        }
-        acc[year].push(post);
-        return acc;
-    }, {} as PostsByYear);
-
-    const years = Object.keys(postsByYear)
-        .map(Number)
-        .sort((a, b) => b - a);
+    const allBlogPosts = getAllBlogPosts();
+    
+    // Transform MDX posts to the format expected by the component
+    const posts = allBlogPosts.map(post => ({
+        title: post.frontmatter.title,
+        description: post.frontmatter.description,
+        slug: post.slug,
+        url: `/blog/${post.slug}`,
+        publishedAt: post.frontmatter.publishedAt,
+        tags: post.frontmatter.tags || [],
+        readingTime: post.frontmatter.readingTime || 5,
+    }));
 
     return (
         <>
+            <FloatingElements />
+            
             {/* Hero Section */}
-            <Section className="pt-32 md:pt-40">
+            <Section className="min-h-[30vh] flex items-center relative bg-gradient-to-br from-royal-50 via-white to-gold-50 dark:from-royal-900 dark:via-gray-900 dark:to-black">
                 <Container>
-                    <div className="max-w-3xl">
-                        <Badge variant="royal" className="mb-6">
+                    <div className="max-w-4xl mx-auto text-center space-y-6">
+                        <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-royal-900 via-royal-700 to-gold-600 dark:from-white dark:via-royal-100 dark:to-gold-400 bg-clip-text text-transparent leading-tight">
                             Blog
-                        </Badge>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                            Technical Articles & Insights
                         </h1>
-                        <p className="text-lg md:text-xl text-muted-foreground">
-                            Exploring web development, Shopify optimization,
-                            automation, and modern technologies.
+                        <p className="text-xl md:text-2xl text-royal-700 dark:text-royal-200 max-w-2xl mx-auto leading-relaxed">
+                            Insights on web development, Shopify optimization, 
+                            and building successful digital experiences
                         </p>
                     </div>
                 </Container>
             </Section>
 
-            {/* Blog Posts by Year */}
-            <Section>
+            {/* Blog Posts Grid */}
+            <Section className="bg-white dark:bg-gray-900">
                 <Container>
                     {posts.length === 0 ? (
                         <div className="text-center py-12">
@@ -86,94 +62,54 @@ export default function BlogPage() {
                             </div>
                         </div>
                     ) : (
-                        <div className="max-w-4xl mx-auto">
-                            {years.map((year) => (
-                                <div key={year} className="mb-12">
-                                    <h2 className="text-2xl font-bold text-royal-900 dark:text-white mb-6 pb-3 border-b border-royal-200 dark:border-royal-800">
-                                        {year}
-                                    </h2>
-                                    <div className="space-y-8">
-                                        {postsByYear[Number(year)].map(
-                                            (post) => (
-                                                <Link
-                                                    key={post.slug}
-                                                    href={post.url}
-                                                    className="group block bg-white dark:bg-royal-900/20 rounded-lg p-6 border border-royal-200 dark:border-royal-800 hover:border-gold-500 dark:hover:border-gold-500 transition-all hover:shadow-lg"
-                                                >
-                                                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                                                        <div className="flex-1">
-                                                            <h3 className="text-2xl font-bold text-royal-900 dark:text-white mb-2 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
-                                                                {post.title}
-                                                            </h3>
-                                                            <p className="text-royal-700 dark:text-royal-300 mb-4">
-                                                                {
-                                                                    post.description
-                                                                }
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="flex flex-wrap items-center gap-4 text-sm text-royal-600 dark:text-royal-400">
-                                                        <div className="flex items-center gap-1">
-                                                            <Calendar className="w-4 h-4" />
-                                                            <time
-                                                                dateTime={
-                                                                    post.publishedAt
-                                                                }
-                                                            >
-                                                                {new Date(
-                                                                    post.publishedAt
-                                                                ).toLocaleDateString(
-                                                                    "en-US",
-                                                                    {
-                                                                        year: "numeric",
-                                                                        month: "long",
-                                                                        day: "numeric",
-                                                                    }
-                                                                )}
-                                                            </time>
-                                                        </div>
-                                                        <div className="flex items-center gap-1">
-                                                            <Clock className="w-4 h-4" />
-                                                            <span>
-                                                                {
-                                                                    post.readingTime
-                                                                }{" "}
-                                                                min read
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    {post.tags &&
-                                                        post.tags.length >
-                                                            0 && (
-                                                            <div className="flex flex-wrap gap-2 mt-4">
-                                                                {post.tags.map(
-                                                                    (tag) => (
-                                                                        <Badge
-                                                                            key={
-                                                                                tag
-                                                                            }
-                                                                            variant="default"
-                                                                        >
-                                                                            {
-                                                                                tag
-                                                                            }
-                                                                        </Badge>
-                                                                    )
-                                                                )}
-                                                            </div>
-                                                        )}
-
-                                                    <div className="flex items-center text-sm font-semibold text-gold-600 dark:text-gold-400 mt-4 group-hover:gap-2 transition-all">
-                                                        Read Article
-                                                        <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                                                    </div>
-                                                </Link>
-                                            )
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {posts.map((post) => (
+                                <Link
+                                    key={post.slug}
+                                    href={post.url}
+                                    className="group block bg-white dark:bg-royal-900/20 rounded-2xl p-6 border border-royal-200 dark:border-royal-800 hover:border-gold-500 dark:hover:border-gold-500 transition-all hover:shadow-xl relative overflow-hidden"
+                                >
+                                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-300 via-gold-200 to-royal-200 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <div className="flex flex-col gap-2 mb-3">
+                                        <span className="inline-block text-xs font-semibold uppercase tracking-wider text-gold-600 dark:text-gold-400">
+                                            {new Date(
+                                                post.publishedAt
+                                            ).toLocaleDateString("en-US", {
+                                                month: "short",
+                                                day: "numeric",
+                                                year: "2-digit",
+                                            })}
+                                        </span>
+                                        <h3 className="text-xl font-bold text-royal-900 dark:text-white group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
+                                            {post.title}
+                                        </h3>
+                                        <p className="text-royal-700 dark:text-royal-300 text-sm mb-2">
+                                            {post.description}
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-wrap items-center gap-3 text-xs text-royal-600 dark:text-royal-400 mb-2">
+                                        <div className="flex items-center gap-1">
+                                            <Clock className="w-3 h-3" />
+                                            <span>{post.readingTime} min</span>
+                                        </div>
+                                        {post.tags && post.tags.length > 0 && (
+                                            <div className="flex flex-wrap gap-1">
+                                                {post.tags.map((tag: string) => (
+                                                    <Badge
+                                                        key={tag}
+                                                        variant="default"
+                                                    >
+                                                        {tag}
+                                                    </Badge>
+                                                ))}
+                                            </div>
                                         )}
                                     </div>
-                                </div>
+                                    <div className="flex items-center text-xs font-semibold text-gold-600 dark:text-gold-400 mt-2 group-hover:gap-2 transition-all">
+                                        Read Article
+                                        <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                                    </div>
+                                </Link>
                             ))}
                         </div>
                     )}

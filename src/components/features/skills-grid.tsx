@@ -5,49 +5,68 @@ import {
     Code2,
     Database,
     ShoppingCart,
-    Zap,
     GitBranch,
     Cloud,
+    Smartphone,
+    Bot,
+    Hexagon,
 } from "lucide-react";
 
 const skills = [
     {
-        category: "Frontend",
+        category: "Frontend Development",
         icon: Code2,
         color: "text-royal-600 dark:text-royal-400",
         bgColor: "bg-royal-100 dark:bg-royal-900/20",
         borderColor: "border-royal-200 dark:border-royal-700",
         glowColor: "shadow-royal-500/20",
         skills: [
-            "React",
+            "React.js",
             "Next.js",
+            "Angular",
             "TypeScript",
             "JavaScript",
+            "HTML/CSS",
             "Tailwind CSS",
             "Redux",
             "Framer Motion",
         ],
     },
     {
-        category: "Backend",
+        category: "Backend & APIs",
         icon: Database,
         color: "text-gold-600 dark:text-gold-400",
         bgColor: "bg-gold-100 dark:bg-gold-900/20",
         borderColor: "border-gold-200 dark:border-gold-700",
         glowColor: "shadow-gold-500/20",
         skills: [
-            "Node.js",
-            "Express",
-            ".NET Core",
-            "PostgreSQL",
-            "MongoDB",
-            "Redis",
+            "Node.js/Express",
+            ".NET Core/C#",
+            "Python",
             "REST APIs",
             "GraphQL",
+            "MongoDB",
+            "MS SQL Server",
+            "PostgreSQL",
+            "Redis",
         ],
     },
     {
-        category: "Ecommerce",
+        category: "Mobile Development",
+        icon: Smartphone,
+        color: "text-cyan-600 dark:text-cyan-400",
+        bgColor: "bg-cyan-100 dark:bg-cyan-900/20",
+        borderColor: "border-cyan-200 dark:border-cyan-700",
+        glowColor: "shadow-cyan-500/20",
+        skills: [
+            "React Native",
+            "Flutter",
+            "Cross-platform Development",
+            "Mobile UI/UX",
+        ],
+    },
+    {
+        category: "Ecommerce & CMS",
         icon: ShoppingCart,
         color: "text-green-600 dark:text-green-400",
         bgColor: "bg-green-100 dark:bg-green-900/20",
@@ -57,9 +76,10 @@ const skills = [
             "Shopify Plus",
             "Liquid",
             "Checkout Extensibility",
-            "Metafields",
-            "Dawn Theme 2.0",
-            "Custom Apps",
+            "WordPress",
+            "Webflow",
+            "ClickFunnels",
+            "Pagefly",
         ],
     },
     {
@@ -70,27 +90,46 @@ const skills = [
         borderColor: "border-blue-200 dark:border-blue-700",
         glowColor: "shadow-blue-500/20",
         skills: [
-            "AWS",
             "Docker",
-            "GitHub Actions",
-            "Vercel",
+            "Kubernetes",
             "CI/CD",
-            "Monitoring",
+            "GitHub Actions",
+            "AWS",
+            "Vercel",
+            "Render.com",
+            "GitHub Pages",
         ],
     },
     {
-        category: "Automation",
-        icon: Zap,
+        category: "AI & Automation",
+        icon: Bot,
         color: "text-purple-600 dark:text-purple-400",
         bgColor: "bg-purple-100 dark:bg-purple-900/20",
         borderColor: "border-purple-200 dark:border-purple-700",
         glowColor: "shadow-purple-500/20",
         skills: [
+            "AI/LLM Engineering",
+            "Workflow Automation",
+            "n8n/Zapier",
             "ETL Pipelines",
-            "ZeroBounce",
-            "SmartLead",
-            "GA4 Integration",
-            "Email/SMS Automation",
+            "RabbitMQ",
+            "Real-time Systems",
+        ],
+    },
+    {
+        category: "Blockchain & Web3",
+        icon: Hexagon,
+        color: "text-indigo-600 dark:text-indigo-400",
+        bgColor: "bg-indigo-100 dark:bg-indigo-900/20",
+        borderColor: "border-indigo-200 dark:border-indigo-700",
+        glowColor: "shadow-indigo-500/20",
+        skills: [
+            "ethers.js",
+            "web3.js",
+            "Smart Contracts",
+            "NFT/DeFi dApps",
+            "MetaMask",
+            "WalletConnect",
         ],
     },
     {
@@ -101,11 +140,12 @@ const skills = [
         borderColor: "border-orange-200 dark:border-orange-700",
         glowColor: "shadow-orange-500/20",
         skills: [
-            "Git",
-            "Unit Testing",
+            "Git/GitHub",
+            "Testing",
             "A/B Testing",
             "Performance Optimization",
             "SEO",
+            "Analytics (GA4)",
             "Monitoring",
         ],
     },
@@ -260,16 +300,39 @@ export function SkillsGrid() {
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.5 + index * 0.1 }}
+                            transition={{ delay: 0.5 + index * 0.15 }}
                         >
                             <motion.div
-                                className={`h-full bg-gradient-to-r ${skillGroup.color.replace("text-", "from-").replace(" dark:text-", " to-")} rounded-full`}
+                                className={`h-full rounded-full ${
+                                    skillGroup.category ===
+                                    "Frontend Development"
+                                        ? "bg-gradient-to-r from-royal-600 to-royal-400"
+                                        : skillGroup.category ===
+                                            "Backend & APIs"
+                                          ? "bg-gradient-to-r from-gold-600 to-gold-400"
+                                          : skillGroup.category ===
+                                              "Mobile Development"
+                                            ? "bg-gradient-to-r from-cyan-600 to-cyan-400"
+                                            : skillGroup.category ===
+                                                "Ecommerce & CMS"
+                                              ? "bg-gradient-to-r from-green-600 to-green-400"
+                                              : skillGroup.category ===
+                                                  "DevOps & Cloud"
+                                                ? "bg-gradient-to-r from-blue-600 to-blue-400"
+                                                : skillGroup.category ===
+                                                    "AI & Automation"
+                                                  ? "bg-gradient-to-r from-purple-600 to-purple-400"
+                                                  : skillGroup.category ===
+                                                      "Blockchain & Web3"
+                                                    ? "bg-gradient-to-r from-indigo-600 to-indigo-400"
+                                                    : "bg-gradient-to-r from-orange-600 to-orange-400"
+                                }`}
                                 initial={{ width: 0 }}
-                                whileInView={{ width: "85%" }}
+                                whileInView={{ width: "100%" }}
                                 viewport={{ once: true }}
                                 transition={{
-                                    duration: 1.5,
-                                    delay: 0.7 + index * 0.1,
+                                    duration: 1.2,
+                                    delay: 0.8 + index * 0.2,
                                     ease: "easeOut",
                                 }}
                             />

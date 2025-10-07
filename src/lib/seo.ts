@@ -37,7 +37,7 @@ export const defaultSEO = {
         {
             name: "keywords",
             content:
-                "Bechara El Maalouf, Full-Stack Developer, React, Node.js, TypeScript, Shopify Plus, Shopify Developer, Web Development, Ecommerce, Performance Optimization, Automation, Lebanon Developer, Remote Developer",
+                "Bechara El Maalouf, Full-Stack Developer, React, Node.js, .NET Core, Python, TypeScript, JavaScript, Angular, React Native, Flutter, Mobile Development, Shopify Plus, Shopify Developer, WordPress, Web Development, Ecommerce, Performance Optimization, Automation, AI Automation, DevOps, Docker, Kubernetes, CI/CD, GitHub Actions, MongoDB, MS SQL Server, PostgreSQL, Web3, Blockchain, ethers.js, Lebanon Developer, Remote Developer, Cloud Development, RESTful APIs, GraphQL",
         },
     ],
     additionalLinkTags: [
@@ -130,18 +130,36 @@ export const personSchema = generateJsonLd("Person", {
         addressLocality: "Zouk Mosbeh",
         addressCountry: "LB",
     },
-    sameAs: [
-        siteConfig.social.linkedin,
-        siteConfig.social.tiredZone,
-    ],
+    sameAs: [siteConfig.social.linkedin, siteConfig.social.tiredZone],
     knowsAbout: [
         "React",
         "Node.js",
+        ".NET Core",
+        "Python",
         "TypeScript",
-        "Shopify",
+        "JavaScript",
+        "Angular",
+        "React Native",
+        "Flutter",
+        "Mobile Development",
+        "Shopify Plus",
+        "WordPress",
         "Web Development",
         "Performance Optimization",
+        "DevOps",
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
         "Automation",
+        "AI Automation",
+        "MongoDB",
+        "MS SQL Server",
+        "PostgreSQL",
+        "Web3",
+        "Blockchain",
+        "Cloud Development",
+        "RESTful APIs",
+        "GraphQL",
     ],
 });
 
@@ -150,10 +168,7 @@ export const organizationSchema = generateJsonLd("Organization", {
     name: siteConfig.name,
     url: siteConfig.url,
     logo: `${siteConfig.url}/logo.png`,
-    sameAs: [
-        siteConfig.social.linkedin,
-        siteConfig.social.tiredZone,
-    ],
+    sameAs: [siteConfig.social.linkedin, siteConfig.social.tiredZone],
     contactPoint: {
         "@type": "ContactPoint",
         email: siteConfig.author.email,

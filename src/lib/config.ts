@@ -15,7 +15,7 @@ export const siteConfig = {
         name: "Bechara El Maalouf",
         email: "contact@becharaelmaalouf.dev",
         location: "Zouk Mosbeh, Lebanon",
-        phone: "+961 71 998 976",
+        phone: "+961 71 898 976",
         timezone: "Asia/Beirut",
     },
     social: {
