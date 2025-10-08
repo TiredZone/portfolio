@@ -20,10 +20,14 @@ export function CalEmbed() {
                     light: {
                         "cal-border-emphasis": "transparent",
                         "cal-border": "#e5e5e5",
+                        "cal-bg": "#ffffff",
+                        "cal-bg-muted": "#f8fafc",
                     },
                     dark: {
                         "cal-border-emphasis": "transparent",
                         "cal-border": "#374151",
+                        "cal-bg": "#1f2937",
+                        "cal-bg-muted": "#111827",
                     },
                 },
             });
@@ -31,16 +35,14 @@ export function CalEmbed() {
     }, []);
 
     return (
-        <div className="w-full rounded-lg overflow-hidden shadow-xl border border-royal-200 dark:border-royal-800 bg-white dark:bg-royal-950">
+        <div className="w-full rounded-2xl overflow-hidden shadow-2xl border border-royal-200/50 dark:border-royal-800/50 bg-white dark:bg-royal-950 transition-all duration-300">
             <Cal
                 namespace="30min"
                 calLink="becharaelmaalouf/strategy-call"
                 style={{
                     width: "100%",
-                    height: "700px",
-                    minHeight: "700px",
-                    maxHeight: "700px",
-                    minWidth: "100%",
+                    height: "auto",
+                    minHeight: "600px",
                     maxWidth: "100%",
                     overflow: "hidden",
                 }}

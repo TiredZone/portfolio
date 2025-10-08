@@ -28,6 +28,7 @@ After optimizing dozens of high-traffic Shopify Plus stores, I've developed a sy
 The foundation of a fast Shopify Plus store starts with theme architecture. Here are the key principles I follow:
 
 #### 1. Modular Component Design
+
 ```liquid
 <!-- Instead of monolithic sections -->
 {% render 'product-card', product: product, class: 'grid-item' %}
@@ -37,6 +38,7 @@ The foundation of a fast Shopify Plus store starts with theme architecture. Here
 ```
 
 #### 2. Conditional Loading
+
 ```liquid
 {% unless template contains 'product' %}
   <!-- Only load product-specific assets when needed -->
@@ -45,6 +47,7 @@ The foundation of a fast Shopify Plus store starts with theme architecture. Here
 ```
 
 #### 3. Critical CSS Extraction
+
 Identify above-the-fold styles and inline them to prevent render-blocking:
 
 ```liquid
@@ -62,6 +65,7 @@ Identify above-the-fold styles and inline them to prevent render-blocking:
 ### Template Performance Patterns
 
 #### 1. Smart Loop Optimization
+
 ```liquid
 <!-- Inefficient: Multiple database queries -->
 {% for product in collection.products %}
@@ -78,6 +82,7 @@ Identify above-the-fold styles and inline them to prevent render-blocking:
 ```
 
 #### 2. Fragment Caching Strategy
+
 ```liquid
 <!-- Cache expensive operations -->
 {% cache 'collection-grid', collection.id, collection.updated_at %}
@@ -86,8 +91,9 @@ Identify above-the-fold styles and inline them to prevent render-blocking:
 ```
 
 #### 3. Lazy Loading Implementation
+
 ```liquid
-<img 
+<img
   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"
   data-src="{{ product.featured_image | img_url: '400x400' }}"
   class="lazyload"
@@ -100,54 +106,66 @@ Identify above-the-fold styles and inline them to prevent render-blocking:
 ### JavaScript Performance
 
 #### 1. Module-Based Loading
+
 ```javascript
 // Use dynamic imports for non-critical functionality
 async function loadProductRecommendations() {
-  const { ProductRecommendations } = await import('./product-recommendations.js');
-  return new ProductRecommendations();
+    const { ProductRecommendations } = await import(
+        "./product-recommendations.js"
+    );
+    return new ProductRecommendations();
 }
 
 // Load only when needed
-document.addEventListener('scroll', () => {
-  if (isElementInViewport(recommendationsContainer)) {
-    loadProductRecommendations();
-  }
-}, { once: true });
+document.addEventListener(
+    "scroll",
+    () => {
+        if (isElementInViewport(recommendationsContainer)) {
+            loadProductRecommendations();
+        }
+    },
+    { once: true }
+);
 ```
 
 #### 2. Service Worker Implementation
+
 ```javascript
 // Cache API responses for faster subsequent loads
-self.addEventListener('fetch', (event) => {
-  if (event.request.url.includes('/products.json')) {
-    event.respondWith(
-      caches.open('products-cache').then(cache => {
-        return cache.match(event.request).then(response => {
-          return response || fetch(event.request).then(fetchResponse => {
-            cache.put(event.request, fetchResponse.clone());
-            return fetchResponse;
-          });
-        });
-      })
-    );
-  }
+self.addEventListener("fetch", (event) => {
+    if (event.request.url.includes("/products.json")) {
+        event.respondWith(
+            caches.open("products-cache").then((cache) => {
+                return cache.match(event.request).then((response) => {
+                    return (
+                        response ||
+                        fetch(event.request).then((fetchResponse) => {
+                            cache.put(event.request, fetchResponse.clone());
+                            return fetchResponse;
+                        })
+                    );
+                });
+            })
+        );
+    }
 });
 ```
 
 ### Image Optimization Deep Dive
 
 #### 1. Responsive Image Strategy
+
 ```liquid
 {% assign image_sizes = '375,750,1100,1500' | split: ',' %}
 <picture>
   {% for size in image_sizes %}
-    <source 
+    <source
       media="(max-width: {{ size }}px)"
       srcset="{{ product.featured_image | img_url: size | append: 'x' | append: size }}"
     >
   {% endfor %}
-  <img 
-    src="{{ product.featured_image | img_url: '750x750' }}" 
+  <img
+    src="{{ product.featured_image | img_url: '750x750' }}"
     alt="{{ product.featured_image.alt | escape }}"
     loading="lazy"
   >
@@ -155,14 +173,15 @@ self.addEventListener('fetch', (event) => {
 ```
 
 #### 2. WebP Implementation with Fallbacks
+
 ```liquid
 <picture>
-  <source 
-    srcset="{{ product.featured_image | img_url: '600x600', format: 'webp' }}" 
+  <source
+    srcset="{{ product.featured_image | img_url: '600x600', format: 'webp' }}"
     type="image/webp"
   >
-  <img 
-    src="{{ product.featured_image | img_url: '600x600' }}" 
+  <img
+    src="{{ product.featured_image | img_url: '600x600' }}"
     alt="{{ product.featured_image.alt | escape }}"
   >
 </picture>
@@ -225,6 +244,7 @@ Regular auditing of third-party apps is crucial:
 ### CDN and Edge Optimization
 
 #### 1. Shopify Scripts Optimization
+
 ```javascript
 // Minimize Scripts impact
 if (Cart.item_count > 0) {
@@ -236,6 +256,7 @@ if (Cart.item_count > 0) {
 ```
 
 #### 2. Edge Side Includes (ESI)
+
 ```liquid
 <!-- Cache static sections separately from dynamic content -->
 {% cache 'header-navigation', shop.updated_at %}
@@ -255,11 +276,13 @@ if (Cart.item_count > 0) {
 ### Continuous Optimization Process
 
 #### 1. Weekly Performance Audits
+
 - Lighthouse CI integration
 - Bundle size monitoring
 - Third-party script auditing
 
 #### 2. A/B Testing for Performance
+
 - Test optimization impact on conversions
 - Measure revenue impact of speed improvements
 - Balance feature richness with performance
@@ -271,16 +294,16 @@ if (Cart.item_count > 0) {
 ```javascript
 // Preload likely next pages based on user behavior
 function predictivePreload() {
-  const popularProducts = ['/products/best-seller', '/products/trending'];
-  
-  if (navigator.connection && navigator.connection.effectiveType === '4g') {
-    popularProducts.forEach(url => {
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = url;
-      document.head.appendChild(link);
-    });
-  }
+    const popularProducts = ["/products/best-seller", "/products/trending"];
+
+    if (navigator.connection && navigator.connection.effectiveType === "4g") {
+        popularProducts.forEach((url) => {
+            const link = document.createElement("link");
+            link.rel = "prefetch";
+            link.href = url;
+            document.head.appendChild(link);
+        });
+    }
 }
 ```
 
@@ -313,18 +336,21 @@ Implementing these techniques across multiple Shopify Plus stores has consistent
 ## Implementation Checklist
 
 ### Phase 1: Foundation (Week 1-2)
+
 - [ ] Audit current performance baseline
 - [ ] Implement critical CSS extraction
 - [ ] Optimize image delivery
 - [ ] Remove unused JavaScript
 
 ### Phase 2: Advanced Optimization (Week 3-4)
+
 - [ ] Implement service worker caching
 - [ ] Add predictive loading
 - [ ] Optimize third-party scripts
 - [ ] Set up performance monitoring
 
 ### Phase 3: Continuous Improvement (Ongoing)
+
 - [ ] Weekly performance reviews
 - [ ] A/B testing for optimizations
 - [ ] User experience monitoring
@@ -338,4 +364,4 @@ Remember: performance optimization is not a one-time task but an ongoing process
 
 ---
 
-*Need help optimizing your Shopify Plus store? [Get in touch](/contact) for a custom performance audit and optimization strategy.*
+_Need help optimizing your Shopify Plus store? [Get in touch](/contact) for a custom performance audit and optimization strategy._

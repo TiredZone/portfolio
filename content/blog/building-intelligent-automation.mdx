@@ -30,6 +30,7 @@ Let's explore each level and how to implement them effectively.
 ### Starting with Simple Wins
 
 The best automation projects start with tasks that are:
+
 - Repetitive and time-consuming
 - Rule-based with clear triggers
 - Low-risk if something goes wrong
@@ -39,24 +40,25 @@ The best automation projects start with tasks that are:
 
 ```javascript
 // Simple webhook handler for new leads
-app.post('/webhook/new-lead', (req, res) => {
-  const lead = req.body;
-  
-  // Send immediate notification
-  sendSlackNotification({
-    channel: '#sales',
-    message: `New lead: ${lead.name} from ${lead.source}`,
-    priority: lead.score > 80 ? 'high' : 'normal'
-  });
-  
-  // Add to CRM
-  crmClient.createLead(lead);
-  
-  res.status(200).send('Lead processed');
+app.post("/webhook/new-lead", (req, res) => {
+    const lead = req.body;
+
+    // Send immediate notification
+    sendSlackNotification({
+        channel: "#sales",
+        message: `New lead: ${lead.name} from ${lead.source}`,
+        priority: lead.score > 80 ? "high" : "normal",
+    });
+
+    // Add to CRM
+    crmClient.createLead(lead);
+
+    res.status(200).send("Lead processed");
 });
 ```
 
 This simple automation:
+
 - Saves 5-10 minutes per lead
 - Ensures no leads are missed
 - Provides immediate value with minimal risk
@@ -71,63 +73,63 @@ Once basic automations prove their value, it's time to tackle more complex workf
 
 ```javascript
 class OnboardingWorkflow {
-  constructor(customer) {
-    this.customer = customer;
-    this.steps = [
-      'sendWelcomeEmail',
-      'createUserAccounts',
-      'scheduleOnboardingCall',
-      'assignAccountManager',
-      'trackProgress'
-    ];
-  }
-  
-  async execute() {
-    for (const step of this.steps) {
-      try {
-        await this[step]();
-        await this.logProgress(step, 'completed');
-      } catch (error) {
-        await this.handleError(step, error);
-        break;
-      }
+    constructor(customer) {
+        this.customer = customer;
+        this.steps = [
+            "sendWelcomeEmail",
+            "createUserAccounts",
+            "scheduleOnboardingCall",
+            "assignAccountManager",
+            "trackProgress",
+        ];
     }
-  }
-  
-  async sendWelcomeEmail() {
-    const template = await this.getEmailTemplate('welcome');
-    const personalizedContent = await this.personalizeContent(template);
-    
-    await emailService.send({
-      to: this.customer.email,
-      subject: `Welcome to ${process.env.COMPANY_NAME}, ${this.customer.firstName}!`,
-      html: personalizedContent
-    });
-  }
-  
-  async createUserAccounts() {
-    // Create accounts in all necessary systems
-    const accounts = await Promise.all([
-      crmClient.createContact(this.customer),
-      supportSystem.createUser(this.customer),
-      billingSystem.setupAccount(this.customer)
-    ]);
-    
-    this.customer.accounts = accounts;
-  }
-  
-  async scheduleOnboardingCall() {
-    const availableSlots = await calendarService.getAvailableSlots({
-      duration: 60,
-      timeframe: '1-week'
-    });
-    
-    await emailService.send({
-      to: this.customer.email,
-      subject: 'Schedule Your Onboarding Call',
-      html: this.generateSchedulingEmail(availableSlots)
-    });
-  }
+
+    async execute() {
+        for (const step of this.steps) {
+            try {
+                await this[step]();
+                await this.logProgress(step, "completed");
+            } catch (error) {
+                await this.handleError(step, error);
+                break;
+            }
+        }
+    }
+
+    async sendWelcomeEmail() {
+        const template = await this.getEmailTemplate("welcome");
+        const personalizedContent = await this.personalizeContent(template);
+
+        await emailService.send({
+            to: this.customer.email,
+            subject: `Welcome to ${process.env.COMPANY_NAME}, ${this.customer.firstName}!`,
+            html: personalizedContent,
+        });
+    }
+
+    async createUserAccounts() {
+        // Create accounts in all necessary systems
+        const accounts = await Promise.all([
+            crmClient.createContact(this.customer),
+            supportSystem.createUser(this.customer),
+            billingSystem.setupAccount(this.customer),
+        ]);
+
+        this.customer.accounts = accounts;
+    }
+
+    async scheduleOnboardingCall() {
+        const availableSlots = await calendarService.getAvailableSlots({
+            duration: 60,
+            timeframe: "1-week",
+        });
+
+        await emailService.send({
+            to: this.customer.email,
+            subject: "Schedule Your Onboarding Call",
+            html: this.generateSchedulingEmail(availableSlots),
+        });
+    }
 }
 ```
 
@@ -141,54 +143,56 @@ Intelligent automation introduces conditional logic and data-driven decision mak
 
 ```javascript
 class DynamicPricingEngine {
-  constructor() {
-    this.factors = {
-      demand: 0.3,
-      competition: 0.25,
-      inventory: 0.2,
-      seasonality: 0.15,
-      customerSegment: 0.1
-    };
-  }
-  
-  async calculateOptimalPrice(product, customer) {
-    const marketData = await this.gatherMarketData(product);
-    const customerData = await this.analyzeCustomer(customer);
-    
-    const priceAdjustments = {
-      demand: this.calculateDemandAdjustment(marketData.demand),
-      competition: this.calculateCompetitionAdjustment(marketData.competitors),
-      inventory: this.calculateInventoryAdjustment(product.inventory),
-      seasonality: this.calculateSeasonalityAdjustment(product.category),
-      customerSegment: this.calculateSegmentAdjustment(customerData)
-    };
-    
-    let finalPrice = product.basePrice;
-    
-    Object.entries(priceAdjustments).forEach(([factor, adjustment]) => {
-      finalPrice *= (1 + (adjustment * this.factors[factor]));
-    });
-    
-    // Apply business rules
-    finalPrice = Math.max(finalPrice, product.minimumPrice);
-    finalPrice = Math.min(finalPrice, product.maximumPrice);
-    
-    return {
-      price: Math.round(finalPrice * 100) / 100,
-      factors: priceAdjustments,
-      confidence: this.calculateConfidenceScore(marketData)
-    };
-  }
-  
-  calculateDemandAdjustment(demandData) {
-    const { current, historical, trend } = demandData;
-    const demandRatio = current / historical.average;
-    
-    if (demandRatio > 1.5) return 0.15; // High demand, increase price
-    if (demandRatio < 0.7) return -0.10; // Low demand, decrease price
-    
-    return trend * 0.05; // Gradual adjustment based on trend
-  }
+    constructor() {
+        this.factors = {
+            demand: 0.3,
+            competition: 0.25,
+            inventory: 0.2,
+            seasonality: 0.15,
+            customerSegment: 0.1,
+        };
+    }
+
+    async calculateOptimalPrice(product, customer) {
+        const marketData = await this.gatherMarketData(product);
+        const customerData = await this.analyzeCustomer(customer);
+
+        const priceAdjustments = {
+            demand: this.calculateDemandAdjustment(marketData.demand),
+            competition: this.calculateCompetitionAdjustment(
+                marketData.competitors
+            ),
+            inventory: this.calculateInventoryAdjustment(product.inventory),
+            seasonality: this.calculateSeasonalityAdjustment(product.category),
+            customerSegment: this.calculateSegmentAdjustment(customerData),
+        };
+
+        let finalPrice = product.basePrice;
+
+        Object.entries(priceAdjustments).forEach(([factor, adjustment]) => {
+            finalPrice *= 1 + adjustment * this.factors[factor];
+        });
+
+        // Apply business rules
+        finalPrice = Math.max(finalPrice, product.minimumPrice);
+        finalPrice = Math.min(finalPrice, product.maximumPrice);
+
+        return {
+            price: Math.round(finalPrice * 100) / 100,
+            factors: priceAdjustments,
+            confidence: this.calculateConfidenceScore(marketData),
+        };
+    }
+
+    calculateDemandAdjustment(demandData) {
+        const { current, historical, trend } = demandData;
+        const demandRatio = current / historical.average;
+
+        if (demandRatio > 1.5) return 0.15; // High demand, increase price
+        if (demandRatio < 0.7) return -0.1; // Low demand, decrease price
+
+        return trend * 0.05; // Gradual adjustment based on trend
+    }
 }
 ```
 
@@ -202,70 +206,74 @@ The highest level of automation incorporates machine learning to improve decisio
 
 ```javascript
 class IntelligentContentCurator {
-  constructor() {
-    this.model = new ContentRecommendationModel();
-    this.userBehaviorTracker = new UserBehaviorTracker();
-  }
-  
-  async curateContentForUser(userId) {
-    const userProfile = await this.buildUserProfile(userId);
-    const availableContent = await this.getAvailableContent();
-    
-    // Use ML model to predict content preferences
-    const contentScores = await this.model.predict({
-      user: userProfile,
-      content: availableContent,
-      context: {
-        timeOfDay: new Date().getHours(),
-        dayOfWeek: new Date().getDay(),
-        previousEngagement: userProfile.engagementHistory
-      }
-    });
-    
-    // Rank and filter content
-    const recommendations = contentScores
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 10)
-      .filter(item => item.score > 0.7);
-    
-    // Learn from user interactions
-    await this.scheduleRetaining(userId, recommendations);
-    
-    return recommendations;
-  }
-  
-  async buildUserProfile(userId) {
-    const [demographics, behavior, preferences] = await Promise.all([
-      this.getUserDemographics(userId),
-      this.userBehaviorTracker.getRecentBehavior(userId),
-      this.getUserPreferences(userId)
-    ]);
-    
-    return {
-      ...demographics,
-      engagementPatterns: this.analyzeEngagementPatterns(behavior),
-      topicPreferences: this.extractTopicPreferences(behavior),
-      contentTypePreferences: preferences.contentTypes,
-      optimalEngagementTimes: this.calculateOptimalTimes(behavior)
-    };
-  }
-  
-  async scheduleRetaining(userId, recommendations) {
-    // Schedule a job to analyze user interactions with recommendations
-    setTimeout(async () => {
-      const interactions = await this.userBehaviorTracker.getInteractions(
-        userId, 
-        recommendations.map(r => r.id)
-      );
-      
-      // Retrain the model with new data
-      await this.model.incrementalTrain({
-        userId,
-        recommendations,
-        interactions
-      });
-    }, 24 * 60 * 60 * 1000); // 24 hours later
-  }
+    constructor() {
+        this.model = new ContentRecommendationModel();
+        this.userBehaviorTracker = new UserBehaviorTracker();
+    }
+
+    async curateContentForUser(userId) {
+        const userProfile = await this.buildUserProfile(userId);
+        const availableContent = await this.getAvailableContent();
+
+        // Use ML model to predict content preferences
+        const contentScores = await this.model.predict({
+            user: userProfile,
+            content: availableContent,
+            context: {
+                timeOfDay: new Date().getHours(),
+                dayOfWeek: new Date().getDay(),
+                previousEngagement: userProfile.engagementHistory,
+            },
+        });
+
+        // Rank and filter content
+        const recommendations = contentScores
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 10)
+            .filter((item) => item.score > 0.7);
+
+        // Learn from user interactions
+        await this.scheduleRetaining(userId, recommendations);
+
+        return recommendations;
+    }
+
+    async buildUserProfile(userId) {
+        const [demographics, behavior, preferences] = await Promise.all([
+            this.getUserDemographics(userId),
+            this.userBehaviorTracker.getRecentBehavior(userId),
+            this.getUserPreferences(userId),
+        ]);
+
+        return {
+            ...demographics,
+            engagementPatterns: this.analyzeEngagementPatterns(behavior),
+            topicPreferences: this.extractTopicPreferences(behavior),
+            contentTypePreferences: preferences.contentTypes,
+            optimalEngagementTimes: this.calculateOptimalTimes(behavior),
+        };
+    }
+
+    async scheduleRetaining(userId, recommendations) {
+        // Schedule a job to analyze user interactions with recommendations
+        setTimeout(
+            async () => {
+                const interactions =
+                    await this.userBehaviorTracker.getInteractions(
+                        userId,
+                        recommendations.map((r) => r.id)
+                    );
+
+                // Retrain the model with new data
+                await this.model.incrementalTrain({
+                    userId,
+                    recommendations,
+                    interactions,
+                });
+            },
+            24 * 60 * 60 * 1000
+        ); // 24 hours later
+    }
 }
 ```
 
@@ -274,24 +282,28 @@ class IntelligentContentCurator {
 ### Phase-Based Approach
 
 #### Phase 1: Foundation (Months 1-2)
+
 1. **Audit Current Processes**: Identify automation opportunities
 2. **Quick Wins**: Implement 3-5 basic automations
 3. **Infrastructure Setup**: Establish monitoring and error handling
 4. **Team Training**: Build automation awareness
 
 #### Phase 2: Workflow Integration (Months 3-4)
+
 1. **Multi-Step Workflows**: Connect existing automations
 2. **Data Integration**: Ensure systems communicate effectively
 3. **Error Handling**: Implement robust error recovery
 4. **Performance Monitoring**: Track automation effectiveness
 
 #### Phase 3: Intelligence Layer (Months 5-6)
+
 1. **Decision Logic**: Add conditional processing
 2. **Data Analysis**: Implement analytics and reporting
 3. **Optimization**: Continuously improve workflows
 4. **Scaling**: Prepare for increased automation load
 
 #### Phase 4: AI Integration (Months 7+)
+
 1. **ML Models**: Introduce predictive capabilities
 2. **Learning Systems**: Implement feedback loops
 3. **Advanced Analytics**: Deploy sophisticated monitoring
@@ -304,45 +316,48 @@ class IntelligentContentCurator {
 ```javascript
 // Automation orchestrator
 class AutomationOrchestrator {
-  constructor() {
-    this.services = {
-      triggers: new TriggerService(),
-      processors: new ProcessorService(),
-      actions: new ActionService(),
-      monitoring: new MonitoringService()
-    };
-  }
-  
-  async executeWorkflow(workflowId, payload) {
-    const workflow = await this.getWorkflow(workflowId);
-    const execution = await this.createExecution(workflow, payload);
-    
-    try {
-      for (const step of workflow.steps) {
-        const result = await this.executeStep(step, execution.context);
-        execution.context = { ...execution.context, ...result };
-        
-        await this.services.monitoring.logStepCompletion(execution.id, step.id);
-      }
-      
-      await this.completeExecution(execution);
-    } catch (error) {
-      await this.handleExecutionError(execution, error);
+    constructor() {
+        this.services = {
+            triggers: new TriggerService(),
+            processors: new ProcessorService(),
+            actions: new ActionService(),
+            monitoring: new MonitoringService(),
+        };
     }
-  }
-  
-  async executeStep(step, context) {
-    switch (step.type) {
-      case 'trigger':
-        return await this.services.triggers.execute(step, context);
-      case 'processor':
-        return await this.services.processors.execute(step, context);
-      case 'action':
-        return await this.services.actions.execute(step, context);
-      default:
-        throw new Error(`Unknown step type: ${step.type}`);
+
+    async executeWorkflow(workflowId, payload) {
+        const workflow = await this.getWorkflow(workflowId);
+        const execution = await this.createExecution(workflow, payload);
+
+        try {
+            for (const step of workflow.steps) {
+                const result = await this.executeStep(step, execution.context);
+                execution.context = { ...execution.context, ...result };
+
+                await this.services.monitoring.logStepCompletion(
+                    execution.id,
+                    step.id
+                );
+            }
+
+            await this.completeExecution(execution);
+        } catch (error) {
+            await this.handleExecutionError(execution, error);
+        }
     }
-  }
+
+    async executeStep(step, context) {
+        switch (step.type) {
+            case "trigger":
+                return await this.services.triggers.execute(step, context);
+            case "processor":
+                return await this.services.processors.execute(step, context);
+            case "action":
+                return await this.services.actions.execute(step, context);
+            default:
+                throw new Error(`Unknown step type: ${step.type}`);
+        }
+    }
 }
 ```
 
@@ -360,28 +375,30 @@ class AutomationOrchestrator {
 
 ```javascript
 class AutomationAnalytics {
-  async generateWeeklyReport() {
-    const metrics = await this.gatherMetrics();
-    const insights = await this.analyzePerformance(metrics);
-    const recommendations = await this.generateRecommendations(insights);
-    
-    return {
-      summary: this.createExecutiveSummary(metrics),
-      detailedMetrics: metrics,
-      performanceInsights: insights,
-      optimizationRecommendations: recommendations,
-      nextSteps: this.prioritizeActions(recommendations)
-    };
-  }
-  
-  async analyzePerformance(metrics) {
-    return {
-      trendsAnalysis: this.analyzeTrends(metrics.historical),
-      bottleneckIdentification: this.identifyBottlenecks(metrics.execution),
-      errorPatternAnalysis: this.analyzeErrorPatterns(metrics.errors),
-      userSatisfactionTrends: this.analyzeUserFeedback(metrics.feedback)
-    };
-  }
+    async generateWeeklyReport() {
+        const metrics = await this.gatherMetrics();
+        const insights = await this.analyzePerformance(metrics);
+        const recommendations = await this.generateRecommendations(insights);
+
+        return {
+            summary: this.createExecutiveSummary(metrics),
+            detailedMetrics: metrics,
+            performanceInsights: insights,
+            optimizationRecommendations: recommendations,
+            nextSteps: this.prioritizeActions(recommendations),
+        };
+    }
+
+    async analyzePerformance(metrics) {
+        return {
+            trendsAnalysis: this.analyzeTrends(metrics.historical),
+            bottleneckIdentification: this.identifyBottlenecks(
+                metrics.execution
+            ),
+            errorPatternAnalysis: this.analyzeErrorPatterns(metrics.errors),
+            userSatisfactionTrends: this.analyzeUserFeedback(metrics.feedback),
+        };
+    }
 }
 ```
 
@@ -397,6 +414,7 @@ Implementing this approach across various client projects has delivered:
 ## Best Practices and Lessons Learned
 
 ### Do's
+
 - Start small and build incrementally
 - Invest heavily in monitoring and error handling
 - Document everything thoroughly
@@ -404,6 +422,7 @@ Implementing this approach across various client projects has delivered:
 - Regularly review and optimize workflows
 
 ### Don'ts
+
 - Automate broken processes without fixing them first
 - Ignore security considerations
 - Forget about edge cases and error scenarios
@@ -418,4 +437,4 @@ The key to success lies in taking a systematic approach, investing in proper inf
 
 ---
 
-*Ready to implement intelligent automation in your organization? [Contact me](/contact) to discuss your automation strategy and implementation roadmap.*
+_Ready to implement intelligent automation in your organization? [Contact me](/contact) to discuss your automation strategy and implementation roadmap._

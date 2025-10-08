@@ -4,6 +4,10 @@ import { siteConfig } from "@/lib/config";
 import { CalEmbed } from "@/components/features/cal-embed";
 import { Mail, Phone, MapPin, Clock, Linkedin, Github } from "lucide-react";
 import { ContactForm } from "@/components/features/contact-form";
+import { FloatingElements } from "@/components/common/floating-elements";
+import { Container } from "@/components/layout/container";
+import { Section } from "@/components/layout/section";
+import { FAQ } from "@/components/features/faq";
 
 export const metadata: Metadata = generateMetadata({
     title: "Contact",
@@ -14,222 +18,163 @@ export const metadata: Metadata = generateMetadata({
 
 export default function ContactPage() {
     return (
-        <div className="min-h-screen">
+        <>
+            <FloatingElements />
+            
             {/* Hero */}
-            <section className="relative py-20 bg-gradient-to-br from-royal-900 via-royal-800 to-royal-700 dark:from-royal-950 dark:via-royal-900 dark:to-royal-800">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <h1 className="text-5xl md:text-6xl font-serif font-bold text-white mb-6">
-                            Let&apos;s Work Together
-                        </h1>
-                        <p className="text-xl text-royal-100 leading-relaxed">
-                            Have a project in mind? I&apos;d love to hear about
-                            it. Book a call or send a message and I&apos;ll get
-                            back to you within 24 hours.
-                        </p>
+            <Section className="min-h-[50vh] flex items-center relative bg-gradient-to-br from-royal-50 via-white to-gold-50 dark:from-royal-900 dark:via-gray-900 dark:to-black">
+                <Container>
+                    <div className="max-w-5xl mx-auto text-center space-y-8">
+                        <div className="space-y-6">
+                            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-royal-900 via-royal-700 to-gold-600 dark:from-white dark:via-royal-100 dark:to-gold-400 bg-clip-text text-transparent leading-tight">
+                                Let&apos;s Work Together
+                            </h1>
+                            <p className="text-xl md:text-2xl text-royal-700 dark:text-royal-200 max-w-3xl mx-auto leading-relaxed">
+                                Have a project in mind? I&apos;d love to hear about it. 
+                                <span className="block mt-2 text-lg opacity-90">
+                                    Book a call or send a message and I&apos;ll get back to you within 24 hours.
+                                </span>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </Container>
+            </Section>
 
             {/* Contact Methods */}
-            <section className="py-16 bg-white dark:bg-gray-900">
-                <div className="container mx-auto px-4">
+            <Section className="bg-white dark:bg-gray-900">
+                <Container>
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-16">
                         <a
                             href={`mailto:${siteConfig.author.email}`}
-                            className="flex flex-col items-center p-6 bg-royal-50 dark:bg-royal-900/20 rounded-lg border border-royal-100 dark:border-royal-800 hover:shadow-lg transition-shadow group"
+                            className="group flex flex-col items-center p-8 bg-gradient-to-br from-royal-50 to-gold-50/30 dark:from-royal-900/20 dark:to-gold-900/10 rounded-2xl border border-royal-200/50 dark:border-royal-800/50 hover:border-gold-300 dark:hover:border-gold-600 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                         >
-                            <div className="p-3 bg-royal-100 dark:bg-royal-900/40 rounded-full mb-4 group-hover:bg-royal-200 dark:group-hover:bg-royal-900/60 transition-colors">
-                                <Mail className="w-6 h-6 text-royal-700 dark:text-royal-400" />
+                            <div className="p-4 bg-gradient-to-r from-royal-500 to-royal-600 dark:from-royal-400 dark:to-royal-500 rounded-xl mb-6 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+                                <Mail className="w-7 h-7 text-white" />
                             </div>
-                            <h3 className="font-semibold text-royal-900 dark:text-white mb-1">
+                            <h3 className="font-bold text-royal-900 dark:text-white mb-2 text-lg">
                                 Email
                             </h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+                            <p className="text-sm text-royal-700 dark:text-royal-300 text-center leading-relaxed">
                                 {siteConfig.author.email}
                             </p>
                         </a>
 
                         <a
                             href={`tel:${siteConfig.author.phone}`}
-                            className="flex flex-col items-center p-6 bg-royal-50 dark:bg-royal-900/20 rounded-lg border border-royal-100 dark:border-royal-800 hover:shadow-lg transition-shadow group"
+                            className="group flex flex-col items-center p-8 bg-gradient-to-br from-royal-50 to-gold-50/30 dark:from-royal-900/20 dark:to-gold-900/10 rounded-2xl border border-royal-200/50 dark:border-royal-800/50 hover:border-gold-300 dark:hover:border-gold-600 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                         >
-                            <div className="p-3 bg-royal-100 dark:bg-royal-900/40 rounded-full mb-4 group-hover:bg-royal-200 dark:group-hover:bg-royal-900/60 transition-colors">
-                                <Phone className="w-6 h-6 text-royal-700 dark:text-royal-400" />
+                            <div className="p-4 bg-gradient-to-r from-gold-500 to-gold-600 dark:from-gold-400 dark:to-gold-500 rounded-xl mb-6 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+                                <Phone className="w-7 h-7 text-white" />
                             </div>
-                            <h3 className="font-semibold text-royal-900 dark:text-white mb-1">
+                            <h3 className="font-bold text-royal-900 dark:text-white mb-2 text-lg">
                                 Phone
                             </h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+                            <p className="text-sm text-royal-700 dark:text-royal-300 text-center leading-relaxed">
                                 {siteConfig.author.phone}
                             </p>
                         </a>
 
-                        <div className="flex flex-col items-center p-6 bg-royal-50 dark:bg-royal-900/20 rounded-lg border border-royal-100 dark:border-royal-800">
-                            <div className="p-3 bg-royal-100 dark:bg-royal-900/40 rounded-full mb-4">
-                                <MapPin className="w-6 h-6 text-royal-700 dark:text-royal-400" />
+                        <div className="group flex flex-col items-center p-8 bg-gradient-to-br from-royal-50 to-gold-50/30 dark:from-royal-900/20 dark:to-gold-900/10 rounded-2xl border border-royal-200/50 dark:border-royal-800/50 hover:border-gold-300 dark:hover:border-gold-600 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            <div className="p-4 bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-400 dark:to-emerald-500 rounded-xl mb-6 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+                                <MapPin className="w-7 h-7 text-white" />
                             </div>
-                            <h3 className="font-semibold text-royal-900 dark:text-white mb-1">
+                            <h3 className="font-bold text-royal-900 dark:text-white mb-2 text-lg">
                                 Location
                             </h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+                            <p className="text-sm text-royal-700 dark:text-royal-300 text-center leading-relaxed">
                                 {siteConfig.author.location}
                             </p>
                         </div>
 
-                        <div className="flex flex-col items-center p-6 bg-royal-50 dark:bg-royal-900/20 rounded-lg border border-royal-100 dark:border-royal-800">
-                            <div className="p-3 bg-royal-100 dark:bg-royal-900/40 rounded-full mb-4">
-                                <Clock className="w-6 h-6 text-royal-700 dark:text-royal-400" />
+                        <div className="group flex flex-col items-center p-8 bg-gradient-to-br from-royal-50 to-gold-50/30 dark:from-royal-900/20 dark:to-gold-900/10 rounded-2xl border border-royal-200/50 dark:border-royal-800/50 hover:border-gold-300 dark:hover:border-gold-600 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            <div className="p-4 bg-gradient-to-r from-purple-500 to-purple-600 dark:from-purple-400 dark:to-purple-500 rounded-xl mb-6 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+                                <Clock className="w-7 h-7 text-white" />
                             </div>
-                            <h3 className="font-semibold text-royal-900 dark:text-white mb-1">
+                            <h3 className="font-bold text-royal-900 dark:text-white mb-2 text-lg">
                                 Timezone
                             </h3>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
+                            <p className="text-sm text-royal-700 dark:text-royal-300 text-center leading-relaxed">
                                 {siteConfig.author.timezone}
                             </p>
                         </div>
                     </div>
 
                     {/* Social Links */}
-                    <div className="flex gap-4 justify-center mb-16">
+                    <div className="flex gap-6 justify-center mb-16">
                         <a
                             href={siteConfig.social.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-4 rounded-full bg-royal-100 dark:bg-royal-900/20 text-royal-700 dark:text-royal-400 hover:bg-royal-200 dark:hover:bg-royal-900/40 transition-colors"
+                            className="group p-5 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 text-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105"
                             aria-label="LinkedIn"
                         >
-                            <Linkedin className="w-6 h-6" />
+                            <Linkedin className="w-7 h-7" />
                         </a>
                         <a
                             href={siteConfig.social.tiredZone}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-4 rounded-full bg-royal-100 dark:bg-royal-900/20 text-royal-700 dark:text-royal-400 hover:bg-royal-200 dark:hover:bg-royal-900/40 transition-colors"
+                            className="group p-5 rounded-2xl bg-gradient-to-r from-gray-700 to-gray-800 dark:from-gray-600 dark:to-gray-700 text-white hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-105"
                             aria-label="GitHub"
                         >
-                            <Github className="w-6 h-6" />
+                            <Github className="w-7 h-7" />
                         </a>
                     </div>
-                </div>
-            </section>
+                </Container>
+            </Section>
 
             {/* Booking Calendar */}
-            <section className="py-16 bg-gradient-to-br from-royal-50 to-white dark:from-gray-800 dark:to-gray-900">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-4xl mx-auto">
+            <Section className="bg-gradient-to-br from-royal-50/30 to-gold-50/30 dark:from-royal-900/20 dark:to-black/20">
+                <Container>
+                    <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-12">
-                            <h2 className="text-4xl font-serif font-bold text-royal-900 dark:text-white mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold text-royal-900 dark:text-white mb-6">
                                 Book a Free Consultation
                             </h2>
-                            <p className="text-lg text-gray-600 dark:text-gray-400">
-                                Schedule a 30-minute call to discuss your
-                                project, goals, and how I can help.
+                            <p className="text-lg md:text-xl text-royal-700 dark:text-royal-300 max-w-2xl mx-auto leading-relaxed">
+                                Schedule a 30-minute call to discuss your project, goals, and how I can help you achieve them.
                             </p>
                         </div>
-                        <CalEmbed />
+                        <div className="max-w-4xl mx-auto">
+                            <CalEmbed />
+                        </div>
                     </div>
-                </div>
-            </section>
+                </Container>
+            </Section>
 
             {/* Contact Form */}
-            <section className="py-16 bg-white dark:bg-gray-900">
-                <div className="container mx-auto px-4">
+            <Section className="bg-white dark:bg-gray-900">
+                <Container>
                     <div className="max-w-4xl mx-auto">
                         <div className="text-center mb-12">
-                            <h2 className="text-4xl font-serif font-bold text-royal-900 dark:text-white mb-4">
+                            <h2 className="text-4xl md:text-5xl font-bold text-royal-900 dark:text-white mb-6">
                                 Or Send a Message
                             </h2>
-                            <p className="text-lg text-gray-600 dark:text-gray-400">
-                                Prefer to email? Fill out the form below and
-                                I&apos;ll get back to you within 24 hours.
+                            <p className="text-lg md:text-xl text-royal-700 dark:text-royal-300 max-w-2xl mx-auto leading-relaxed">
+                                Prefer to email? Fill out the form below and I&apos;ll get back to you within 24 hours.
                             </p>
                         </div>
                         <ContactForm />
                     </div>
-                </div>
-            </section>
+                </Container>
+            </Section>
 
             {/* FAQ */}
-            <section className="py-16 bg-gradient-to-br from-royal-50 to-white dark:from-gray-800 dark:to-gray-900">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-3xl mx-auto">
-                        <h2 className="text-4xl font-serif font-bold text-royal-900 dark:text-white mb-12 text-center">
-                            Common Questions
-                        </h2>
-
-                        <div className="space-y-6">
-                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-royal-100 dark:border-royal-800">
-                                <h3 className="text-xl font-bold text-royal-900 dark:text-white mb-2">
-                                    What&apos;s your typical project timeline?
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-400">
-                                    Most projects range from 2-8 weeks depending
-                                    on scope and complexity. Shopify
-                                    optimizations can be completed in 1-2 weeks,
-                                    while full web applications typically take
-                                    4-8 weeks. I&apos;ll provide a detailed
-                                    timeline in the proposal.
-                                </p>
-                            </div>
-
-                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-royal-100 dark:border-royal-800">
-                                <h3 className="text-xl font-bold text-royal-900 dark:text-white mb-2">
-                                    Do you work with startups or only
-                                    established businesses?
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-400">
-                                    I work with both! Whether you&apos;re a
-                                    startup building your MVP or an established
-                                    brand scaling to 7+ figures, I can help. My
-                                    approach adapts to your stage and goals.
-                                </p>
-                            </div>
-
-                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-royal-100 dark:border-royal-800">
-                                <h3 className="text-xl font-bold text-royal-900 dark:text-white mb-2">
-                                    What&apos;s your pricing structure?
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-400">
-                                    I offer both project-based pricing and
-                                    hourly rates depending on the engagement.
-                                    Project pricing is typically preferred for
-                                    defined scopes. I&apos;ll provide a detailed
-                                    quote after our initial consultation.
-                                </p>
-                            </div>
-
-                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-royal-100 dark:border-royal-800">
-                                <h3 className="text-xl font-bold text-royal-900 dark:text-white mb-2">
-                                    Do you provide ongoing support?
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-400">
-                                    Yes! I offer post-launch support and
-                                    maintenance packages. Many clients work with
-                                    me long-term for ongoing optimization,
-                                    features, and support. We can discuss
-                                    retainer options that fit your needs.
-                                </p>
-                            </div>
-
-                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-royal-100 dark:border-royal-800">
-                                <h3 className="text-xl font-bold text-royal-900 dark:text-white mb-2">
-                                    What makes you different from other
-                                    developers?
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-400">
-                                    I focus on measurable business results, not
-                                    just code quality. Every project is
-                                    optimized for performance, conversions, and
-                                    ROI from day one. Plus, I bring deep
-                                    expertise in both Shopify Plus and custom
-                                    web applications.
-                                </p>
-                            </div>
+            <Section className="bg-gradient-to-br from-royal-50/30 to-gold-50/30 dark:from-royal-900/20 dark:to-black/20">
+                <Container>
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl md:text-5xl font-bold text-royal-900 dark:text-white mb-6">
+                                Common Questions
+                            </h2>
+                            <p className="text-lg md:text-xl text-royal-700 dark:text-royal-300 max-w-2xl mx-auto leading-relaxed">
+                                Get answers to frequently asked questions about my process, pricing, and services.
+                            </p>
                         </div>
+                        <FAQ />
                     </div>
-                </div>
-            </section>
-        </div>
+                </Container>
+            </Section>
+        </>
     );
 }

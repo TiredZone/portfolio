@@ -10,7 +10,6 @@ import {
     ArrowRight,
     Check,
     Sparkles,
-    Star,
     Trophy,
     Users,
     Target,

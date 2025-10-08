@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
     const allBlogPosts = getAllBlogPosts();
-    
+
     // Transform MDX posts to the format expected by the component
-    const posts = allBlogPosts.map(post => ({
+    const posts = allBlogPosts.map((post) => ({
         title: post.frontmatter.title,
         description: post.frontmatter.description,
         slug: post.slug,
@@ -31,7 +31,7 @@ export default function BlogPage() {
     return (
         <>
             <FloatingElements />
-            
+
             {/* Hero Section */}
             <Section className="min-h-[30vh] flex items-center relative bg-gradient-to-br from-royal-50 via-white to-gold-50 dark:from-royal-900 dark:via-gray-900 dark:to-black">
                 <Container>
@@ -40,7 +40,7 @@ export default function BlogPage() {
                             Blog
                         </h1>
                         <p className="text-xl md:text-2xl text-royal-700 dark:text-royal-200 max-w-2xl mx-auto leading-relaxed">
-                            Insights on web development, Shopify optimization, 
+                            Insights on web development, Shopify optimization,
                             and building successful digital experiences
                         </p>
                     </div>
@@ -94,14 +94,16 @@ export default function BlogPage() {
                                         </div>
                                         {post.tags && post.tags.length > 0 && (
                                             <div className="flex flex-wrap gap-1">
-                                                {post.tags.map((tag: string) => (
-                                                    <Badge
-                                                        key={tag}
-                                                        variant="default"
-                                                    >
-                                                        {tag}
-                                                    </Badge>
-                                                ))}
+                                                {post.tags.map(
+                                                    (tag: string) => (
+                                                        <Badge
+                                                            key={tag}
+                                                            variant="default"
+                                                        >
+                                                            {tag}
+                                                        </Badge>
+                                                    )
+                                                )}
                                             </div>
                                         )}
                                     </div>
