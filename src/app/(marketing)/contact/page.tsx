@@ -20,7 +20,7 @@ export default function ContactPage() {
     return (
         <>
             <FloatingElements />
-            
+
             {/* Hero */}
             <Section className="min-h-[50vh] flex items-center relative bg-gradient-to-br from-royal-50 via-white to-gold-50 dark:from-royal-900 dark:via-gray-900 dark:to-black">
                 <Container>
@@ -30,9 +30,11 @@ export default function ContactPage() {
                                 Let&apos;s Work Together
                             </h1>
                             <p className="text-xl md:text-2xl text-royal-700 dark:text-royal-200 max-w-3xl mx-auto leading-relaxed">
-                                Have a project in mind? I&apos;d love to hear about it. 
+                                Have a project in mind? I&apos;d love to hear
+                                about it.
                                 <span className="block mt-2 text-lg opacity-90">
-                                    Book a call or send a message and I&apos;ll get back to you within 24 hours.
+                                    Book a call or send a message and I&apos;ll
+                                    get back to you within 24 hours.
                                 </span>
                             </p>
                         </div>
@@ -132,7 +134,9 @@ export default function ContactPage() {
                                 Book a Free Consultation
                             </h2>
                             <p className="text-lg md:text-xl text-royal-700 dark:text-royal-300 max-w-2xl mx-auto leading-relaxed">
-                                Schedule a 30-minute call to discuss your project, goals, and how I can help you achieve them.
+                                Schedule a 30-minute call to discuss your
+                                project, goals, and how I can help you achieve
+                                them.
                             </p>
                         </div>
                         <div className="max-w-4xl mx-auto">
@@ -151,7 +155,8 @@ export default function ContactPage() {
                                 Or Send a Message
                             </h2>
                             <p className="text-lg md:text-xl text-royal-700 dark:text-royal-300 max-w-2xl mx-auto leading-relaxed">
-                                Prefer to email? Fill out the form below and I&apos;ll get back to you within 24 hours.
+                                Prefer to email? Fill out the form below and
+                                I&apos;ll get back to you within 24 hours.
                             </p>
                         </div>
                         <ContactForm />
@@ -168,7 +173,8 @@ export default function ContactPage() {
                                 Common Questions
                             </h2>
                             <p className="text-lg md:text-xl text-royal-700 dark:text-royal-300 max-w-2xl mx-auto leading-relaxed">
-                                Get answers to frequently asked questions about my process, pricing, and services.
+                                Get answers to frequently asked questions about
+                                my process, pricing, and services.
                             </p>
                         </div>
                         <FAQ />
