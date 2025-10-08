@@ -70,20 +70,26 @@ export const generateMetadata = ({
     url?: string;
     noIndex?: boolean;
 }) => {
+    // Generate clean titles without redundancy
+    const pageTitle = title
+        ? `${title} - ${siteConfig.author.name}`
+        : siteConfig.title;
+    const ogTitle = title || siteConfig.author.name;
+
     const metadata: Record<string, unknown> = {
-        title: title ? `${title} | ${siteConfig.name}` : siteConfig.title,
+        title: pageTitle,
         description: description || siteConfig.description,
         openGraph: {
-            title: title || siteConfig.title,
+            title: ogTitle,
             description: description || siteConfig.description,
             url: url || siteConfig.url,
-            siteName: siteConfig.name,
+            siteName: siteConfig.author.name,
             images: [
                 {
                     url: image || `${siteConfig.url}/og-image.jpg`,
                     width: 1200,
                     height: 630,
-                    alt: title || siteConfig.title,
+                    alt: ogTitle,
                 },
             ],
             locale: "en_US",
@@ -91,7 +97,7 @@ export const generateMetadata = ({
         },
         twitter: {
             card: "summary_large_image",
-            title: title || siteConfig.title,
+            title: ogTitle,
             description: description || siteConfig.description,
             images: [image || `${siteConfig.url}/og-image.jpg`],
             creator: "@becharaelm",

@@ -1,6 +1,6 @@
 export const siteConfig = {
     name: "Bechara El Maalouf",
-    title: "Bechara El Maalouf - Full-Stack Developer | React, Node.js, Shopify Expert",
+    title: "Bechara El Maalouf - Full-Stack Developer",
     description:
         "Full-Stack Developer specializing in React, Node.js, and Shopify Plus. Delivered 32% revenue increase for $2M/mo ecommerce brands through performance optimization and automation.",
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://becharaelmaalouf.dev",
