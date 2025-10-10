@@ -27,7 +27,7 @@ import Link from "next/link";
 import { FloatingElements } from "@/components/common/floating-elements";
 
 export const metadata: Metadata = generateMetadata({
-    title: "About",
+    title: "About - Full-Stack Developer from Lebanon",
     description:
         "Full-Stack Developer from Lebanon specializing in React, Node.js, and Shopify Plus. Learn about my background, experience, and approach to building exceptional web applications.",
     url: `${siteConfig.url}/about`,

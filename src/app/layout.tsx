@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     ),
     title: {
         default: "Bechara El Maalouf – Full‑Stack Developer",
-        template: "%s · Bechara El Maalouf",
+        template: "%s",
     },
     description:
         "Full‑Stack Developer building scalable web, mobile, and automation systems — React/Next.js, Node.js, .NET Core, Shopify, React Native/Flutter, Docker & Kubernetes, and AI automation.",

@@ -29,7 +29,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata: Metadata = generateMetadata({
-    title: "Services",
+    title: "Services - Web Development & Shopify Plus",
     description:
         "Professional web development services: Shopify Plus development, custom web applications, automation & integrations, and technical consulting. Delivering measurable results for growing businesses.",
     url: `${siteConfig.url}/services`,

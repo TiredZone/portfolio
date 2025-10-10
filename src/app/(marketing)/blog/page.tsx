@@ -9,7 +9,7 @@ import { getAllBlogPosts } from "@/lib/mdx";
 import { FloatingElements } from "@/components/common/floating-elements";
 
 export const metadata: Metadata = {
-    title: "Blog – Technical Articles & Insights",
+    title: "Blog - Technical Articles & Web Development Insights",
     description:
         "Articles about web development, Shopify optimization, automation, and modern web technologies.",
 };

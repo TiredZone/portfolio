@@ -10,7 +10,7 @@ import { Section } from "@/components/layout/section";
 import { FAQ } from "@/components/features/faq";
 
 export const metadata: Metadata = generateMetadata({
-    title: "Contact",
+    title: "Contact - Let's Work Together",
     description:
         "Get in touch with Bechara El Maalouf for your next web development project. Book a free consultation or send a message to discuss Shopify, web apps, or automation needs.",
     url: `${siteConfig.url}/contact`,

@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Work – Case Studies & Portfolio",
+    title: "Work - Case Studies & Portfolio Projects",
     description:
         "Explore my portfolio of successful projects including Shopify Plus optimizations, web applications, and automation solutions that drove real business results.",
 };
