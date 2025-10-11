@@ -1,0 +1,280 @@
+---
+title: "Celeste-JS: Enterprise Web3 SDK for Multi-Chain DApps"
+description: "Built a comprehensive Web3 SDK with React components, multi-chain support, and wallet integrations. Architected monorepo with core, React, and CLI packages used across multiple production DApps."
+client: "Orcania"
+duration: "Jan 2022 - Dec 2022"
+role: "Lead Web3 Developer"
+tech:
+    [
+        "Web3.js",
+        "React",
+        "Redux",
+        "JavaScript",
+        "Lerna Monorepo",
+        "WalletConnect",
+        "MetaMask",
+        "Smart Contracts",
+        "Node.js",
+    ]
+image: "/images/projects/celeste-sdk.jpg"
+featured: true
+metrics:
+    - label: "SDK Packages"
+      value: "4 Core Modules"
+    - label: "DApps Powered"
+      value: "5+ Applications"
+    - label: "Chain Support"
+      value: "Multi-chain"
+    - label: "Developer Experience"
+      value: "Plug & Play"
+publishedAt: 2024-12-01
+---
+
+## The Web3 Infrastructure Challenge
+
+At Orcania, we were building multiple decentralized applications but found ourselves repeatedly implementing the same Web3 wallet connection logic, smart contract interactions, and state management across projects. Each DApp required wallet integration, multi-chain support, and complex blockchain state management. This led to code duplication, inconsistent user experiences, and slower development cycles.
+
+## Engineering the Solution: Celeste-JS SDK
+
+I architected and developed **Celeste-JS**, a comprehensive Web3 SDK that standardized blockchain interactions across all Orcania projects. The solution consisted of four core packages in a Lerna monorepo:
+
+### **Core Architecture (@celeste-js/core)**
+
+The foundation package provided the main CelesteJS class with sophisticated wallet and chain management:
+
+```javascript
+import CelesteJS from "@celeste-js/core";
+
+const celeste = new CelesteJS({
+    isMultichain: true,
+    rpcs: {
+        ETH: {
+            chainId: "1",
+            url: "https://mainnet.infura.io/v3/YOUR_KEY",
+        },
+        BOBA: {
+            chainId: "288",
+            url: "https://mainnet.boba.network",
+        },
+    },
+    smartContracts: [
+        {
+            key: "DEX",
+            abi: DEX_ABI,
+            address: {
+                1: "0x...", // Ethereum address
+                288: "0x...", // Boba address
+            },
+        },
+    ],
+});
+```
+
+**Key Technical Features:**
+
+- **Multi-chain Provider Management**: Automatically handled provider switching between networks
+- **Smart Contract Abstraction**: Single interface for contracts deployed across multiple chains
+- **Session Persistence**: Maintained wallet connections across page reloads
+- **Event System**: Comprehensive event handling for account/chain changes
+
+### **React Integration (@celeste-js/react)**
+
+Built React hooks and components for seamless DApp integration:
+
+```javascript
+import { useCeleste, ConnectedWrapper } from "@celeste-js/react";
+
+function MyDApp() {
+    const { requestConnection, isConnected } = useCeleste();
+
+    return (
+        <ConnectedWrapper>
+            <DEXInterface />
+        </ConnectedWrapper>
+    );
+}
+```
+
+**React Components Included:**
+
+- `CelesteProvider`: Context provider for wallet state
+- `ConnectedWrapper`: Conditional rendering based on connection status
+- `ConnectButton`: Standardized wallet connection interface
+- `NetworkWrapper`: Chain-specific component rendering
+- `SwitchNetworkButton`: One-click network switching
+
+### **State Management (@celeste-js/store)**
+
+Implemented Redux-based state management for complex blockchain data:
+
+```javascript
+import { store, useCelesteSelector } from "@celeste-js/store";
+
+const WalletInfo = () => {
+    const { address, chainId, isConnected } = useCelesteSelector(
+        (state) => state.walletReducer
+    );
+
+    return (
+        <div>
+            <p>Address: {address}</p>
+            <p>Chain: {chainId}</p>
+            <p>Status: {isConnected ? "Connected" : "Disconnected"}</p>
+        </div>
+    );
+};
+```
+
+### **CLI Tools (@celeste-js/cli)**
+
+Developed command-line utilities for contract deployment and configuration management.
+
+## Real-World Implementation
+
+### **Orcania DEX Integration**
+
+The DEX utilized Celeste-JS for multi-chain token trading:
+
+```javascript
+// celeste.config.js - DEX Configuration
+module.exports = {
+    isMultichain: true,
+    rpcs: {
+        ETH: { chainId: "4", url: "https://rinkeby.infura.io/v3/..." },
+        BOBA: { chainId: "28", url: "https://rinkeby.boba.network" },
+    },
+    smartContracts: [
+        {
+            key: "DEX",
+            abi: DEX_ABI,
+            address: {
+                28: "0xCdE8C10eE7067Ff50f911d74883130D2799FF35c",
+                4: "0x6f4d72B17bFa9b77269b9cd732dDe84f158AfacD",
+            },
+        },
+    ],
+};
+```
+
+The DEX handled complex trading operations across Ethereum and Boba networks with automatic provider switching and transaction management.
+
+## Technical Innovations
+
+### **1. Provider Proxy Pattern**
+
+Implemented a provider proxy that abstracted wallet differences:
+
+```javascript
+class ProviderProxy {
+    setType(providerType) {
+        this.currentProvider = this.getProvider(providerType);
+    }
+
+    async requestConnection() {
+        // Unified connection logic for MetaMask & WalletConnect
+    }
+
+    async requestChangeNetwork(chainId) {
+        // Standardized network switching
+    }
+}
+```
+
+### **2. Smart Contract Factory System**
+
+Created a factory pattern for multi-chain contract instances:
+
+```javascript
+const initSC = (address, config, web3, suffix) => {
+    const contract = new web3.eth.Contract(config.abi, address);
+    // Register contract with read/write capabilities
+    celesteStore.dispatch(addSmartContract(`${config.key}${suffix}`, contract));
+};
+```
+
+### **3. Event-Driven Architecture**
+
+Built comprehensive event handling for blockchain state changes:
+
+```javascript
+celeste.on("accountsChanged", (accounts) => {
+    // Handle wallet account changes
+});
+
+celeste.on("chainChanged", (chainId) => {
+    // Handle network switches
+    updateContractInstances(chainId);
+});
+```
+
+## Production Impact
+
+### **Developer Experience Transformation**
+
+- **Setup Time**: Reduced from 2-3 days to 30 minutes for new DApps
+- **Code Reusability**: 80% reduction in wallet integration code
+- **Consistency**: Standardized UX across all Orcania applications
+- **Maintenance**: Centralized updates benefited all dependent projects
+
+### **Applications Powered**
+
+1. **Orcania DEX**: Multi-chain decentralized exchange
+2. **BitNaft Platform**: NFT marketplace with analytics
+3. **Red Ape Family**: NFT staking and rewards platform
+4. **Orcania Main Website**: Corporate site with Web3 features
+5. **Multiple Internal Tools**: Admin dashboards and utilities
+
+## Technical Specifications
+
+### **Supported Features**
+
+- **Wallet Providers**: MetaMask, WalletConnect, Injected providers
+- **Networks**: Ethereum, Boba, Harmony, and custom RPC endpoints
+- **State Management**: Redux with persistent wallet sessions
+- **React Integration**: Hooks, context providers, and UI components
+- **Development Tools**: CLI utilities, testing framework, documentation
+
+### **Package Architecture**
+
+```
+celeste-js/
+├── packages/
+│   ├── core/           # Main SDK logic
+│   ├── react/          # React components & hooks
+│   ├── store/          # Redux state management
+│   └── cli/            # Command line tools
+├── docs/               # Architecture diagrams
+└── tests/              # Cross-package testing
+```
+
+## Lessons Learned
+
+### **1. Monorepo Benefits**
+
+Lerna's monorepo structure enabled:
+
+- **Coordinated Releases**: Version all packages together
+- **Shared Dependencies**: Reduced bundle sizes
+- **Cross-Package Testing**: Integration test across modules
+
+### **2. Web3 Abstraction Challenges**
+
+- **Provider Differences**: Each wallet has unique quirks requiring careful abstraction
+- **Chain Switching**: Networks have different behaviors that need normalization
+- **Error Handling**: Blockchain errors require user-friendly messaging
+
+### **3. Developer Adoption**
+
+- **Documentation**: Comprehensive examples accelerated team adoption
+- **TypeScript**: Adding types would have improved developer experience
+- **Testing**: More integration tests needed for complex multi-chain scenarios
+
+## Legacy and Impact
+
+Celeste-JS became the foundation for Orcania's entire Web3 ecosystem, powering over **5 production applications** and enabling rapid DApp development. The SDK's architecture influenced how the team approached blockchain development, emphasizing reusability, developer experience, and maintainable code.
+
+The project demonstrated that **thoughtful abstraction** can significantly accelerate Web3 development while maintaining the flexibility needed for diverse blockchain applications.
+
+---
+
+_This case study showcases advanced Web3 SDK development, demonstrating expertise in blockchain architecture, React integration, and developer tooling that powered an entire ecosystem of decentralized applications._

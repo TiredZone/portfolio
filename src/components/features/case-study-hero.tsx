@@ -57,16 +57,18 @@ export function CaseStudyHero({
                     </div>
 
                     {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-8">
-                        {tech.map((t) => (
-                            <span
-                                key={t}
-                                className="px-3 py-1 bg-white/10 rounded-full text-sm"
-                            >
-                                {t}
-                            </span>
-                        ))}
-                    </div>
+                    {tech && tech.length > 0 && (
+                        <div className="flex flex-wrap gap-2 mb-8">
+                            {tech.map((t) => (
+                                <span
+                                    key={t}
+                                    className="px-3 py-1 bg-white/10 rounded-full text-sm"
+                                >
+                                    {t}
+                                </span>
+                            ))}
+                        </div>
+                    )}
 
                     {/* Metrics */}
                     {metrics && metrics.length > 0 && (

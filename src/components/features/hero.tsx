@@ -167,8 +167,8 @@ export function Hero() {
                         <Sparkles className="w-4 h-4" />
                     </motion.div>
                     <span>
-                        Full-Stack Developer • React/Node.js/.NET • Mobile •
-                        Cloud
+                        Advanced Systems & Operations Developer • CRO Expert •
+                        Enterprise Automation
                     </span>
                     <motion.div
                         animate={{ scale: [1, 1.2, 1] }}

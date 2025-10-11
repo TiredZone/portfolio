@@ -317,25 +317,28 @@ export default function WorkPage() {
 
                                             {/* Tech Stack */}
                                             <div className="flex flex-wrap gap-2 mb-6">
-                                                {study.frontmatter.tech
-                                                    .slice(0, 4)
-                                                    .map((tech) => (
-                                                        <span
-                                                            key={tech}
-                                                            className="text-xs px-3 py-1 bg-royal-100 dark:bg-royal-800/50 text-royal-700 dark:text-royal-300 rounded-full font-medium hover:bg-royal-200 dark:hover:bg-royal-700 transition-colors"
-                                                        >
-                                                            {tech}
+                                                {study.frontmatter.tech &&
+                                                    study.frontmatter.tech
+                                                        .slice(0, 4)
+                                                        .map((tech) => (
+                                                            <span
+                                                                key={tech}
+                                                                className="text-xs px-3 py-1 bg-royal-100 dark:bg-royal-800/50 text-royal-700 dark:text-royal-300 rounded-full font-medium hover:bg-royal-200 dark:hover:bg-royal-700 transition-colors"
+                                                            >
+                                                                {tech}
+                                                            </span>
+                                                        ))}
+                                                {study.frontmatter.tech &&
+                                                    study.frontmatter.tech
+                                                        .length > 4 && (
+                                                        <span className="text-xs px-3 py-1 text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-full">
+                                                            +
+                                                            {study.frontmatter
+                                                                .tech.length -
+                                                                4}{" "}
+                                                            more
                                                         </span>
-                                                    ))}
-                                                {study.frontmatter.tech.length >
-                                                    4 && (
-                                                    <span className="text-xs px-3 py-1 text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-full">
-                                                        +
-                                                        {study.frontmatter.tech
-                                                            .length - 4}{" "}
-                                                        more
-                                                    </span>
-                                                )}
+                                                    )}
                                             </div>
 
                                             {/* Enhanced CTA */}

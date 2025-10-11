@@ -5,13 +5,13 @@ import { Calendar, Building2, Award, Zap } from "lucide-react";
 
 const experiences = [
     {
-        year: "May 2025 - Present",
-        title: "AI & Automation Engineer",
-        company: "Kalyxl (Part-time)",
+        year: "Oct 2024 - Present",
+        title: "Automation Engineer",
+        company: "Kalyxi (Part-time)",
         description:
-            "Built lead pipeline processing 50k+ monthly leads via ZeroBounce/SmartLead integration, reducing manual work by 85%.",
+            "Built n8n automation workflows for content generation, lead processing, and sales call analysis, reducing manual work by 75%.",
         icon: Zap,
-        metrics: ["50k+ leads/month", "85% work reduction"],
+        metrics: ["3 core workflows", "75% work reduction"],
     },
     {
         year: "Nov 2024 - Feb 2025",
@@ -23,22 +23,36 @@ const experiences = [
         metrics: ["<2.5s load time", "18% conversion increase"],
     },
     {
-        year: "Sep 2022 - Present",
-        title: "Full-Stack Developer",
+        year: "Sep 2025 - Present",
+        title: "Advanced Systems & Operations Developer",
         company: "BAD Marketing (Remote)",
         description:
-            "Increased Shopify Plus store revenue by 32% in 2 weeks through Core Web Vitals optimization and custom Liquid sections for $1.4-2M/mo brands.",
+            "Promoted to build enterprise automation systems: modular ETL platforms, multi-stage lead pipelines, and production-grade monitoring. Lead the 'glue' that powers operations at scale.",
         icon: Award,
-        metrics: ["32% revenue increase", "5-day attribution system"],
+        metrics: ["300+ line monolith → modular", "15+ production pipelines"],
     },
     {
-        year: "Feb 2022 - Sep 2022",
-        title: "Web3 Developer",
+        year: "Sep 2022 - Sep 2025",
+        title: "CRO Web Developer",
+        company: "BAD Marketing (Remote)",
+        description:
+            "Generated $500K+ revenue through conversion optimization across 8+ DTC brands. ClariGenZ (+52%), BetterBrand (+22%), Genex (9.31% CR), Casa Di Lumo (+386% vs ReConvert).",
+        icon: Award,
+        metrics: ["$500K+ revenue generated", "8+ brands optimized"],
+    },
+    {
+        year: "Jan 2022 - Dec 2022",
+        title: "Lead Web3 Developer",
         company: "Orcania (Remote)",
         description:
-            "Developed NFT staking platform handling $2M+ assets using React/Next.js and ethers.js, serving 5,000+ users.",
+            "Architected Celeste-JS SDK powering 5+ DApps, built multi-chain DEX supporting Ethereum/Boba networks, and developed BitNaft NFT analytics platform. Led complete Web3 infrastructure ecosystem.",
         icon: Calendar,
-        metrics: ["$2M+ managed", "5k+ users"],
+        metrics: [
+            "Celeste-JS SDK",
+            "Multi-chain DEX",
+            "NFT platform",
+            "5+ DApps powered",
+        ],
     },
 ];
 

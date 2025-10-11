@@ -7,14 +7,20 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 const contactSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters"),
-    email: z.string().email("Invalid email address"),
+    email: z.email("Invalid email address"),
     company: z.string().optional(),
     projectType: z.enum(
         ["shopify", "webapp", "automation", "consulting", "other"],
-        "Please select a project type",
+        "Please select a project type"
     ),
-    budget: z.enum(["<10k", "10-25k", "25-50k", "50k+"], "Please select a budget range"),
-    timeline: z.enum(["asap", "1-2 months", "3-6 months", "6+ months"], "Please select a timeline"),
+    budget: z.enum(
+        ["<10k", "10-25k", "25-50k", "50k+"],
+        "Please select a budget range"
+    ),
+    timeline: z.enum(
+        ["asap", "1-2 months", "3-6 months", "6+ months"],
+        "Please select a timeline"
+    ),
     message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
@@ -24,7 +30,10 @@ export async function sendContactForm(data: z.infer<typeof contactSchema>) {
         const validatedData = contactSchema.parse(data);
 
         // Map project type for better display
-        const projectTypeLabels: Record<typeof validatedData.projectType, string> = {
+        const projectTypeLabels: Record<
+            typeof validatedData.projectType,
+            string
+        > = {
             shopify: "Shopify Development",
             webapp: "Web Application",
             automation: "Automation/Integration",

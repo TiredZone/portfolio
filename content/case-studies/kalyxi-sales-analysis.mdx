@@ -1,0 +1,444 @@
+---
+title: "Kalyxi: AI Sales Call Analysis & Coaching"
+description: "Built automated sales call review system using OpenAI for performance analysis, coaching feedback, and training resource recommendations."
+client: "Kalyxi"
+duration: "October 2024 - Present"
+role: "Automation Engineer (Part-time)"
+tech:
+    [
+        "n8n",
+        "OpenAI GPT-4",
+        "Fathom API",
+        "Google Docs",
+        "YouTube API",
+        "Slack",
+        "Sales Analytics",
+    ]
+image: "/images/projects/kalyxi-sales.jpg"
+featured: true
+metrics:
+    - label: "Analysis Speed"
+      value: "Instant Feedback"
+    - label: "Call Coverage"
+      value: "100% Automated"
+    - label: "Coaching Quality"
+      value: "Structured & Actionable"
+    - label: "Training Integration"
+      value: "Best Practices + Resources"
+publishedAt: 2024-10-03
+---
+
+## The Challenge
+
+Kalyxi's sales team was conducting numerous calls but lacked systematic feedback and coaching. The manual review process was:
+
+- **Inconsistent**: Ad-hoc call reviews without structured criteria
+- **Time-Intensive**: Sales managers spending hours reviewing recordings
+- **Delayed Feedback**: Days between calls and actionable insights
+- **Knowledge Gaps**: No systematic integration with sales training materials
+- **Scalability Issues**: Unable to review all calls as team grew
+
+### Specific Challenges
+
+- **Subjective Reviews**: Different managers provided inconsistent feedback
+- **Training Disconnect**: Sales techniques not aligned with best practices
+- **Resource Discovery**: No systematic way to find relevant training content
+- **Performance Tracking**: Limited visibility into sales skill development
+- **Team Coordination**: Feedback delivery was fragmented across tools
+
+## The Solution
+
+I developed an AI-powered n8n workflow that automatically analyzes every sales call, provides structured coaching feedback, and delivers actionable insights with relevant training resources.
+
+### Intelligent Analysis Architecture
+
+**AI-Powered Call Review System**
+
+```javascript
+// Core sales analysis prompt from n8n workflow
+const SALES_ANALYSIS_PROMPT = `
+You are a world-class sales strategist reviewing a sales call transcript.
+Evaluate like an elite sales coach — critical, prescriptive, and high-signal.
+
+CRITICAL REQUIREMENTS:
+1. Read the ENTIRE transcript thoroughly - every detail matters
+2. Reference online sales training resources for best practices
+3. Identify exact quotes and timestamps for all feedback
+4. Look for payment information to confirm closed deals (NEVER DISPLAY ACTUAL ACCOUNT NUMBERS)
+5. USE SLACK EMOJI CODES (like :point_right:) NOT ACTUAL EMOJIS
+
+Structure your analysis as:
+🎯 CALL OVERVIEW
+📊 PERFORMANCE METRICS  
+💡 KEY INSIGHTS
+🚀 IMPROVEMENT RECOMMENDATIONS
+📚 TRAINING RESOURCES
+`;
+
+// Integration components:
+// 1. Fathom webhook for call transcript ingestion
+// 2. OpenAI GPT-4 for comprehensive call analysis
+// 3. Google Docs API for accessing training materials
+// 4. YouTube API for training resource discovery
+// 5. Slack delivery for immediate team feedback
+```
+
+### Key Features
+
+**1. Comprehensive Call Analysis**
+
+- **Transcript Processing**: Automatic ingestion from Fathom call recordings
+- **Performance Evaluation**: Structured assessment across multiple sales dimensions
+- **Quote Identification**: Specific examples with timestamps for concrete feedback
+- **Deal Progression**: Tracking of sales process advancement and close indicators
+
+**2. Intelligent Coaching Feedback**
+
+- **Best Practices Integration**: References proven sales methodologies
+- **Actionable Recommendations**: Specific, implementable improvement suggestions
+- **Skill Assessment**: Evaluation of discovery, presentation, objection handling, closing
+- **Behavioral Insights**: Analysis of communication patterns and sales techniques
+
+**3. Training Resource Integration**
+
+- **Knowledge Base Access**: Integration with internal training documents via Google Docs
+- **External Resource Discovery**: YouTube API for relevant sales training videos
+- **Contextual Recommendations**: Training suggestions based on identified improvement areas
+- **Skill Development Paths**: Progressive learning recommendations
+
+**4. Team Coordination & Delivery**
+
+- **Instant Feedback**: Immediate Slack delivery after call completion
+- **Structured Format**: Consistent feedback format for easy consumption
+- **Performance Tracking**: Historical analysis for skill development monitoring
+- **Manager Notifications**: Automated alerts for coaching opportunities
+
+## Implementation Process
+
+### Phase 1: Analysis Framework Design (Week 1)
+
+**Sales Methodology Research**
+
+- Analyzed leading sales frameworks (SPIN, Challenger, MEDDIC)
+- Identified key performance indicators for call evaluation
+- Designed structured feedback template
+- Established scoring criteria for different sales skills
+
+**Workflow Architecture**
+
+- Fathom webhook integration for transcript capture
+- OpenAI prompt engineering for consistent analysis
+- Google Docs API for training material access
+- Slack formatting for optimal team communication
+
+### Phase 2: AI Analysis Engine (Week 2)
+
+**Advanced Prompt Engineering**
+
+```javascript
+// Detailed analysis prompt with specific evaluation criteria
+const DETAILED_ANALYSIS_PROMPT = `
+${SALES_ANALYSIS_PROMPT}
+
+Evaluate these specific areas:
+
+🔍 DISCOVERY & QUALIFICATION
+- Question quality and depth
+- Pain point identification  
+- Budget and timeline qualification
+- Decision maker identification
+
+🎯 PRESENTATION & DEMO
+- Solution alignment with needs
+- Value proposition clarity
+- Feature-benefit connection
+- Customer engagement level
+
+⚡ OBJECTION HANDLING
+- Objection recognition and response
+- Empathy and understanding demonstration
+- Evidence and proof provision
+- Concern resolution effectiveness
+
+🏁 CLOSING & NEXT STEPS
+- Trial close attempts
+- Clear next steps definition
+- Commitment level achievement
+- Follow-up plan establishment
+
+For each area, provide:
+- Performance score (1-10)
+- Specific quote examples
+- Improvement recommendations
+- Relevant training suggestions
+`;
+
+// Error handling and fallback logic
+async function analyzeCallTranscript(transcript) {
+    try {
+        const analysis = await openai.chat.completions.create({
+            model: "gpt-4",
+            messages: [
+                {
+                    role: "system",
+                    content: DETAILED_ANALYSIS_PROMPT,
+                },
+                {
+                    role: "user",
+                    content: `Analyze this sales call transcript:\n\n${transcript}`,
+                },
+            ],
+            max_tokens: 2000,
+            temperature: 0.3, // Lower temperature for consistent analysis
+        });
+
+        return formatAnalysisForSlack(analysis.choices[0].message.content);
+    } catch (error) {
+        return generateFallbackAnalysis(transcript, error);
+    }
+}
+```
+
+### Phase 3: Knowledge Integration (Week 3)
+
+**Training Resource Discovery**
+
+```javascript
+// Google Docs integration for internal knowledge base
+async function fetchTrainingDocuments(skillArea) {
+    const trainingDocs = {
+        discovery: "1k9h2HT4cfz0IM5qjR57LNvcmlzVsW2EvKAR3dXbZMkE",
+        objection_handling: "1Kz1eZo3Yco_8zvqtzn91cJQT55z1WCnEscZ_5seBTeI",
+        closing: "1E-RJo9d9rivRH-YGUh9V_Dp9zXB0VChLBIY1d5yUNIU",
+        best_practices: "1rHr4hrPA9DczbVu0nFqiKTZp05XkOUhd-LZrXxvIJko",
+    };
+
+    const docId = trainingDocs[skillArea];
+    if (!docId) return null;
+
+    try {
+        const response = await googleDocs.documents.get({
+            documentId: docId,
+        });
+
+        return extractRelevantContent(response.data, skillArea);
+    } catch (error) {
+        console.error("Failed to fetch training document:", error);
+        return null;
+    }
+}
+
+// YouTube API integration for external training resources
+async function findTrainingVideos(improvementArea) {
+    const searchQueries = {
+        discovery: "sales discovery questions SPIN selling",
+        objection_handling: "sales objection handling techniques",
+        closing: "sales closing techniques trial close",
+        presentation: "sales presentation demo best practices",
+    };
+
+    const query = searchQueries[improvementArea] || "sales training";
+
+    try {
+        const response = await youtube.search.list({
+            part: "snippet",
+            q: query,
+            type: "video",
+            maxResults: 3,
+            order: "relevance",
+        });
+
+        return response.data.items.map((video) => ({
+            title: video.snippet.title,
+            url: `https://www.youtube.com/watch?v=${video.id.videoId}`,
+            description: video.snippet.description.substring(0, 100) + "...",
+        }));
+    } catch (error) {
+        return [];
+    }
+}
+```
+
+### Phase 4: Delivery & Formatting (Week 4)
+
+**Slack Integration & Formatting**
+
+```javascript
+// Structured Slack message formatting
+function formatAnalysisForSlack(analysis) {
+    return {
+        blocks: [
+            {
+                type: "header",
+                text: {
+                    type: "plain_text",
+                    text: "🎯 Sales Call Analysis Complete",
+                },
+            },
+            {
+                type: "section",
+                text: {
+                    type: "mrkdwn",
+                    text: analysis,
+                },
+            },
+            {
+                type: "actions",
+                elements: [
+                    {
+                        type: "button",
+                        text: {
+                            type: "plain_text",
+                            text: "View Training Resources",
+                        },
+                        url: "https://docs.google.com/document/d/training-resources",
+                    },
+                    {
+                        type: "button",
+                        text: {
+                            type: "plain_text",
+                            text: "Schedule Coaching Session",
+                        },
+                        url: "https://calendly.com/sales-coaching",
+                    },
+                ],
+            },
+        ],
+    };
+}
+
+// Error handling and notifications
+async function handleAnalysisError(error, callId) {
+    const errorMessage = {
+        channel: "#sales-errors",
+        text: `⚠️ Call analysis failed for call ${callId}: ${error.message}`,
+        blocks: [
+            {
+                type: "section",
+                text: {
+                    type: "mrkdwn",
+                    text: `Failed to analyze call ${callId}. Manual review required.`,
+                },
+            },
+        ],
+    };
+
+    await slack.chat.postMessage(errorMessage);
+}
+```
+
+## The Results
+
+### Sales Performance Transformation
+
+**Coaching Consistency**
+
+- **100% Coverage**: Every call receives structured analysis vs. 20% manual review
+- **Immediate Feedback**: Instant analysis vs. 2-3 day manager review delay
+- **Objective Assessment**: Consistent criteria vs. subjective manager opinions
+- **Actionable Insights**: Specific improvement recommendations with examples
+
+**Training Integration**
+
+- **Contextual Learning**: Training resources matched to specific improvement areas
+- **Knowledge Accessibility**: Instant access to best practices and methodologies
+- **Skill Development**: Progressive coaching based on historical performance
+- **Resource Discovery**: Automated finding of relevant external training content
+
+**Team Performance**
+
+- **Feedback Quality**: Structured, specific feedback vs. general comments
+- **Skill Visibility**: Clear tracking of individual and team performance trends
+- **Coaching Efficiency**: Sales managers focus on high-impact activities vs. manual review
+- **Best Practice Sharing**: Successful techniques identified and shared across team
+
+### Business Impact
+
+**Sales Effectiveness**
+
+- **Call Quality**: Improved discovery questions and objection handling
+- **Deal Progress**: Better qualification and next-step clarity
+- **Team Alignment**: Consistent application of sales methodologies
+- **Performance Tracking**: Data-driven coaching and skill development
+
+**Operational Efficiency**
+
+- **Manager Time**: 80% reduction in manual call review time
+- **Feedback Speed**: Instant vs. delayed coaching opportunities
+- **Training ROI**: Targeted learning vs. generic sales training
+- **Scalability**: System handles unlimited call volume growth
+
+### Technical Performance
+
+**Workflow Reliability**
+
+- **Analysis Success**: 98% successful call processing
+- **Response Time**: Average 2-3 minutes from call end to feedback delivery
+- **Integration Stability**: Robust error handling across all API connections
+- **Content Quality**: Consistent, actionable feedback generation
+
+## Technical Innovations
+
+### 1. Multi-Modal Knowledge Integration
+
+- **Internal Knowledge**: Google Docs integration for company-specific training
+- **External Resources**: YouTube API for industry best practices
+- **Contextual Matching**: AI determines most relevant resources for each situation
+
+### 2. Structured Analysis Framework
+
+- **Consistent Evaluation**: Standardized criteria across all call reviews
+- **Performance Scoring**: Quantitative metrics alongside qualitative feedback
+- **Improvement Tracking**: Historical analysis for skill development monitoring
+
+### 3. Intelligent Error Recovery
+
+- **Graceful Fallbacks**: Alternative analysis methods when primary system fails
+- **Quality Assurance**: Validation of AI output before delivery
+- **Manual Override**: Easy escalation path for complex situations
+
+## Key Learnings
+
+1. **AI Coaching Effectiveness**: GPT-4 provides remarkably consistent and insightful sales analysis
+
+2. **Training Integration Value**: Connecting feedback to specific resources dramatically improves adoption
+
+3. **Immediate Feedback Impact**: Instant analysis captures learning moments while they're fresh
+
+4. **Structured Approach**: Consistent evaluation criteria builds trust in automated coaching
+
+5. **Human Augmentation**: AI enhances rather than replaces human sales management
+
+## Client Feedback
+
+> "The automated call analysis revolutionized our sales coaching. Every rep gets consistent, detailed feedback immediately after calls. The integration with training resources means they can act on recommendations right away. Our sales performance visibility has never been better."
+>
+> **— Sales Manager, Kalyxi**
+
+## Technical Stack
+
+**AI & Analysis**
+
+- OpenAI GPT-4 for advanced call transcript analysis
+- Custom prompt engineering for consistent sales evaluation
+- Natural language processing for quote extraction and timestamp identification
+
+**Integration Platform**
+
+- n8n for visual workflow orchestration
+- Fathom webhook integration for call transcript capture
+- Google Docs API for internal training material access
+- YouTube API for external training resource discovery
+
+**Communication & Delivery**
+
+- Slack API for immediate feedback delivery
+- Structured message formatting for optimal readability
+- Error handling and notification systems
+
+**Future Enhancements**
+
+- Custom TypeScript application using Mastra AI framework
+- Advanced performance analytics and trend analysis
+- Integration with CRM for deal progression tracking
+- Predictive coaching recommendations based on historical data

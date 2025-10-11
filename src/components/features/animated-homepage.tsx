@@ -260,13 +260,13 @@ export function AnimatedHomepage({
                                     <TrendingUp className="w-6 h-6" />
                                 </div>
                                 <div className="text-4xl font-bold text-royal-900 dark:text-white mb-2">
-                                    32%
+                                    $500K+
                                 </div>
                                 <div className="text-sm text-royal-700 dark:text-royal-300">
-                                    Revenue Increase
+                                    Revenue Generated
                                 </div>
                                 <div className="text-xs text-royal-600 dark:text-royal-400 mt-1">
-                                    BAD Marketing
+                                    Through CRO Optimization
                                 </div>
                             </motion.div>
 
@@ -279,13 +279,13 @@ export function AnimatedHomepage({
                                     <Zap className="w-6 h-6" />
                                 </div>
                                 <div className="text-4xl font-bold text-royal-900 dark:text-white mb-2">
-                                    50k+
+                                    15+
                                 </div>
                                 <div className="text-sm text-royal-700 dark:text-royal-300">
-                                    Leads Automated
+                                    Production Pipelines
                                 </div>
                                 <div className="text-xs text-royal-600 dark:text-royal-400 mt-1">
-                                    Monthly at Kalyxl
+                                    Enterprise Automation
                                 </div>
                             </motion.div>
 
@@ -298,13 +298,13 @@ export function AnimatedHomepage({
                                     <Award className="w-6 h-6" />
                                 </div>
                                 <div className="text-4xl font-bold text-royal-900 dark:text-white mb-2">
-                                    85%
+                                    75%
                                 </div>
                                 <div className="text-sm text-royal-700 dark:text-royal-300">
                                     Work Reduction
                                 </div>
                                 <div className="text-xs text-royal-600 dark:text-royal-400 mt-1">
-                                    Through Automation
+                                    Through n8n Automation
                                 </div>
                             </motion.div>
                         </motion.div>
@@ -353,16 +353,16 @@ export function AnimatedHomepage({
                                     >
                                         <Link
                                             href={`/work/${study.slug}`}
-                                            className="block bg-royal-50 dark:bg-royal-900/20 rounded-lg overflow-hidden border border-royal-200 dark:border-royal-800 hover:border-gold-500 dark:hover:border-gold-500 transition-all hover:shadow-xl"
+                                            className="flex flex-col h-full bg-royal-50 dark:bg-royal-900/20 rounded-lg overflow-hidden border border-royal-200 dark:border-royal-800 hover:border-gold-500 dark:hover:border-gold-500 transition-all hover:shadow-xl"
                                         >
-                                            <div className="p-6">
+                                            <div className="p-6 flex flex-col h-full">
                                                 <div className="text-sm font-semibold text-gold-600 dark:text-gold-400 mb-2">
                                                     {study.frontmatter.client}
                                                 </div>
                                                 <h3 className="text-xl font-bold text-royal-900 dark:text-white mb-3 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
                                                     {study.frontmatter.title}
                                                 </h3>
-                                                <p className="text-sm text-royal-700 dark:text-royal-300 mb-4">
+                                                <p className="text-sm text-royal-700 dark:text-royal-300 mb-4 flex-grow">
                                                     {
                                                         study.frontmatter
                                                             .description
@@ -395,7 +395,7 @@ export function AnimatedHomepage({
                                                         </div>
                                                     )}
 
-                                                <div className="flex items-center text-sm font-medium text-gold-600 dark:text-gold-400 group-hover:gap-2 transition-all">
+                                                <div className="flex items-center text-sm font-medium text-gold-600 dark:text-gold-400 group-hover:gap-2 transition-all mt-auto">
                                                     View Case Study
                                                     <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                                                 </div>

@@ -109,21 +109,23 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                         </article>
 
                         {/* Tech Stack */}
-                        <div className="mt-12 pt-8 border-t border-royal-200 dark:border-royal-800">
-                            <h3 className="text-xl font-bold text-royal-900 dark:text-white mb-4">
-                                Technologies Used
-                            </h3>
-                            <div className="flex flex-wrap gap-3">
-                                {frontmatter.tech.map((tech: string) => (
-                                    <span
-                                        key={tech}
-                                        className="px-4 py-2 bg-royal-100 dark:bg-royal-800 text-royal-700 dark:text-royal-300 rounded-lg text-sm font-medium"
-                                    >
-                                        {tech}
-                                    </span>
-                                ))}
+                        {frontmatter.tech && frontmatter.tech.length > 0 && (
+                            <div className="mt-12 pt-8 border-t border-royal-200 dark:border-royal-800">
+                                <h3 className="text-xl font-bold text-royal-900 dark:text-white mb-4">
+                                    Technologies Used
+                                </h3>
+                                <div className="flex flex-wrap gap-3">
+                                    {frontmatter.tech.map((tech: string) => (
+                                        <span
+                                            key={tech}
+                                            className="px-4 py-2 bg-royal-100 dark:bg-royal-800 text-royal-700 dark:text-royal-300 rounded-lg text-sm font-medium"
+                                        >
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         {/* CTA */}
                         <div className="mt-12 p-8 bg-gradient-to-br from-gold-50 to-royal-50 dark:from-gold-950/20 dark:to-royal-950/20 rounded-xl text-center border border-gold-200 dark:border-gold-800">
