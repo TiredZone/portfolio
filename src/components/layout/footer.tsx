@@ -11,10 +11,10 @@ const footerLinks = {
         { name: "Contact", href: "/contact" },
     ],
     services: [
-        { name: "Shopify Plus Development", href: "/services#shopify" },
-        { name: "Web Application Development", href: "/services#webapp" },
-        { name: "Automation & Integration", href: "/services#automation" },
-        { name: "Technical Consulting", href: "/services#consulting" },
+        { name: "Shopify Development", href: "/contact" },
+        { name: "Web Applications", href: "/contact" },
+        { name: "Automation & Integrations", href: "/contact" },
+        { name: "Technical Consulting", href: "/contact" },
     ],
 };
 
@@ -142,25 +142,14 @@ export function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="mt-12 pt-8 border-t border-royal-800">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
                         <p className="text-royal-400 text-sm">
                             © {new Date().getFullYear()} Bechara El Maalouf.
                             All rights reserved.
                         </p>
-                        <div className="flex items-center gap-6">
-                            <Link
-                                href="/privacy"
-                                className="text-royal-400 hover:text-gold-400 text-sm transition-colors"
-                            >
-                                Privacy Policy
-                            </Link>
-                            <Link
-                                href="/terms"
-                                className="text-royal-400 hover:text-gold-400 text-sm transition-colors"
-                            >
-                                Terms of Service
-                            </Link>
-                        </div>
+                        <p className="text-royal-500 text-xs">
+                            Built with Next.js, TypeScript, and Tailwind CSS
+                        </p>
                     </div>
                 </div>
             </div>

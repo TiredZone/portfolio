@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { generateMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/config";
 import { FloatingElements } from "@/components/common/floating-elements";
+import { PricingTableSegmented } from "@/components/features/pricing-table-segmented";
 import {
     ShoppingCart,
     Code2,
@@ -10,7 +11,6 @@ import {
     ArrowRight,
     Check,
     Sparkles,
-    Trophy,
     Users,
     Target,
     Globe,
@@ -23,7 +23,6 @@ import {
     Heart,
     TrendingUp,
     Award,
-    Briefcase,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -37,20 +36,20 @@ export const metadata: Metadata = generateMetadata({
 
 const services = [
     {
-        title: "Shopify Plus Development",
+        title: "Shopify Development",
         icon: ShoppingCart,
         description:
-            "Expert Shopify Plus development with a focus on performance, conversions, and scalability for high-revenue brands.",
+            "Professional Shopify development from store launches to Plus enterprise customizations—optimized for performance and conversions.",
         features: [
+            "Store launches & theme migrations",
             "Custom theme development & Dawn 2.0 optimization",
-            "Checkout extensibility & custom apps",
+            "Checkout extensibility & custom apps (Plus)",
             "Performance optimization (Core Web Vitals)",
             "Custom Liquid sections & functionality",
-            "Theme migration & modernization",
             "Conversion rate optimization",
         ],
-        results: "32% avg. revenue increase",
-        price: "From $5k",
+        results: "-30–60% LCP, +10–30% CVR",
+        price: "From $1.8k",
         color: "from-green-500 to-emerald-600",
         bgColor: "bg-green-50 dark:bg-green-900/10",
         iconColor: "text-green-600 dark:text-green-400",
@@ -59,8 +58,9 @@ const services = [
         title: "Custom Web Applications",
         icon: Code2,
         description:
-            "Full-stack web applications built with modern technologies for performance, scalability, and exceptional user experience.",
+            "Full-stack web applications from MVP to enterprise—built with modern technologies for performance, scalability, and exceptional UX.",
         features: [
+            "MVP builds (auth, CRUD, payments)",
             "React/Next.js frontend development",
             "Node.js backend & APIs",
             "Database design & optimization",
@@ -68,8 +68,8 @@ const services = [
             "Third-party integrations",
             "Performance & SEO optimization",
         ],
-        results: "Sub-2s load times",
-        price: "From $10k",
+        results: "Sub-2s load, 99.9% uptime targets",
+        price: "From $4k",
         color: "from-blue-500 to-cyan-600",
         bgColor: "bg-blue-50 dark:bg-blue-900/10",
         iconColor: "text-blue-600 dark:text-blue-400",
@@ -78,17 +78,19 @@ const services = [
         title: "Automation & Integrations",
         icon: Zap,
         description:
-            "Intelligent automation systems using n8n workflows and custom code that eliminate manual work, process data at scale, and connect your tools seamlessly.",
+            "Intelligent automation from simple workflows to AI-powered systems—eliminate manual work, process data at scale, and connect your tools seamlessly.",
         features: [
+            "Simple 1-2 workflow starters",
             "n8n visual workflow automation",
             "Custom TypeScript automation (Mastra AI)",
             "API integrations (ZeroBounce, OpenAI, etc.)",
             "Data processing pipelines",
             "Lead scoring & segmentation systems",
+            "LLM/AI integrations for advanced workflows",
             "Monitoring & error handling",
         ],
         results: "75% manual work reduction",
-        price: "From $3k",
+        price: "From $1.5k",
         color: "from-purple-500 to-violet-600",
         bgColor: "bg-purple-50 dark:bg-purple-900/10",
         iconColor: "text-purple-600 dark:text-purple-400",
@@ -97,8 +99,10 @@ const services = [
         title: "Technical Consulting",
         icon: MessageSquare,
         description:
-            "Strategic technical guidance to help you make the right decisions for your product, architecture, and technology stack.",
+            "Strategic technical guidance with hourly consulting or fixed-price audits—make the right decisions for your product, architecture, and technology stack.",
         features: [
+            "$75/hr (retainer discounts available)",
+            "Fixed mini-audits from $400–$600",
             "Architecture & technology selection",
             "Performance audits & optimization",
             "Code reviews & best practices",
@@ -106,8 +110,8 @@ const services = [
             "Technical due diligence",
             "Scalability planning",
         ],
-        results: "Expert guidance",
-        price: "Hourly/Project",
+        results: "Actionable recommendations",
+        price: "$75/hr or Fixed",
         color: "from-orange-500 to-red-600",
         bgColor: "bg-orange-50 dark:bg-orange-900/10",
         iconColor: "text-orange-600 dark:text-orange-400",
@@ -116,18 +120,18 @@ const services = [
 
 const achievements = [
     {
-        icon: Trophy,
-        value: "32%",
-        label: "Revenue Boost",
-        description: "Average client increase",
+        icon: TrendingUp,
+        value: "+10–30%",
+        label: "CVR Improvements",
+        description: "Measured conversions",
         color: "text-gold-600 dark:text-gold-400",
         bgColor: "bg-gold-100 dark:bg-gold-900/20",
     },
     {
-        icon: TrendingUp,
-        value: "3",
-        label: "Core Workflows",
-        description: "Automated at Kalyxi",
+        icon: Zap,
+        value: "75%",
+        label: "Work Reduction",
+        description: "Automation ROI",
         color: "text-blue-600 dark:text-blue-400",
         bgColor: "bg-blue-100 dark:bg-blue-900/20",
     },
@@ -141,9 +145,9 @@ const achievements = [
     },
     {
         icon: Clock,
-        value: "2s",
-        label: "Load Times",
-        description: "Performance target",
+        value: "99.9%",
+        label: "Uptime Target",
+        description: "Performance SLA",
         color: "text-purple-600 dark:text-purple-400",
         bgColor: "bg-purple-100 dark:bg-purple-900/20",
     },
@@ -401,21 +405,31 @@ export default function ServicesPage() {
                                 </div>
                             ))}
                         </div>
+                    </div>
+                </div>
+            </section>
 
-                        {/* CTA Button */}
-                        <div className="text-center mt-16">
-                            <Button
-                                size="lg"
-                                className="bg-gradient-to-r from-royal-600 to-royal-700 hover:from-royal-700 hover:to-royal-800 text-white font-semibold group px-8 py-4 text-lg shadow-xl shadow-royal-600/25"
-                                asChild
-                            >
-                                <Link href="/contact">
-                                    <Briefcase className="mr-3 h-5 w-5" />
-                                    Get a Custom Quote
-                                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </Link>
-                            </Button>
+            {/* Detailed Pricing Section */}
+            <section className="py-20 bg-gradient-to-br from-gray-50 to-royal-50/30 dark:from-gray-900 dark:to-royal-950/20">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-7xl mx-auto">
+                        {/* Section Header */}
+                        <div className="text-center mb-16">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-royal-100 dark:bg-royal-900/30 rounded-full text-royal-700 dark:text-royal-300 text-sm font-medium mb-6">
+                                <BarChart3 className="w-4 h-4" />
+                                Transparent Pricing
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-royal-900 dark:text-white mb-6">
+                                Investment & Packages
+                            </h2>
+                            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                                Clear, honest pricing with regional options.
+                                Choose the package that fits your needs and
+                                budget—no hidden fees, no surprises.
+                            </p>
                         </div>
+
+                        <PricingTableSegmented />
                     </div>
                 </div>
             </section>
