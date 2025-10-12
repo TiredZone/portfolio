@@ -289,7 +289,7 @@ export function SkillsGrid() {
                             </motion.h3>
                         </div>
 
-                        {/* Skills tags with staggered animation */}
+                        {/* Skills tags with staggered animation - UNIFORM DESIGN */}
                         <motion.div
                             className="flex flex-wrap gap-2 flex-grow"
                             variants={{
@@ -312,14 +312,26 @@ export function SkillsGrid() {
                                         duration: 0.3,
                                         ease: [0.68, -0.55, 0.265, 1.55],
                                     }}
-                                    className="group/tag px-3 py-1 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:border-royal-400 dark:hover:border-royal-500 hover:text-royal-700 dark:hover:text-royal-300 hover:bg-royal-50 dark:hover:bg-royal-900/20 transition-all duration-200 cursor-default inline-flex items-center"
+                                    className={`group/tag px-4 py-2 text-sm font-medium whitespace-nowrap
+                                        bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-900
+                                        border-2 ${skillGroup.borderColor}
+                                        ${skillGroup.color}
+                                        rounded-lg
+                                        hover:shadow-lg hover:shadow-${skillGroup.glowColor}
+                                        hover:scale-105 hover:-translate-y-1
+                                        transition-all duration-300 cursor-default
+                                        inline-flex items-center justify-center
+                                        min-h-[36px]
+                                    `}
                                     whileHover={{
-                                        scale: 1.1,
-                                        y: -2,
+                                        scale: 1.08,
+                                        y: -3,
                                     }}
-                                    whileTap={{ scale: 0.95 }}
+                                    whileTap={{ scale: 0.98 }}
                                 >
-                                    {skill}
+                                    <span className="relative z-10">
+                                        {skill}
+                                    </span>
                                 </motion.span>
                             ))}
                         </motion.div>
