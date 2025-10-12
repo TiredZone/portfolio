@@ -36,46 +36,67 @@ export function AnimatedHomepage({
     const faqRef = useRef(null);
     const ctaRef = useRef(null);
 
-    // Animation states
-    const resultsInView = useInView(resultsRef, { once: true });
-    const featuredInView = useInView(featuredRef, { once: true });
-    const skillsInView = useInView(skillsRef, { once: true });
-    const testimonialsInView = useInView(testimonialsRef, { once: true });
-    const pricingInView = useInView(pricingRef, { once: true });
-    const faqInView = useInView(faqRef, { once: true });
-    const ctaInView = useInView(ctaRef, { once: true });
+    // Animation states - trigger earlier to prevent layout shifts
+    const resultsInView = useInView(resultsRef, {
+        once: true,
+        margin: "0px 0px -100px 0px",
+    });
+    const featuredInView = useInView(featuredRef, {
+        once: true,
+        margin: "0px 0px -100px 0px",
+    });
+    const skillsInView = useInView(skillsRef, {
+        once: true,
+        margin: "0px 0px -100px 0px",
+    });
+    const testimonialsInView = useInView(testimonialsRef, {
+        once: true,
+        margin: "0px 0px -100px 0px",
+    });
+    const pricingInView = useInView(pricingRef, {
+        once: true,
+        margin: "0px 0px -100px 0px",
+    });
+    const faqInView = useInView(faqRef, {
+        once: true,
+        margin: "0px 0px -100px 0px",
+    });
+    const ctaInView = useInView(ctaRef, {
+        once: true,
+        margin: "0px 0px -100px 0px",
+    });
 
-    // Animation variants
+    // Animation variants - reduced motion to prevent layout shifts
     const fadeInUp = {
-        initial: { opacity: 0, y: 50 },
+        initial: { opacity: 0, y: 20 },
         animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.6, ease: "easeOut" },
+        transition: { duration: 0.5, ease: "easeOut" },
     };
 
     const staggerContainer = {
         animate: {
             transition: {
-                staggerChildren: 0.2,
+                staggerChildren: 0.1,
             },
         },
     };
 
     const slideInLeft = {
-        initial: { opacity: 0, x: -50 },
+        initial: { opacity: 0, x: -20 },
         animate: { opacity: 1, x: 0 },
-        transition: { duration: 0.6, ease: "easeOut" },
+        transition: { duration: 0.5, ease: "easeOut" },
     };
 
     const slideInRight = {
-        initial: { opacity: 0, x: 50 },
+        initial: { opacity: 0, x: 20 },
         animate: { opacity: 1, x: 0 },
-        transition: { duration: 0.6, ease: "easeOut" },
+        transition: { duration: 0.5, ease: "easeOut" },
     };
 
     const scaleIn = {
-        initial: { opacity: 0, scale: 0.9 },
+        initial: { opacity: 0, scale: 0.95 },
         animate: { opacity: 1, scale: 1 },
-        transition: { duration: 0.6, ease: "easeOut" },
+        transition: { duration: 0.5, ease: "easeOut" },
     };
 
     return (

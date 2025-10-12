@@ -8,6 +8,8 @@ import { useRef, useEffect, useState } from "react";
 
 export function Hero() {
     const ref = useRef<HTMLDivElement>(null);
+    const [isMounted, setIsMounted] = useState(false);
+
     const { scrollYProgress } = useScroll({
         target: ref,
         offset: ["start start", "end start"],
@@ -18,6 +20,10 @@ export function Hero() {
     const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
 
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -35,7 +41,7 @@ export function Hero() {
         <motion.section
             ref={ref}
             className="relative min-h-screen flex items-center justify-center overflow-hidden"
-            style={{ y, opacity, scale }}
+            style={isMounted ? { y, opacity, scale } : {}}
         >
             {/* Dynamic background with parallax */}
             <div className="absolute inset-0">
