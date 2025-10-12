@@ -462,22 +462,26 @@ export default function AboutPage() {
                                     {
                                         lang: "English",
                                         level: "Fluent",
-                                        flag: "🇺🇸",
+                                        code: "US",
+                                        color: "from-blue-500 to-red-500",
                                     },
                                     {
                                         lang: "French",
                                         level: "Fluent",
-                                        flag: "🇫🇷",
+                                        code: "FR",
+                                        color: "from-blue-600 to-red-600",
                                     },
                                     {
                                         lang: "Arabic",
                                         level: "Native",
-                                        flag: "🇱🇧",
+                                        code: "LB",
+                                        color: "from-red-600 to-green-600",
                                     },
                                     {
                                         lang: "Spanish",
                                         level: "Conversational",
-                                        flag: "🇪🇸",
+                                        code: "ES",
+                                        color: "from-red-500 to-yellow-500",
                                     },
                                 ].map((language) => (
                                     <div
@@ -486,9 +490,11 @@ export default function AboutPage() {
                                     >
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-3">
-                                                <span className="text-2xl">
-                                                    {language.flag}
-                                                </span>
+                                                <div
+                                                    className={`w-10 h-10 rounded-full bg-gradient-to-br ${language.color} flex items-center justify-center text-white font-bold text-sm shadow-md`}
+                                                >
+                                                    {language.code}
+                                                </div>
                                                 <span className="font-semibold text-royal-900 dark:text-white">
                                                     {language.lang}
                                                 </span>

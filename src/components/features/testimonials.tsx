@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const testimonials = [
     {
@@ -15,6 +16,7 @@ const testimonials = [
             "DUB goes for @Bechara Maalouf For always kicking ass in these new CRO websites, blowing away expectations, and for always bringing in a good attitude to the projects, his dark humor makes my day!",
         avatar: "BM",
         gradient: "from-purple-500 to-pink-500",
+        logo: "/images/clients/bad-marketing.png", // Add logo here when available
     },
     {
         id: 2,
@@ -26,6 +28,7 @@ const testimonials = [
             "The n8n automation workflows transformed our operations. Content generation, lead processing, and sales analysis all automated with 75% reduction in manual work. The visual approach made maintenance easy for our team.",
         avatar: "CC",
         gradient: "from-blue-500 to-cyan-500",
+        logo: "/images/clients/kalyxi.png", // Add logo here when available
     },
     {
         id: 3,
@@ -37,6 +40,7 @@ const testimonials = [
             "HUGE thank you to @Bechara Maalouf Who was imperative for the integration, testing and execution of these upsells! $4360 in revenue in 60 days - That's 386% more than ReConvert in the same 60 day window.",
         avatar: "CL",
         gradient: "from-green-500 to-teal-500",
+        logo: "/images/clients/casa-di-lumo.png", // Add logo here when available
     },
     {
         id: 4,
@@ -48,6 +52,7 @@ const testimonials = [
             "MEGA DUB for the CRO/Web Dev Team! Full price product purchases: Increased by 52.59%, Full Price Product Revenue: Increased by 79.60%, E-commerce Conversion Rate: Increased by 3.5% from 2.96% to 6.46%",
         avatar: "CG",
         gradient: "from-orange-500 to-red-500",
+        logo: "/images/clients/clarigenz.png", // Add logo here when available
     },
     {
         id: 5,
@@ -59,6 +64,7 @@ const testimonials = [
             "You two are the definition of #extremeownership and #solutionsnotproblems. After a LOT of troubleshooting by @Bechara Maalouf we were able to fix the issue, and in the last 7 days the site wide conversion rate has increased by 22%",
         avatar: "BL",
         gradient: "from-indigo-500 to-purple-500",
+        logo: "/images/clients/bad-marketing.png", // Add logo here when available
     },
 ];
 
@@ -185,11 +191,30 @@ export function Testimonials() {
                         {/* Author info */}
                         <div className="flex flex-col items-center">
                             <motion.div
-                                className={`w-16 h-16 rounded-full bg-gradient-to-r ${testimonials[currentIndex].gradient} flex items-center justify-center text-white font-bold text-lg mb-4 shadow-lg`}
+                                className={`w-20 h-20 rounded-full ${testimonials[currentIndex].logo ? "bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 p-2" : `bg-gradient-to-r ${testimonials[currentIndex].gradient}`} flex items-center justify-center text-white font-bold text-lg mb-4 shadow-lg overflow-hidden`}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                {testimonials[currentIndex].avatar}
+                                {testimonials[currentIndex].logo ? (
+                                    <Image
+                                        src={
+                                            testimonials[currentIndex].logo ||
+                                            ""
+                                        }
+                                        alt={`${testimonials[currentIndex].company} logo`}
+                                        width={80}
+                                        height={80}
+                                        className="w-full h-full object-contain"
+                                        onError={(e) => {
+                                            // Fallback to initials if image fails to load
+                                            const target =
+                                                e.target as HTMLImageElement;
+                                            target.style.display = "none";
+                                        }}
+                                    />
+                                ) : (
+                                    testimonials[currentIndex].avatar
+                                )}
                             </motion.div>
                             <h4 className="text-xl font-bold text-royal-900 dark:text-white mb-1">
                                 {testimonials[currentIndex].name}
