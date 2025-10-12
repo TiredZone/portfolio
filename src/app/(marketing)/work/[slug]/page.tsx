@@ -6,7 +6,7 @@ import MDXContent from "@/components/mdx/mdx-remote-content";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
 
 interface CaseStudyPageProps {
@@ -144,8 +144,16 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                                 >
                                     <Link href="/contact">Schedule a Call</Link>
                                 </Button>
-                                <Button size="lg" variant="outline" asChild>
-                                    <Link href="/work">View More Projects</Link>
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="group shadow-lg hover:shadow-xl"
+                                    asChild
+                                >
+                                    <Link href="/work">
+                                        View More Projects
+                                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
                                 </Button>
                             </div>
                         </div>

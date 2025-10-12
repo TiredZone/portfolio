@@ -430,12 +430,22 @@ export function AnimatedHomepage({
                                 className="text-center"
                                 variants={fadeInUp}
                             >
-                                <Button variant="outline" size="lg" asChild>
-                                    <Link href="/work">
-                                        View All Projects
-                                        <ArrowRight className="w-4 h-4 ml-2" />
-                                    </Link>
-                                </Button>
+                                <motion.div
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    <Button
+                                        variant="outline"
+                                        size="lg"
+                                        className="group shadow-lg hover:shadow-xl"
+                                        asChild
+                                    >
+                                        <Link href="/work">
+                                            View All Projects
+                                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                                        </Link>
+                                    </Button>
+                                </motion.div>
                             </motion.div>
                         </Container>
                     </Section>
@@ -696,11 +706,12 @@ export function AnimatedHomepage({
                                     <Button
                                         size="lg"
                                         variant="outline"
-                                        className="bg-white dark:bg-gray-800 hover:bg-royal-50 dark:hover:bg-royal-900/40 border-royal-300 dark:border-royal-600 hover:border-royal-400 dark:hover:border-royal-500 text-royal-700 dark:text-royal-300 hover:text-royal-800 dark:hover:text-royal-200 transition-all duration-300"
+                                        className="group shadow-lg hover:shadow-xl"
                                         asChild
                                     >
                                         <Link href="/services">
                                             View Services
+                                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </Button>
                                 </motion.div>

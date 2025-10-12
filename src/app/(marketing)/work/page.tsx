@@ -383,12 +383,13 @@ export default function WorkPage() {
                                     <Button
                                         size="lg"
                                         variant="outline"
-                                        className="border-2 border-royal-300 dark:border-royal-600 text-royal-700 dark:text-royal-300 hover:bg-royal-50 dark:hover:bg-royal-900/20 px-8 py-4 text-lg group"
+                                        className="group shadow-lg hover:shadow-xl px-8 py-4 text-lg"
                                         asChild
                                     >
                                         <Link href="/about">
                                             <Users className="mr-2 h-5 w-5" />
                                             Learn More About Me
+                                            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </Button>
                                 </div>

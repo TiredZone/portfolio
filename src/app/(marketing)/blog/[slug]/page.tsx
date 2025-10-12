@@ -6,7 +6,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/common/badge";
-import { ArrowLeft, Calendar } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar } from "lucide-react";
 import Link from "next/link";
 
 interface BlogPostPageProps {
@@ -137,8 +137,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                         automation solutions. Helping businesses
                                         grow through strategic development.
                                     </p>
-                                    <Button variant="outline" size="sm" asChild>
-                                        <Link href="/about">Learn More</Link>
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        className="group"
+                                        asChild
+                                    >
+                                        <Link href="/about">
+                                            Learn More
+                                            <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" />
+                                        </Link>
                                     </Button>
                                 </div>
                             </div>
@@ -162,8 +170,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                 >
                                     <Link href="/contact">Get in Touch</Link>
                                 </Button>
-                                <Button size="lg" variant="outline" asChild>
-                                    <Link href="/services">View Services</Link>
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="group shadow-lg hover:shadow-xl"
+                                    asChild
+                                >
+                                    <Link href="/services">
+                                        View Services
+                                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
                                 </Button>
                             </div>
                         </div>

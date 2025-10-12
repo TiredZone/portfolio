@@ -282,7 +282,7 @@ export function Hero() {
                         <Button
                             size="lg"
                             variant="outline"
-                            className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg group"
+                            className="border-2 border-white/40 bg-white/5 text-white hover:bg-white/15 hover:border-white/60 backdrop-blur-md shadow-lg shadow-black/10 px-8 py-4 text-lg group"
                             asChild
                         >
                             <Link href="/work">
