@@ -44,7 +44,22 @@ export async function sendContactForm(data: z.infer<typeof contactSchema>) {
 
         const now = new Date();
 
+        // Format timestamp in Beirut time
+        const beirutTime = new Intl.DateTimeFormat("en-GB", {
+            dateStyle: "medium",
+            timeStyle: "short",
+            timeZone: "Asia/Beirut",
+        }).format(now);
+
+        // Preheader for better inbox preview
+        const preheader = `New ${projectTypeLabels[validatedData.projectType]} inquiry from ${validatedData.name}`;
+
         const html = `
+      <!-- Preheader (hidden) -->
+      <div style="display:none;max-height:0;overflow:hidden;opacity:0;">
+        ${preheader}
+      </div>
+
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #4338ca; border-bottom: 2px solid #ffc23d; padding-bottom: 10px;">
           New Contact Form Submission
@@ -70,7 +85,7 @@ export async function sendContactForm(data: z.infer<typeof contactSchema>) {
         </div>
 
         <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
-          Sent from your portfolio contact form at ${now.toISOString()}.
+          Sent from your portfolio contact form • ${beirutTime} (Asia/Beirut)
         </p>
       </div>
     `;
@@ -90,14 +105,14 @@ Project Details
 Message
 ${validatedData.message}
 
-Sent at ${now.toISOString()}
+Sent at ${beirutTime} (Asia/Beirut)
 `;
 
         const result = await resend.emails.send({
-            from: `Portfolio Contact <${fromAddress}>`,
+            from: `Bechara - <${fromAddress}>`,
             to: contactEmail,
             replyTo: validatedData.email,
-            subject: `New Project Inquiry: ${projectTypeLabels[validatedData.projectType]} - ${validatedData.name}`,
+            subject: `[Contact Form] ${projectTypeLabels[validatedData.projectType]} — ${validatedData.name}`,
             html,
             text,
             headers: {
