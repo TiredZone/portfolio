@@ -51,10 +51,10 @@ export function LogoWall() {
                 <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-gray-50 dark:from-gray-900 via-gray-50/80 dark:via-gray-900/80 to-transparent z-10 pointer-events-none" />
                 <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-gray-50 dark:from-gray-900 via-gray-50/80 dark:via-gray-900/80 to-transparent z-10 pointer-events-none" />
 
-                {/* Scrolling logos - proper spacing */}
+                {/* Scrolling logos - tighter spacing, faster */}
                 <motion.div
                     className="flex items-center py-12"
-                    style={{ gap: "clamp(80px, 10vw, 120px)" }}
+                    style={{ gap: "clamp(48px, 6vw, 64px)" }}
                     animate={{
                         x: [0, "-50%"],
                     }}

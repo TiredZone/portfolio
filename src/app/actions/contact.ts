@@ -43,7 +43,7 @@ export async function sendContactForm(data: z.infer<typeof contactSchema>) {
 
         // Send email via Resend
         const result = await resend.emails.send({
-            from: "Portfolio Contact <onboarding@resend.dev>",
+            from: "Portfolio Contact <noreply@updates.becharaelmaalouf.dev>",
             to: process.env.CONTACT_EMAIL || "contact@becharaelmaalouf.dev",
             replyTo: validatedData.email,
             subject: `New Project Inquiry: ${projectTypeLabels[validatedData.projectType]} - ${validatedData.name}`,

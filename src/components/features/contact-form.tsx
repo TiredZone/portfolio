@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { sendContactForm } from "@/app/actions/contact";
-import { Loader2, Send, CheckCircle2 } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 import { toast } from "sonner";
 
 type FormData = {
@@ -23,7 +23,6 @@ type FormData = {
 
 export function ContactForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(false);
 
     const {
         register,
@@ -39,46 +38,25 @@ export function ContactForm() {
             const result = await sendContactForm(data);
 
             if (result.success) {
-                setIsSuccess(true);
                 toast.success(result.message);
                 reset();
 
-                // Reset success state after 5 seconds
-                setTimeout(() => setIsSuccess(false), 5000);
+                // Redirect to thank-you page after short delay
+                setTimeout(() => {
+                    window.location.href = "/thank-you";
+                }, 1000);
             } else {
                 toast.error(result.message);
+                setIsSubmitting(false);
             }
         } catch (error) {
             console.error("Contact form error:", error);
             toast.error(
                 "Something went wrong. Please try emailing me directly."
             );
-        } finally {
             setIsSubmitting(false);
         }
     };
-
-    if (isSuccess) {
-        return (
-            <Card className="p-12 text-center border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20">
-                <CheckCircle2 className="w-16 h-16 text-green-600 dark:text-green-400 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-green-900 dark:text-green-100 mb-2">
-                    Message Sent!
-                </h3>
-                <p className="text-green-700 dark:text-green-300 mb-6">
-                    Thank you for reaching out. I&apos;ll get back to you within
-                    24 hours.
-                </p>
-                <Button
-                    onClick={() => setIsSuccess(false)}
-                    variant="outline"
-                    className="border-green-600 text-green-600 hover:bg-green-100 dark:border-green-400 dark:text-green-400 dark:hover:bg-green-900/40"
-                >
-                    Send Another Message
-                </Button>
-            </Card>
-        );
-    }
 
     return (
         <Card className="p-8 border-royal-100 dark:border-royal-800">
