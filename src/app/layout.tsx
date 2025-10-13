@@ -77,14 +77,6 @@ export const metadata: Metadata = {
         title: "Bechara El Maalouf – Full‑Stack Developer",
         description:
             "Full‑Stack Developer building scalable web, mobile, and automation systems — React/Next.js, Node.js, .NET Core, Shopify, mobile apps, cloud & DevOps, and AI automation.",
-        images: [
-            {
-                url: "/images/og/cover.jpg",
-                width: 1200,
-                height: 630,
-                alt: "Bechara El Maalouf — Full-Stack Developer",
-            },
-        ],
     },
     twitter: {
         card: "summary_large_image",
@@ -93,7 +85,6 @@ export const metadata: Metadata = {
         title: "Bechara El Maalouf – Full‑Stack Developer",
         description:
             "Full‑Stack Developer building scalable web, mobile, and automation systems (React, Node, .NET, Shopify, Docker, Kubernetes, AI).",
-        images: ["/images/og/cover.jpg"],
     },
 };
 

@@ -109,10 +109,10 @@ Sent at ${beirutTime} (Asia/Beirut)
 `;
 
         const result = await resend.emails.send({
-            from: `Bechara - <${fromAddress}>`,
+            from: `Bechara - Portfolio <${fromAddress}>`,
             to: contactEmail,
             replyTo: validatedData.email,
-            subject: `[Contact Form] ${projectTypeLabels[validatedData.projectType]} — ${validatedData.name}`,
+            subject: `[Contact Form] ${projectTypeLabels[validatedData.projectType]} - ${validatedData.name}`,
             html,
             text,
             headers: {
