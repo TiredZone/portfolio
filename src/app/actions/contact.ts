@@ -26,57 +26,84 @@ const contactSchema = z.object({
 
 export async function sendContactForm(data: z.infer<typeof contactSchema>) {
     try {
-        // Validate the data
         const validatedData = contactSchema.parse(data);
 
-        // Map project type for better display
-        const projectTypeLabels: Record<
-            typeof validatedData.projectType,
-            string
-        > = {
+        const projectTypeLabels = {
             shopify: "Shopify Development",
             webapp: "Web Application",
             automation: "Automation/Integration",
             consulting: "Technical Consulting",
             other: "Other",
-        };
+        } as const;
 
-        // Send email via Resend
+        const fromAddress =
+            process.env.FROM_EMAIL || "hello@updates.becharaelmaalouf.dev";
+
+        const contactEmail =
+            process.env.CONTACT_EMAIL || "contact@becharaelmaalouf.dev";
+
+        const now = new Date();
+
+        const html = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #4338ca; border-bottom: 2px solid #ffc23d; padding-bottom: 10px;">
+          New Contact Form Submission
+        </h2>
+
+        <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #4338ca; margin-top: 0;">Contact Information</h3>
+          <p><strong>Name:</strong> ${validatedData.name}</p>
+          <p><strong>Email:</strong> ${validatedData.email}</p>
+          <p><strong>Company:</strong> ${validatedData.company || "Not provided"}</p>
+        </div>
+
+        <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #4338ca; margin-top: 0;">Project Details</h3>
+          <p><strong>Project Type:</strong> ${projectTypeLabels[validatedData.projectType]}</p>
+          <p><strong>Budget:</strong> ${validatedData.budget}</p>
+          <p><strong>Timeline:</strong> ${validatedData.timeline}</p>
+        </div>
+
+        <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #4338ca; margin-top: 0;">Message</h3>
+          <p style="white-space: pre-wrap;">${validatedData.message}</p>
+        </div>
+
+        <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
+          Sent from your portfolio contact form at ${now.toISOString()}.
+        </p>
+      </div>
+    `;
+
+        const text = `New Contact Form Submission
+
+Contact Information
+- Name: ${validatedData.name}
+- Email: ${validatedData.email}
+- Company: ${validatedData.company || "Not provided"}
+
+Project Details
+- Project Type: ${projectTypeLabels[validatedData.projectType]}
+- Budget: ${validatedData.budget}
+- Timeline: ${validatedData.timeline}
+
+Message
+${validatedData.message}
+
+Sent at ${now.toISOString()}
+`;
+
         const result = await resend.emails.send({
-            from: "Portfolio Contact <noreply@updates.becharaelmaalouf.dev>",
-            to: process.env.CONTACT_EMAIL || "contact@becharaelmaalouf.dev",
+            from: `Portfolio Contact <${fromAddress}>`,
+            to: contactEmail,
             replyTo: validatedData.email,
             subject: `New Project Inquiry: ${projectTypeLabels[validatedData.projectType]} - ${validatedData.name}`,
-            html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #4338ca; border-bottom: 2px solid #ffc23d; padding-bottom: 10px;">
-            New Contact Form Submission
-          </h2>
-          
-          <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #4338ca; margin-top: 0;">Contact Information</h3>
-            <p><strong>Name:</strong> ${validatedData.name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${validatedData.email}">${validatedData.email}</a></p>
-            <p><strong>Company:</strong> ${validatedData.company || "Not provided"}</p>
-          </div>
-          
-          <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #4338ca; margin-top: 0;">Project Details</h3>
-            <p><strong>Project Type:</strong> ${projectTypeLabels[validatedData.projectType]}</p>
-            <p><strong>Budget:</strong> ${validatedData.budget}</p>
-            <p><strong>Timeline:</strong> ${validatedData.timeline}</p>
-          </div>
-          
-          <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #4338ca; margin-top: 0;">Message</h3>
-            <p style="white-space: pre-wrap;">${validatedData.message}</p>
-          </div>
-          
-          <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
-            This email was sent from your portfolio contact form at ${new Date().toLocaleString()}.
-          </p>
-        </div>
-      `,
+            html,
+            text,
+            headers: {
+                "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+                "List-Unsubscribe": `<mailto:${contactEmail}>`,
+            },
         });
 
         if (result.error) {
