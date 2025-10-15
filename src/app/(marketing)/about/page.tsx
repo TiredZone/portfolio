@@ -187,6 +187,27 @@ export default function AboutPage() {
                                         <a
                                             href="/bechara-el-maalouf-resume.pdf"
                                             download
+                                            onClick={() => {
+                                                if (
+                                                    typeof window !==
+                                                    "undefined"
+                                                ) {
+                                                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                                    const dataLayer = (
+                                                        window as Record<
+                                                            string,
+                                                            any
+                                                        >
+                                                    ).dataLayer;
+                                                    if (dataLayer) {
+                                                        dataLayer.push({
+                                                            event: "resume_download",
+                                                            value: 50,
+                                                            currency: "USD",
+                                                        });
+                                                    }
+                                                }
+                                            }}
                                         >
                                             <Download className="mr-3 h-5 w-5" />
                                             Download Resume
@@ -551,6 +572,21 @@ export default function AboutPage() {
                                 <a
                                     href="/bechara-el-maalouf-resume.pdf"
                                     download
+                                    onClick={() => {
+                                        if (typeof window !== "undefined") {
+                                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                            const dataLayer = (
+                                                window as Record<string, any>
+                                            ).dataLayer;
+                                            if (dataLayer) {
+                                                dataLayer.push({
+                                                    event: "resume_download",
+                                                    value: 50,
+                                                    currency: "USD",
+                                                });
+                                            }
+                                        }
+                                    }}
                                 >
                                     <Download className="mr-3 h-5 w-5" />
                                     Download Resume

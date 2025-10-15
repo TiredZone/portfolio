@@ -38,6 +38,33 @@ export function ContactForm() {
             const result = await sendContactForm(data);
 
             if (result.success) {
+                // Push event to GTM dataLayer for tracking
+                if (typeof window !== "undefined") {
+                    // Helper function to convert budget to numeric value
+                    const getBudgetValue = (budget: string): number => {
+                        const values: Record<string, number> = {
+                            "<10k": 5000,
+                            "10-25k": 17500,
+                            "25-50k": 37500,
+                            "50k+": 75000,
+                        };
+                        return values[budget] || 0;
+                    };
+
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const dataLayer = (window as Record<string, any>).dataLayer;
+                    if (dataLayer) {
+                        dataLayer.push({
+                            event: "contact_form_submit",
+                            form_type: data.projectType,
+                            budget_range: data.budget,
+                            timeline: data.timeline,
+                            value: getBudgetValue(data.budget),
+                            currency: "USD",
+                        });
+                    }
+                }
+
                 toast.success(result.message);
                 reset();
 

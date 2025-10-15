@@ -31,6 +31,25 @@ export function CalEmbed() {
                     },
                 },
             });
+
+            // Track when user successfully books
+            cal("on", {
+                action: "bookingSuccessful",
+                callback: () => {
+                    if (typeof window !== "undefined") {
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        const dataLayer = (window as Record<string, any>)
+                            .dataLayer;
+                        if (dataLayer) {
+                            dataLayer.push({
+                                event: "booking_initiated",
+                                value: 500,
+                                currency: "USD",
+                            });
+                        }
+                    }
+                },
+            });
         })();
     }, []);
 

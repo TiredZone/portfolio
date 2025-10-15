@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getCaseStudyBySlug, getAllCaseStudySlugs } from "@/lib/mdx";
 import { CaseStudyHero } from "@/components/features/case-study-hero";
+import { CaseStudyTracker } from "@/components/features/case-study-tracker";
 import MDXContent from "@/components/mdx/mdx-remote-content";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
@@ -56,6 +57,9 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
     return (
         <>
+            {/* Track case study view */}
+            <CaseStudyTracker title={frontmatter.title} />
+
             {/* Hero Section */}
             <CaseStudyHero
                 title={frontmatter.title}

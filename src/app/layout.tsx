@@ -109,33 +109,45 @@ export default function RootLayout({
                 ].join(" ")}
                 suppressHydrationWarning
             >
+                {/* Google Tag Manager */}
+                {process.env.NEXT_PUBLIC_GTM_ID && (
+                    <Script
+                        id="gtm"
+                        strategy="afterInteractive"
+                        dangerouslySetInnerHTML={{
+                            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');`,
+                        }}
+                    />
+                )}
+
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
                     enableSystem
                 >
+                    {/* GTM noscript fallback */}
+                    {process.env.NEXT_PUBLIC_GTM_ID && (
+                        <noscript>
+                            <iframe
+                                src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
+                                height="0"
+                                width="0"
+                                style={{
+                                    display: "none",
+                                    visibility: "hidden",
+                                }}
+                            />
+                        </noscript>
+                    )}
+
                     {children}
                 </ThemeProvider>
                 <SpeedInsights />
                 <Analytics />
-
-                {/* GA4 (optional) */}
-                {process.env.NEXT_PUBLIC_GA4_ID && (
-                    <>
-                        <Script
-                            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_ID}`}
-                            strategy="afterInteractive"
-                        />
-                        <Script id="ga4" strategy="afterInteractive">
-                            {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA4_ID}', { send_page_view: true });
-              `}
-                        </Script>
-                    </>
-                )}
 
                 {/* Cloudflare Web Analytics (optional) */}
                 {process.env.NEXT_PUBLIC_CF_ANALYTICS && (

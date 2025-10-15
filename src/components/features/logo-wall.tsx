@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 const clients = [
     { name: "BAD Marketing", logo: "/images/clients/bad-marketing.png" },
@@ -21,6 +22,22 @@ const duplicatedClients = [...clients, ...clients];
 
 // LogoWall component - Infinite scrolling marquee of client logos
 export function LogoWall() {
+    const prefersReducedMotion = useReducedMotion();
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
+    // Faster on mobile (20s), normal on desktop (40s)
+    const animationDuration = isMobile ? 20 : 40;
+
     return (
         <div className="w-full relative overflow-hidden py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
             <div className="container mx-auto px-4">
@@ -51,18 +68,22 @@ export function LogoWall() {
                 <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-gray-50 dark:from-gray-900 via-gray-50/80 dark:via-gray-900/80 to-transparent z-10 pointer-events-none" />
                 <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-gray-50 dark:from-gray-900 via-gray-50/80 dark:via-gray-900/80 to-transparent z-10 pointer-events-none" />
 
-                {/* Scrolling logos - tighter spacing, faster */}
+                {/* Scrolling logos - responsive speed */}
                 <motion.div
                     className="flex items-center py-12"
                     style={{ gap: "clamp(48px, 6vw, 64px)" }}
-                    animate={{
-                        x: [0, "-50%"],
-                    }}
+                    animate={
+                        prefersReducedMotion
+                            ? {}
+                            : {
+                                  x: [0, "-50%"],
+                              }
+                    }
                     transition={{
                         x: {
                             repeat: Infinity,
                             repeatType: "loop",
-                            duration: 40,
+                            duration: animationDuration,
                             ease: "linear",
                         },
                     }}
