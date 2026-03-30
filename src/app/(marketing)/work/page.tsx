@@ -16,7 +16,6 @@ import {
     BarChart3,
     Clock,
     CheckCircle,
-    ExternalLink,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -342,14 +341,11 @@ export default function WorkPage() {
                                             </div>
 
                                             {/* Enhanced CTA */}
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center text-sm font-semibold text-gold-600 dark:text-gold-400 group-hover:gap-2 transition-all">
-                                                    <span>
-                                                        Read Full Case Study
-                                                    </span>
-                                                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                                                </div>
-                                                <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-gold-500 transition-colors" />
+                                            <div className="flex items-center text-sm font-semibold text-gold-600 dark:text-gold-400 group-hover:gap-2 transition-all">
+                                                <span>
+                                                    Read Full Case Study
+                                                </span>
+                                                <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                                             </div>
                                         </div>
                                     </Link>

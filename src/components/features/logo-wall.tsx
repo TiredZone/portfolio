@@ -109,7 +109,7 @@ export function LogoWall() {
                                     maxWidth: "100%",
                                     maxHeight: "100%",
                                 }}
-                                priority={index < 10}
+                                priority={index < 4}
                                 onError={(e) => {
                                     const target = e.target as HTMLImageElement;
                                     target.style.display = "none";

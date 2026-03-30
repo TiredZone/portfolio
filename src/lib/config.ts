@@ -7,7 +7,7 @@ export const siteConfig = {
     links: {
         email: "contact@becharaelmaalouf.dev",
         linkedin: "https://www.linkedin.com/in/bechara-el-maalouf-920645200/",
-        github: "https://github.com/becharaelm",
+        github: "https://github.com/TiredZone",
         twitter: "https://twitter.com/becharaelm",
         cal: "https://cal.com/becharaelmaalouf",
     },

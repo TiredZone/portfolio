@@ -4,7 +4,47 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
     // Configure pageExtensions to include MDX files
     pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
-    /* config options here */
+
+    // Image optimization
+    images: {
+        formats: ["image/avif", "image/webp"],
+        minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    },
+
+    // Security headers
+    async headers() {
+        return [
+            {
+                source: "/(.*)",
+                headers: [
+                    {
+                        key: "X-Frame-Options",
+                        value: "DENY",
+                    },
+                    {
+                        key: "X-Content-Type-Options",
+                        value: "nosniff",
+                    },
+                    {
+                        key: "Referrer-Policy",
+                        value: "strict-origin-when-cross-origin",
+                    },
+                    {
+                        key: "X-DNS-Prefetch-Control",
+                        value: "on",
+                    },
+                    {
+                        key: "Strict-Transport-Security",
+                        value: "max-age=63072000; includeSubDomains; preload",
+                    },
+                    {
+                        key: "Permissions-Policy",
+                        value: "camera=(), microphone=(), geolocation=()",
+                    },
+                ],
+            },
+        ];
+    },
 };
 
 const withMDX = createMDX({
