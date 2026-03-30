@@ -81,6 +81,7 @@ export function FloatingElements({
         return (
             <div
                 className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+                aria-hidden="true"
             />
         );
     }
@@ -88,6 +89,7 @@ export function FloatingElements({
     return (
         <div
             className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
+            aria-hidden="true"
         >
             {elements.map((element) => (
                 <motion.div
@@ -162,6 +164,7 @@ export function GradientOrb({
 
     return (
         <motion.div
+            aria-hidden="true"
             className={`absolute ${sizeClasses[size]} ${positionClasses[position]} bg-gradient-radial ${colorClasses[colors]} rounded-full blur-3xl ${className}`}
             animate={
                 animated

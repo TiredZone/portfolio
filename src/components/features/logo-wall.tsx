@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 
 const clients = [
     { name: "BAD Marketing", logo: "/images/clients/bad-marketing.png" },
@@ -20,23 +20,55 @@ const clients = [
 // Duplicate array for seamless infinite scroll
 const duplicatedClients = [...clients, ...clients];
 
+function ClientLogo({
+    client,
+    priority,
+}: {
+    client: (typeof clients)[0];
+    priority: boolean;
+}) {
+    const [hasError, setHasError] = useState(false);
+
+    const handleError = useCallback(() => {
+        setHasError(true);
+    }, []);
+
+    return (
+        <div
+            className="flex-shrink-0 flex items-center justify-center px-4"
+            style={{
+                width: "200px",
+                height: "100px",
+                minWidth: "200px",
+            }}
+        >
+            {hasError ? (
+                <div className="text-royal-900 dark:text-white font-bold text-lg text-center w-full">
+                    {client.name}
+                </div>
+            ) : (
+                <Image
+                    src={client.logo}
+                    alt={`${client.name} logo`}
+                    width={200}
+                    height={100}
+                    className="object-contain w-full h-full opacity-80 transition-opacity duration-300"
+                    style={{
+                        filter: "none",
+                        maxWidth: "100%",
+                        maxHeight: "100%",
+                    }}
+                    priority={priority}
+                    onError={handleError}
+                />
+            )}
+        </div>
+    );
+}
+
 // LogoWall component - Infinite scrolling marquee of client logos
 export function LogoWall() {
     const prefersReducedMotion = useReducedMotion();
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
-    }, []);
-
-    // Faster on mobile (20s), normal on desktop (40s)
-    const animationDuration = isMobile ? 20 : 40;
 
     return (
         <div className="w-full relative overflow-hidden py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
@@ -68,7 +100,7 @@ export function LogoWall() {
                 <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-gray-50 dark:from-gray-900 via-gray-50/80 dark:via-gray-900/80 to-transparent z-10 pointer-events-none" />
                 <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-gray-50 dark:from-gray-900 via-gray-50/80 dark:via-gray-900/80 to-transparent z-10 pointer-events-none" />
 
-                {/* Scrolling logos - responsive speed */}
+                {/* Scrolling logos - CSS handles responsive speed via media query */}
                 <motion.div
                     className="flex items-center py-12"
                     style={{ gap: "clamp(48px, 6vw, 64px)" }}
@@ -83,49 +115,17 @@ export function LogoWall() {
                         x: {
                             repeat: Infinity,
                             repeatType: "loop",
-                            duration: animationDuration,
+                            duration: 40,
                             ease: "linear",
                         },
                     }}
                 >
                     {duplicatedClients.map((client, index) => (
-                        <div
+                        <ClientLogo
                             key={`${client.name}-${index}`}
-                            className="flex-shrink-0 flex items-center justify-center px-4"
-                            style={{
-                                width: "200px",
-                                height: "100px",
-                                minWidth: "200px",
-                            }}
-                        >
-                            <Image
-                                src={client.logo}
-                                alt={`${client.name} logo`}
-                                width={200}
-                                height={100}
-                                className="object-contain w-full h-full opacity-80 transition-opacity duration-300"
-                                style={{
-                                    filter: "none",
-                                    maxWidth: "100%",
-                                    maxHeight: "100%",
-                                }}
-                                priority={index < 4}
-                                onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    target.style.display = "none";
-                                    if (target.parentElement) {
-                                        const textFallback =
-                                            document.createElement("div");
-                                        textFallback.className =
-                                            "text-royal-900 dark:text-white font-bold text-lg text-center w-full";
-                                        textFallback.textContent = client.name;
-                                        target.parentElement.appendChild(
-                                            textFallback
-                                        );
-                                    }
-                                }}
-                            />
-                        </div>
+                            client={client}
+                            priority={index < 4}
+                        />
                     ))}
                 </motion.div>
             </div>
