@@ -458,7 +458,7 @@ export default function AboutPage() {
                                             B.S. Computer Science
                                         </p>
                                         <p className="text-gray-600 dark:text-gray-400 mb-4">
-                                            2019 - 2025
+                                            Graduated 2025
                                         </p>
                                         <p className="text-gray-700 dark:text-gray-300">
                                             Comprehensive computer science

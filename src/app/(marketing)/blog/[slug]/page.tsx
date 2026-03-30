@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getBlogPostBySlug, getAllBlogPostSlugs } from "@/lib/mdx";
+import {
+    getBlogPostBySlug,
+    getAllBlogPostSlugs,
+    getAllCaseStudies,
+} from "@/lib/mdx";
 import MDXContent from "@/components/mdx/mdx-remote-content";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/common/badge";
-import { ArrowLeft, ArrowRight, Calendar } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Briefcase } from "lucide-react";
 import Link from "next/link";
 
 interface BlogPostPageProps {
@@ -53,6 +57,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     }
 
     const { frontmatter, content } = post;
+
+    // Find related case studies based on tag/keyword overlap
+    const tags = (frontmatter.tags || []).map((t) => t.toLowerCase());
+    const relatedCaseStudies = getAllCaseStudies()
+        .filter((study) => {
+            const titleWords = study.frontmatter.title.toLowerCase();
+            const techWords = (study.frontmatter.tech || []).map((t) =>
+                t.toLowerCase()
+            );
+            return tags.some(
+                (tag) =>
+                    titleWords.includes(tag) ||
+                    techWords.some((tw) => tw.includes(tag))
+            );
+        })
+        .slice(0, 3);
 
     return (
         <>
@@ -151,6 +171,41 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                 </div>
                             </div>
                         </div>
+
+                        {/* Related Case Studies */}
+                        {relatedCaseStudies.length > 0 && (
+                            <div className="mt-12 pt-8 border-t border-royal-200 dark:border-royal-800">
+                                <h3 className="text-xl font-bold text-royal-900 dark:text-white mb-6 flex items-center gap-2">
+                                    <Briefcase className="w-5 h-5 text-gold-600" />
+                                    Related Case Studies
+                                </h3>
+                                <div className="grid gap-4">
+                                    {relatedCaseStudies.map((study) => (
+                                        <Link
+                                            key={study.slug}
+                                            href={`/work/${study.slug}`}
+                                            className="group flex items-start gap-4 p-4 rounded-xl border border-royal-200 dark:border-royal-800 hover:border-gold-500 dark:hover:border-gold-500 transition-all hover:shadow-md"
+                                        >
+                                            <div className="flex-1">
+                                                <p className="text-xs font-semibold text-gold-600 dark:text-gold-400 mb-1">
+                                                    {study.frontmatter.client}
+                                                </p>
+                                                <h4 className="font-bold text-royal-900 dark:text-white group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
+                                                    {study.frontmatter.title}
+                                                </h4>
+                                                <p className="text-sm text-royal-700 dark:text-royal-300 mt-1 line-clamp-2">
+                                                    {
+                                                        study.frontmatter
+                                                            .description
+                                                    }
+                                                </p>
+                                            </div>
+                                            <ArrowRight className="w-4 h-4 mt-1 text-royal-400 group-hover:text-gold-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
 
                         {/* CTA */}
                         <div className="mt-12 p-8 bg-gradient-to-br from-gold-50 to-royal-50 dark:from-gold-950/20 dark:to-royal-950/20 rounded-xl text-center border border-gold-200 dark:border-gold-800">
