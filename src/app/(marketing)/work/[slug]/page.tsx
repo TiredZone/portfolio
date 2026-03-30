@@ -9,6 +9,8 @@ import { Section } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
+import { siteConfig } from "@/lib/config";
+import { generateJsonLd } from "@/lib/seo";
 
 interface CaseStudyPageProps {
     params: Promise<{ slug: string }>;
@@ -36,11 +38,15 @@ export async function generateMetadata({
     return {
         title: `${study.frontmatter.title} – Case Study`,
         description: study.frontmatter.description,
+        alternates: {
+            canonical: `${siteConfig.url}/work/${slug}`,
+        },
         openGraph: {
             title: study.frontmatter.title,
             description: study.frontmatter.description,
             type: "article",
             publishedTime: study.frontmatter.publishedAt,
+            url: `${siteConfig.url}/work/${slug}`,
         },
     };
 }
@@ -55,8 +61,32 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
     const { frontmatter, content } = study;
 
+    const caseStudyJsonLd = generateJsonLd("Article", {
+        headline: frontmatter.title,
+        description: frontmatter.description,
+        datePublished: frontmatter.publishedAt,
+        author: {
+            "@type": "Person",
+            name: siteConfig.author.name,
+            url: siteConfig.url,
+        },
+        publisher: {
+            "@type": "Person",
+            name: siteConfig.author.name,
+        },
+        url: `${siteConfig.url}/work/${slug}`,
+        about: {
+            "@type": "Organization",
+            name: frontmatter.client,
+        },
+    });
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: caseStudyJsonLd }}
+            />
             {/* Track case study view */}
             <CaseStudyTracker title={frontmatter.title} />
 

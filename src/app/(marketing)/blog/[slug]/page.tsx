@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/common/badge";
 import { ArrowLeft, ArrowRight, Calendar, Briefcase } from "lucide-react";
 import Link from "next/link";
+import { siteConfig } from "@/lib/config";
+import { generateJsonLd } from "@/lib/seo";
 
 interface BlogPostPageProps {
     params: Promise<{ slug: string }>;
@@ -39,11 +41,15 @@ export async function generateMetadata({
     return {
         title: `${post.frontmatter.title} – Blog`,
         description: post.frontmatter.description,
+        alternates: {
+            canonical: `${siteConfig.url}/blog/${slug}`,
+        },
         openGraph: {
             title: post.frontmatter.title,
             description: post.frontmatter.description,
             type: "article",
             publishedTime: post.frontmatter.publishedAt,
+            url: `${siteConfig.url}/blog/${slug}`,
         },
     };
 }
@@ -74,8 +80,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         })
         .slice(0, 3);
 
+    const articleJsonLd = generateJsonLd("Article", {
+        headline: frontmatter.title,
+        description: frontmatter.description,
+        datePublished: frontmatter.publishedAt,
+        author: {
+            "@type": "Person",
+            name: siteConfig.author.name,
+            url: siteConfig.url,
+        },
+        publisher: {
+            "@type": "Person",
+            name: siteConfig.author.name,
+        },
+        url: `${siteConfig.url}/blog/${slug}`,
+        keywords: frontmatter.tags,
+    });
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: articleJsonLd }}
+            />
             <Section className="bg-gradient-to-br from-royal-700 to-royal-900 dark:from-royal-900 dark:to-black text-white">
                 <Container>
                     <div className="max-w-3xl mx-auto py-12">

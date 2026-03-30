@@ -6,6 +6,7 @@ import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import { ThemeProvider } from "next-themes";
+import { personSchema, organizationSchema } from "@/lib/seo";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -100,6 +101,16 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: personSchema }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: organizationSchema }}
+                />
+            </head>
             <body
                 className={[
                     geistSans.variable,
