@@ -192,13 +192,14 @@ export default function AboutPage() {
                                                     typeof window !==
                                                     "undefined"
                                                 ) {
-                                                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                                     const dataLayer = (
-                                                        window as Record<
+                                                        window as unknown as Record<
                                                             string,
-                                                            any
+                                                            unknown
                                                         >
-                                                    ).dataLayer;
+                                                    ).dataLayer as
+                                                        | Array<Record<string, unknown>>
+                                                        | undefined;
                                                     if (dataLayer) {
                                                         dataLayer.push({
                                                             event: "resume_download",
@@ -574,10 +575,11 @@ export default function AboutPage() {
                                     download
                                     onClick={() => {
                                         if (typeof window !== "undefined") {
-                                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                             const dataLayer = (
-                                                window as Record<string, any>
-                                            ).dataLayer;
+                                                window as unknown as Record<string, unknown>
+                                            ).dataLayer as
+                                                | Array<Record<string, unknown>>
+                                                | undefined;
                                             if (dataLayer) {
                                                 dataLayer.push({
                                                     event: "resume_download",
