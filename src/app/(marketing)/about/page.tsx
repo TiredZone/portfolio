@@ -7,7 +7,6 @@ import {
     Mail,
     Phone,
     MapPin,
-    Download,
     Linkedin,
     Github,
     Code,
@@ -25,6 +24,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { FloatingElements } from "@/components/common/floating-elements";
+import { ResumeDownloadButton } from "@/components/common/resume-download-button";
 
 export const metadata: Metadata = generateMetadata({
     title: "About - Full-Stack Developer from Lebanon",
@@ -178,42 +178,7 @@ export default function AboutPage() {
                                             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </Button>
-                                    <Button
-                                        size="lg"
-                                        variant="outline"
-                                        className="border-2 border-white/40 bg-white/5 text-white hover:bg-white/15 hover:border-white/60 backdrop-blur-md shadow-lg shadow-black/10 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg group"
-                                        asChild
-                                    >
-                                        <a
-                                            href="/bechara-el-maalouf-resume.pdf"
-                                            download
-                                            onClick={() => {
-                                                if (
-                                                    typeof window !==
-                                                    "undefined"
-                                                ) {
-                                                    const dataLayer = (
-                                                        window as unknown as Record<
-                                                            string,
-                                                            unknown
-                                                        >
-                                                    ).dataLayer as
-                                                        | Array<Record<string, unknown>>
-                                                        | undefined;
-                                                    if (dataLayer) {
-                                                        dataLayer.push({
-                                                            event: "resume_download",
-                                                            value: 50,
-                                                            currency: "USD",
-                                                        });
-                                                    }
-                                                }
-                                            }}
-                                        >
-                                            <Download className="mr-3 h-5 w-5" />
-                                            Download Resume
-                                        </a>
-                                    </Button>
+                                    <ResumeDownloadButton className="border-2 border-white/40 bg-white/5 text-white hover:bg-white/15 hover:border-white/60 backdrop-blur-md shadow-lg shadow-black/10 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg group" />
                                 </div>
                             </div>
 
@@ -564,36 +529,7 @@ export default function AboutPage() {
                                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </Button>
-                            <Button
-                                size="lg"
-                                variant="outline"
-                                className="border-2 border-white/40 bg-white/5 text-white hover:bg-white/15 hover:border-white/60 backdrop-blur-md shadow-lg shadow-black/10 px-8 py-4 text-lg group"
-                                asChild
-                            >
-                                <a
-                                    href="/bechara-el-maalouf-resume.pdf"
-                                    download
-                                    onClick={() => {
-                                        if (typeof window !== "undefined") {
-                                            const dataLayer = (
-                                                window as unknown as Record<string, unknown>
-                                            ).dataLayer as
-                                                | Array<Record<string, unknown>>
-                                                | undefined;
-                                            if (dataLayer) {
-                                                dataLayer.push({
-                                                    event: "resume_download",
-                                                    value: 50,
-                                                    currency: "USD",
-                                                });
-                                            }
-                                        }
-                                    }}
-                                >
-                                    <Download className="mr-3 h-5 w-5" />
-                                    Download Resume
-                                </a>
-                            </Button>
+                            <ResumeDownloadButton className="border-2 border-white/40 bg-white/5 text-white hover:bg-white/15 hover:border-white/60 backdrop-blur-md shadow-lg shadow-black/10 px-8 py-4 text-lg group" />
                         </div>
 
                         {/* Contact Info */}
