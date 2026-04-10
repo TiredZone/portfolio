@@ -11,6 +11,7 @@ export interface CaseStudyFrontmatter {
     tech: string[];
     image: string;
     featured: boolean;
+    liveUrl?: string;
     metrics: Array<{
         label: string;
         value: string;

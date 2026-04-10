@@ -7,7 +7,13 @@ import MDXContent from "@/components/mdx/mdx-remote-content";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
+import {
+    ArrowLeft,
+    ArrowRight,
+    Calendar,
+    Clock,
+    ExternalLink,
+} from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import { generateJsonLd } from "@/lib/seo";
@@ -106,14 +112,29 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             <Section>
                 <Container>
                     <div className="max-w-4xl mx-auto">
-                        {/* Back Button */}
-                        <div className="mb-8">
+                        {/* Back Button + Live URL */}
+                        <div className="flex items-center justify-between mb-8">
                             <Button variant="ghost" asChild>
                                 <Link href="/work">
                                     <ArrowLeft className="w-4 h-4 mr-2" />
                                     Back to Portfolio
                                 </Link>
                             </Button>
+                            {frontmatter.liveUrl && (
+                                <Button
+                                    className="bg-gold-500 hover:bg-gold-600 text-royal-900 font-semibold"
+                                    asChild
+                                >
+                                    <a
+                                        href={frontmatter.liveUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        View Live Project
+                                        <ExternalLink className="w-4 h-4 ml-2" />
+                                    </a>
+                                </Button>
+                            )}
                         </div>
 
                         {/* Meta Info */}

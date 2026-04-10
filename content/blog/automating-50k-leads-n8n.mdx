@@ -1,0 +1,39 @@
+---
+title: "How I Automated 50,000 Leads/Month with n8n"
+description: "A deep dive into the automation architecture behind processing 50K+ leads monthly — from webhook ingestion to enrichment, scoring, and CRM routing."
+publishedAt: "2026-04-08"
+tags: ["Automation", "n8n", "Node.js", "Integration", "Workflow"]
+featured: false
+readingTime: 10
+---
+
+{/* TODO: Write intro — paint the picture of the manual process this replaced (hours of copy-paste, missed leads, human error). Hook with the 75% manual work reduction stat. */}
+
+## The Problem: Manual Lead Processing at Scale
+
+{/* TODO: Describe the client situation (Kalyxi/BAD Marketing context). Volume, team size, error rate, time cost. Don't name internal tools — keep it relatable. */}
+
+## Why n8n Over Zapier or Make
+
+{/* TODO: Explain your reasoning: self-hosted, no per-execution pricing at scale, JavaScript nodes for custom logic, webhook flexibility. Be honest about trade-offs (steeper learning curve, self-hosting overhead). */}
+
+## The Architecture: 4-Stage Pipeline
+
+{/* TODO: Walk through the pipeline stages:
+1. Webhook ingestion + deduplication
+2. Data enrichment (ZeroBounce email validation, company lookup)
+3. Lead scoring (custom logic based on signals)
+4. CRM routing + Slack notifications
+Include a diagram description or ASCII flow. */}
+
+## Handling Failures at Scale
+
+{/* TODO: Cover: retry logic, dead letter queues, error notifications, monitoring. What happens when ZeroBounce is down? When the CRM API rate-limits? Real scenarios you've handled. */}
+
+## The Results: Before vs After
+
+{/* TODO: Hard numbers — processing time, error rate, lead response time, team hours saved. Reference the 75% manual work reduction. Tie to the Kalyxi case studies. */}
+
+## What I'd Do Differently Today
+
+{/* TODO: Honest retrospective — what worked, what you'd change. Maybe: Mastra AI for newer projects, better observability from day one, different data validation approach. */}

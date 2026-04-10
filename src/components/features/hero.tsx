@@ -218,15 +218,15 @@ export function Hero() {
                     className="mb-12 max-w-4xl mx-auto"
                 >
                     <p className="text-xl md:text-2xl lg:text-3xl text-royal-100 leading-relaxed font-light">
-                        Building{" "}
+                        I fix{" "}
                         <motion.span
                             className="text-gold-400 font-semibold"
                             animate={{ opacity: [1, 0.7, 1] }}
                             transition={{ duration: 2, repeat: Infinity }}
                         >
-                            scalable applications
-                        </motion.span>{" "}
-                        across web, mobile, and cloud platforms.
+                            slow stores
+                        </motion.span>
+                        , broken funnels & manual workflows.
                     </p>
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -234,11 +234,13 @@ export function Hero() {
                         transition={{ delay: 1.2 }}
                         className="text-lg md:text-xl text-royal-200 mt-4"
                     >
-                        Delivered{" "}
+                        Full-stack developer helping{" "}
                         <span className="text-gold-400 font-bold">
-                            32% revenue increase
+                            $2M/mo brands
                         </span>{" "}
-                        for $2M/mo brands through optimization and automation.
+                        turn performance problems into 32% revenue increases
+                        — through Shopify optimization, automation, and
+                        strategic development.
                     </motion.p>
                 </motion.div>
 
