@@ -148,7 +148,7 @@ export default function ContactPage() {
             </Section>
 
             {/* Contact Form */}
-            <Section className="bg-white dark:bg-gray-900">
+            <Section id="contact-form" className="scroll-mt-20 bg-white dark:bg-gray-900">
                 <Container>
                     <div className="max-w-4xl mx-auto">
                         <div className="text-center mb-12">
