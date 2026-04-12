@@ -7,18 +7,14 @@ export function HashScroll() {
         const hash = window.location.hash;
         if (!hash) return;
 
-        function scrollToHash() {
+        const timer = setTimeout(() => {
             const el = document.querySelector(hash);
             if (el) {
                 el.scrollIntoView({ behavior: "smooth", block: "start" });
             }
-        }
+        }, 150);
 
-        // Scroll multiple times to fight layout shifts from async embeds (Cal.com)
-        const delays = [150, 600, 1200];
-        const timers = delays.map((delay) => setTimeout(scrollToHash, delay));
-
-        return () => timers.forEach(clearTimeout);
+        return () => clearTimeout(timer);
     }, []);
 
     return null;

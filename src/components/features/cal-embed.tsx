@@ -60,8 +60,7 @@ export function CalEmbed() {
                 calLink="becharaelmaalouf/strategy-call"
                 style={{
                     width: "100%",
-                    height: "auto",
-                    minHeight: "600px",
+                    height: "600px",
                     maxWidth: "100%",
                     overflow: "hidden",
                 }}
