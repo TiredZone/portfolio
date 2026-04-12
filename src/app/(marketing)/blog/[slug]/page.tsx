@@ -249,7 +249,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                     className="bg-gold-500 hover:bg-gold-600 text-royal-900 font-semibold"
                                     asChild
                                 >
-                                    <Link href="/contact">Get in Touch</Link>
+                                    <Link href="/contact#booking">Get in Touch</Link>
                                 </Button>
                                 <Button
                                     size="lg"
