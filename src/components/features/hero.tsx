@@ -160,7 +160,7 @@ export function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 mb-6 text-sm font-medium text-gold-400 bg-gold-400/10 rounded-full border border-gold-400/20 backdrop-blur-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 mb-4 md:mb-6 text-xs md:text-sm font-medium text-gold-400 bg-gold-400/10 rounded-full border border-gold-400/20 backdrop-blur-sm"
                 >
                     <motion.div
                         animate={{ rotate: 360 }}
@@ -184,12 +184,12 @@ export function Hero() {
                 </motion.div>
 
                 {/* Main heading with stagger animation */}
-                <div className="mb-6">
+                <div className="mb-4 md:mb-6">
                     <motion.h1
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.4 }}
-                        className="text-6xl md:text-8xl lg:text-9xl font-serif font-bold text-white mb-4 leading-none"
+                        className="text-5xl md:text-8xl lg:text-9xl font-serif font-bold text-white mb-4 leading-none"
                     >
                         <motion.span
                             className="inline-block"
@@ -203,7 +203,7 @@ export function Hero() {
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.6 }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-300 to-gold-500 leading-none"
+                        className="text-3xl md:text-6xl lg:text-7xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-300 to-gold-500 leading-none"
                     >
                         El Maalouf
                     </motion.h2>
@@ -214,9 +214,9 @@ export function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
-                    className="mb-8 max-w-4xl mx-auto"
+                    className="mb-6 md:mb-8 max-w-4xl mx-auto"
                 >
-                    <p className="text-xl md:text-2xl lg:text-3xl text-royal-100 leading-relaxed font-light">
+                    <p className="text-lg md:text-2xl lg:text-3xl text-royal-100 leading-relaxed font-light">
                         I fix{" "}
                         <motion.span
                             className="text-gold-400 font-semibold"
@@ -231,7 +231,7 @@ export function Hero() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.2 }}
-                        className="text-lg md:text-xl text-royal-200 mt-4"
+                        className="text-base md:text-xl text-royal-200 mt-3"
                     >
                         CRO specialist helping{" "}
                         <span className="text-gold-400 font-bold">
@@ -246,7 +246,7 @@ export function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 1 }}
-                    className="flex flex-col sm:flex-row gap-6 justify-center mb-6"
+                    className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-6"
                 >
                     <motion.div
                         whileHover={{ scale: 1.05 }}

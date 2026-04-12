@@ -101,7 +101,7 @@ export function MetricsImpact() {
                 </motion.div>
 
                 {/* Metrics grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+                <div className="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
                     {metrics.map((metric, index) => (
                         <motion.div
                             key={metric.tag}
@@ -113,12 +113,12 @@ export function MetricsImpact() {
                                 ease: "easeOut",
                             }}
                         >
-                            <div className="group relative h-full rounded-xl border border-royal-200/60 dark:border-royal-800/60 bg-gradient-to-br from-white to-royal-50/40 dark:from-royal-900/30 dark:to-royal-950/50 p-8 transition-all duration-300 hover:border-gold-400/50 dark:hover:border-gold-600/40 hover:shadow-lg hover:shadow-gold-500/5 flex flex-col">
+                            <div className="group relative h-full rounded-xl border border-royal-200/60 dark:border-royal-800/60 bg-gradient-to-br from-white to-royal-50/40 dark:from-royal-900/30 dark:to-royal-950/50 p-4 sm:p-6 md:p-8 transition-all duration-300 hover:border-gold-400/50 dark:hover:border-gold-600/40 hover:shadow-lg hover:shadow-gold-500/5 flex flex-col">
                                 {/* Accent line */}
                                 <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-gold-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                                 {/* Metric number */}
-                                <div className="text-5xl md:text-6xl font-bold tracking-tight mb-3">
+                                <div className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-2 sm:mb-3">
                                     <span className="bg-gradient-to-br from-gold-500 via-gold-600 to-royal-700 dark:from-gold-400 dark:via-gold-500 dark:to-royal-400 bg-clip-text text-transparent">
                                         <CountUp
                                             target={metric.value}
@@ -130,7 +130,7 @@ export function MetricsImpact() {
                                 </div>
 
                                 {/* Descriptor */}
-                                <p className="text-sm md:text-base text-royal-800 dark:text-royal-200 leading-relaxed mb-4 flex-1">
+                                <p className="text-xs sm:text-sm md:text-base text-royal-800 dark:text-royal-200 leading-relaxed mb-3 sm:mb-4 flex-1">
                                     {metric.descriptor}
                                 </p>
 
@@ -145,7 +145,7 @@ export function MetricsImpact() {
 
                 {/* Footer note */}
                 <motion.p
-                    className="text-center text-xs text-royal-500 dark:text-royal-500 mt-12 max-w-lg mx-auto"
+                    className="text-center text-xs text-royal-500 dark:text-royal-300/70 mt-12 max-w-lg mx-auto"
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : {}}
                     transition={{ duration: 0.5, delay: 0.8 }}

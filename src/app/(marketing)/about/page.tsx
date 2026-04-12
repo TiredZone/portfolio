@@ -177,22 +177,22 @@ export default function AboutPage() {
                             </div>
 
                             {/* Right Column - Achievement Cards */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                            <div className="grid grid-cols-2 gap-3 sm:gap-6">
                                 {achievements.map((achievement) => (
                                     <div
                                         key={achievement.label}
-                                        className="group relative p-4 sm:p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                                        className="group relative p-3 sm:p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                                     >
                                         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                                         <div
-                                            className={`relative inline-flex p-3 rounded-xl ${achievement.bgColor} mb-4 group-hover:scale-110 transition-transform`}
+                                            className={`relative inline-flex p-2 sm:p-3 rounded-xl ${achievement.bgColor} mb-3 sm:mb-4 group-hover:scale-110 transition-transform`}
                                         >
                                             <achievement.icon
                                                 className={`w-6 h-6 ${achievement.color}`}
                                             />
                                         </div>
                                         <div className="relative">
-                                            <div className="text-2xl sm:text-3xl font-bold text-white mb-1 group-hover:text-gold-300 transition-colors">
+                                            <div className="text-xl sm:text-3xl font-bold text-white mb-1 group-hover:text-gold-300 transition-colors">
                                                 {achievement.value}
                                             </div>
                                             <div className="text-royal-100 font-medium mb-2 text-sm sm:text-base">
