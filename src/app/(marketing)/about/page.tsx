@@ -178,10 +178,7 @@ export default function AboutPage() {
                                             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </Button>
-                                    <ResumeDownloadButton
-                                        size="lg"
-                                        className="border-2 border-white/40 bg-white/5 text-white hover:bg-white/15 hover:border-white/60 backdrop-blur-md shadow-lg shadow-black/10 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg group"
-                                    />
+                                    <ResumeDownloadButton className="border-2 border-white/40 bg-white/5 text-white hover:bg-white/15 hover:border-white/60 backdrop-blur-md shadow-lg shadow-black/10 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg group" />
                                 </div>
                             </div>
 
@@ -532,10 +529,7 @@ export default function AboutPage() {
                                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </Button>
-                            <ResumeDownloadButton
-                                size="lg"
-                                className="border-2 border-white/40 bg-white/5 text-white hover:bg-white/15 hover:border-white/60 backdrop-blur-md shadow-lg shadow-black/10 px-8 py-4 text-lg group"
-                            />
+                            <ResumeDownloadButton className="border-2 border-white/40 bg-white/5 text-white hover:bg-white/15 hover:border-white/60 backdrop-blur-md shadow-lg shadow-black/10 px-8 py-4 text-lg group" />
                         </div>
 
                         {/* Contact Info */}
