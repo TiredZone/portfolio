@@ -6,14 +6,14 @@ import { Loader2 } from "lucide-react";
 
 interface CalEmbedProps {
     defer?: boolean;
+    onReady?: () => void;
 }
 
-export function CalEmbed({ defer = false }: CalEmbedProps) {
+export function CalEmbed({ defer = false, onReady }: CalEmbedProps) {
     const [show, setShow] = useState(!defer);
 
     useEffect(() => {
         if (!defer) return;
-        // Wait for scroll to settle, then render Cal
         const timer = setTimeout(() => setShow(true), 800);
         return () => clearTimeout(timer);
     }, [defer]);
@@ -64,8 +64,11 @@ export function CalEmbed({ defer = false }: CalEmbedProps) {
                     }
                 },
             });
+
+            // Cal.com hijacks scroll on init — notify parent to re-scroll
+            onReady?.();
         })();
-    }, [show]);
+    }, [show, onReady]);
 
     return (
         <div className="w-full h-[600px] rounded-2xl overflow-hidden shadow-2xl border border-royal-200/50 dark:border-royal-800/50 bg-white dark:bg-royal-950 transition-all duration-300">
