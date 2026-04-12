@@ -54,15 +54,14 @@ export function CalEmbed() {
     }, []);
 
     return (
-        <div className="w-full rounded-2xl overflow-hidden shadow-2xl border border-royal-200/50 dark:border-royal-800/50 bg-white dark:bg-royal-950 transition-all duration-300">
+        <div className="w-full h-[600px] rounded-2xl overflow-hidden shadow-2xl border border-royal-200/50 dark:border-royal-800/50 bg-white dark:bg-royal-950 transition-all duration-300">
             <Cal
                 namespace="30min"
                 calLink="becharaelmaalouf/strategy-call"
                 style={{
                     width: "100%",
-                    height: "600px",
-                    maxWidth: "100%",
-                    overflow: "hidden",
+                    height: "100%",
+                    overflow: "scroll",
                 }}
                 config={{
                     layout: "month_view",

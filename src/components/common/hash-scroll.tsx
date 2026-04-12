@@ -7,14 +7,13 @@ export function HashScroll() {
         const hash = window.location.hash;
         if (!hash) return;
 
-        const timer = setTimeout(() => {
+        // Wait for next frame to ensure DOM is settled after hydration
+        requestAnimationFrame(() => {
             const el = document.querySelector(hash);
             if (el) {
                 el.scrollIntoView({ behavior: "smooth", block: "start" });
             }
-        }, 150);
-
-        return () => clearTimeout(timer);
+        });
     }, []);
 
     return null;
