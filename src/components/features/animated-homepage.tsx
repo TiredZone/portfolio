@@ -13,7 +13,7 @@ import {
     FloatingElements,
     GradientOrb,
 } from "@/components/common/floating-elements";
-import { ArrowRight, Award, TrendingUp, Zap, Target } from "lucide-react";
+import { ArrowRight, Award, TrendingUp, Target } from "lucide-react";
 import Link from "next/link";
 import { type CaseStudy } from "@/lib/mdx";
 import { motion, useInView } from "framer-motion";
