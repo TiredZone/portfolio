@@ -113,7 +113,7 @@ export function MetricsImpact() {
                                 ease: "easeOut",
                             }}
                         >
-                            <div className="group relative h-full rounded-xl border border-royal-200/60 dark:border-royal-800/60 bg-gradient-to-br from-white to-royal-50/40 dark:from-royal-900/30 dark:to-royal-950/50 p-8 transition-all duration-300 hover:border-gold-400/50 dark:hover:border-gold-600/40 hover:shadow-lg hover:shadow-gold-500/5">
+                            <div className="group relative h-full rounded-xl border border-royal-200/60 dark:border-royal-800/60 bg-gradient-to-br from-white to-royal-50/40 dark:from-royal-900/30 dark:to-royal-950/50 p-8 transition-all duration-300 hover:border-gold-400/50 dark:hover:border-gold-600/40 hover:shadow-lg hover:shadow-gold-500/5 flex flex-col">
                                 {/* Accent line */}
                                 <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-gold-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -130,12 +130,12 @@ export function MetricsImpact() {
                                 </div>
 
                                 {/* Descriptor */}
-                                <p className="text-sm md:text-base text-royal-800 dark:text-royal-200 leading-relaxed mb-4">
+                                <p className="text-sm md:text-base text-royal-800 dark:text-royal-200 leading-relaxed mb-4 flex-1">
                                     {metric.descriptor}
                                 </p>
 
                                 {/* Tag */}
-                                <span className="inline-block text-xs font-medium tracking-wide uppercase text-royal-500 dark:text-royal-400 bg-royal-100/60 dark:bg-royal-800/30 px-3 py-1 rounded-full">
+                                <span className="inline-block text-xs font-medium tracking-wide uppercase text-royal-500 dark:text-royal-400 bg-royal-100/60 dark:bg-royal-800/30 px-3 py-1 rounded-full mt-auto self-start">
                                     {metric.tag}
                                 </span>
                             </div>
