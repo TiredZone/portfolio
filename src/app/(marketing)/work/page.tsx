@@ -30,33 +30,33 @@ export default function WorkPage() {
     const achievements = [
         {
             icon: Trophy,
-            value: "32%",
-            label: "Revenue Increase",
-            description: "Average boost for clients",
+            value: "8+",
+            label: "Brands Optimized",
+            description: "DTC Shopify stores",
             color: "text-gold-600 dark:text-gold-400",
             bgColor: "bg-gold-100 dark:bg-gold-900/20",
         },
         {
             icon: Users,
-            value: "50K+",
-            label: "Leads Automated",
-            description: "Monthly processing volume",
+            value: "32%",
+            label: "Peak Revenue Lift",
+            description: "Single store, 15 days",
             color: "text-blue-600 dark:text-blue-400",
             bgColor: "bg-blue-100 dark:bg-blue-900/20",
         },
         {
             icon: BarChart3,
-            value: "$5M+",
-            label: "Revenue Managed",
-            description: "Across client portfolios",
+            value: "167%",
+            label: "Peak CVR Increase",
+            description: "With half the ad spend",
             color: "text-green-600 dark:text-green-400",
             bgColor: "bg-green-100 dark:bg-green-900/20",
         },
         {
             icon: Globe,
-            value: "25+",
-            label: "Technologies",
-            description: "Modern tech stack",
+            value: "90+",
+            label: "A/B Tests Run",
+            description: "Hypothesis-driven",
             color: "text-royal-600 dark:text-royal-400",
             bgColor: "bg-royal-100 dark:bg-royal-900/20",
         },
@@ -100,7 +100,7 @@ export default function WorkPage() {
                             {/* Badge */}
                             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-gold-400 text-sm font-medium">
                                 <Star className="w-4 h-4" />
-                                Portfolio & Case Studies
+                                CRO Results & Case Studies
                             </div>
 
                             {/* Main Heading */}
@@ -114,9 +114,7 @@ export default function WorkPage() {
                                 </h1>
 
                                 <p className="text-lg sm:text-xl md:text-2xl text-royal-100 leading-relaxed max-w-4xl mx-auto">
-                                    CRO wins, automation pipelines, and Shopify
-                                    builds with real data and measurable outcomes.
-                                    Every project here drove revenue or saved hours.
+                                    Every project here drove measurable revenue or saved real hours. Client names anonymized per confidentiality agreements — every number is documented.
                                 </p>
                             </div>
 
