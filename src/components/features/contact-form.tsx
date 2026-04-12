@@ -17,7 +17,7 @@ type FormData = {
     email: string;
     company?: string;
     projectType: "cro_audit" | "shopify" | "automation" | "consulting" | "employment" | "other";
-    budget: "<10k" | "10-25k" | "25-50k" | "50k+";
+    budget: "<5k" | "5-10k" | "10-25k" | "25-50k" | "50k+";
     timeline: "asap" | "1-2 months" | "3-6 months" | "6+ months";
     message: string;
 };
@@ -37,7 +37,6 @@ export function ContactForm() {
 
     useEffect(() => {
         const service = searchParams.get("service");
-        const tier = searchParams.get("tier");
         const budget = searchParams.get("budget");
 
         if (service) {
@@ -46,10 +45,6 @@ export function ContactForm() {
 
         if (budget) {
             setValue("budget", budget as FormData["budget"]);
-        }
-
-        if (tier) {
-            setValue("message", `I'm interested in the ${tier} tier. `);
         }
     }, [searchParams, setValue]);
 
@@ -65,7 +60,8 @@ export function ContactForm() {
                     // Helper function to convert budget to numeric value
                     const getBudgetValue = (budget: string): number => {
                         const values: Record<string, number> = {
-                            "<10k": 5000,
+                            "<5k": 2500,
+                            "5-10k": 7500,
                             "10-25k": 17500,
                             "25-50k": 37500,
                             "50k+": 75000,
@@ -231,7 +227,8 @@ export function ContactForm() {
                             }`}
                         >
                             <option value="">Select a range</option>
-                            <option value="<10k">&lt; $10,000</option>
+                            <option value="<5k">&lt; $5,000</option>
+                            <option value="5-10k">$5,000 - $10,000</option>
                             <option value="10-25k">$10,000 - $25,000</option>
                             <option value="25-50k">$25,000 - $50,000</option>
                             <option value="50k+">$50,000+</option>

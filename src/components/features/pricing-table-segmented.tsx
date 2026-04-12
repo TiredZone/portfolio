@@ -43,7 +43,7 @@ const croTiers: PricingTier[] = [
         ],
         timeline: "1–2 weeks",
         serviceParam: "cro_audit",
-        budgetHint: "10-25k",
+        budgetHint: "<5k",
     },
     {
         name: "CRO Sprint",
@@ -63,7 +63,7 @@ const croTiers: PricingTier[] = [
         ],
         timeline: "4–6 weeks",
         serviceParam: "cro_audit",
-        budgetHint: "10-25k",
+        budgetHint: "5-10k",
     },
     {
         name: "Monthly CRO Retainer",
@@ -84,7 +84,7 @@ const croTiers: PricingTier[] = [
         ],
         timeline: "Ongoing",
         serviceParam: "cro_audit",
-        budgetHint: "25-50k",
+        budgetHint: "5-10k",
     },
 ];
 
@@ -110,7 +110,7 @@ const shopifyTiers: PricingTier[] = [
         ],
         timeline: "2–3 weeks",
         serviceParam: "shopify",
-        budgetHint: "10-25k",
+        budgetHint: "<5k",
     },
     {
         name: "Scale",
@@ -133,7 +133,7 @@ const shopifyTiers: PricingTier[] = [
         ],
         timeline: "3–5 weeks",
         serviceParam: "shopify",
-        budgetHint: "10-25k",
+        budgetHint: "5-10k",
     },
     {
         name: "Plus / Enterprise",
@@ -156,7 +156,7 @@ const shopifyTiers: PricingTier[] = [
         ],
         timeline: "6–12 weeks",
         serviceParam: "shopify",
-        budgetHint: "25-50k",
+        budgetHint: "10-25k",
     },
 ];
 
@@ -203,7 +203,7 @@ const automationTiers: PricingTier[] = [
         ],
         timeline: "2–4 weeks",
         serviceParam: "automation",
-        budgetHint: "10-25k",
+        budgetHint: "<5k",
     },
     {
         name: "Advanced",
@@ -225,7 +225,7 @@ const automationTiers: PricingTier[] = [
         ],
         timeline: "4–8 weeks",
         serviceParam: "automation",
-        budgetHint: "10-25k",
+        budgetHint: "5-10k",
     },
 ];
 
@@ -250,7 +250,7 @@ const webAppTiers: PricingTier[] = [
         ],
         timeline: "4–6 weeks",
         serviceParam: "shopify",
-        budgetHint: "10-25k",
+        budgetHint: "5-10k",
     },
     {
         name: "Full Build",
@@ -273,7 +273,7 @@ const webAppTiers: PricingTier[] = [
         ],
         timeline: "8–12 weeks",
         serviceParam: "shopify",
-        budgetHint: "25-50k",
+        budgetHint: "10-25k",
     },
 ];
 

@@ -14,7 +14,7 @@ const contactSchema = z.object({
         "Please select a project type"
     ),
     budget: z.enum(
-        ["<10k", "10-25k", "25-50k", "50k+"],
+        ["<5k", "5-10k", "10-25k", "25-50k", "50k+"],
         "Please select a budget range"
     ),
     timeline: z.enum(
