@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,12 +25,33 @@ type FormData = {
 export function ContactForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const searchParams = useSearchParams();
+
     const {
         register,
         handleSubmit,
         formState: { errors },
         reset,
+        setValue,
     } = useForm<FormData>();
+
+    useEffect(() => {
+        const service = searchParams.get("service");
+        const tier = searchParams.get("tier");
+        const budget = searchParams.get("budget");
+
+        if (service) {
+            setValue("projectType", service as FormData["projectType"]);
+        }
+
+        if (budget) {
+            setValue("budget", budget as FormData["budget"]);
+        }
+
+        if (tier) {
+            setValue("message", `I'm interested in the ${tier} tier. `);
+        }
+    }, [searchParams, setValue]);
 
     const onSubmit = async (data: FormData) => {
         setIsSubmitting(true);
@@ -86,7 +108,7 @@ export function ContactForm() {
     };
 
     return (
-        <Card className="p-8 border-royal-100 dark:border-royal-800">
+        <Card id="contact-form" className="p-8 border-royal-100 dark:border-royal-800">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                     {/* Name */}

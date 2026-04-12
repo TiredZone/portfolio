@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import { generateMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/config";
 import { CalEmbed } from "@/components/features/cal-embed";
@@ -124,7 +125,7 @@ export default function ContactPage() {
             </Section>
 
             {/* Booking Calendar */}
-            <Section className="bg-gradient-to-br from-royal-50/30 to-gold-50/30 dark:from-royal-900/20 dark:to-black/20">
+            <Section id="booking" className="bg-gradient-to-br from-royal-50/30 to-gold-50/30 dark:from-royal-900/20 dark:to-black/20">
                 <Container>
                     <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-12">
@@ -157,7 +158,9 @@ export default function ContactPage() {
                                 I&apos;ll get back to you within 24 hours.
                             </p>
                         </div>
-                        <ContactForm />
+                        <Suspense fallback={null}>
+                            <ContactForm />
+                        </Suspense>
                     </div>
                 </Container>
             </Section>
