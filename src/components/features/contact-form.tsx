@@ -16,10 +16,11 @@ type FormData = {
     name: string;
     email: string;
     company?: string;
-    projectType: "cro_audit" | "shopify" | "automation" | "consulting" | "employment" | "other";
+    projectType: "cro_audit" | "shopify" | "webapp" | "automation" | "consulting" | "employment" | "other";
     budget: "<5k" | "5-10k" | "10-25k" | "25-50k" | "50k+";
     timeline: "asap" | "1-2 months" | "3-6 months" | "6+ months";
     message: string;
+    selectedTier?: string;
 };
 
 export function ContactForm() {
@@ -38,6 +39,7 @@ export function ContactForm() {
     useEffect(() => {
         const service = searchParams.get("service");
         const budget = searchParams.get("budget");
+        const tier = searchParams.get("tier");
 
         if (service) {
             setValue("projectType", service as FormData["projectType"]);
@@ -45,6 +47,10 @@ export function ContactForm() {
 
         if (budget) {
             setValue("budget", budget as FormData["budget"]);
+        }
+
+        if (tier) {
+            setValue("selectedTier", tier);
         }
     }, [searchParams, setValue]);
 
@@ -75,6 +81,7 @@ export function ContactForm() {
                         dataLayer.push({
                             event: "contact_form_submit",
                             form_type: data.projectType,
+                            service_tier: data.selectedTier || "direct",
                             budget_range: data.budget,
                             timeline: data.timeline,
                             value: getBudgetValue(data.budget),
@@ -106,6 +113,7 @@ export function ContactForm() {
     return (
         <Card className="p-8 border-royal-100 dark:border-royal-800">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <input type="hidden" {...register("selectedTier")} />
                 <div className="grid md:grid-cols-2 gap-6">
                     {/* Name */}
                     <div>
@@ -198,6 +206,7 @@ export function ContactForm() {
                             <option value="">Select a type</option>
                             <option value="cro_audit">CRO Audit &amp; Optimization</option>
                             <option value="shopify">Shopify Development</option>
+                            <option value="webapp">Custom Web Application</option>
                             <option value="automation">Automation/Integration</option>
                             <option value="consulting">Technical Consulting</option>
                             <option value="employment">Full-Time / Employment Opportunity</option>

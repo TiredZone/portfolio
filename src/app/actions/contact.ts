@@ -10,7 +10,7 @@ const contactSchema = z.object({
     email: z.email("Invalid email address"),
     company: z.string().optional(),
     projectType: z.enum(
-        ["cro_audit", "shopify", "automation", "consulting", "employment", "other"],
+        ["cro_audit", "shopify", "webapp", "automation", "consulting", "employment", "other"],
         "Please select a project type"
     ),
     budget: z.enum(
@@ -22,6 +22,7 @@ const contactSchema = z.object({
         "Please select a timeline"
     ),
     message: z.string().min(10, "Message must be at least 10 characters"),
+    selectedTier: z.string().optional(),
 });
 
 export async function sendContactForm(data: z.infer<typeof contactSchema>) {
@@ -31,6 +32,7 @@ export async function sendContactForm(data: z.infer<typeof contactSchema>) {
         const projectTypeLabels = {
             cro_audit: "CRO Audit & Optimization",
             shopify: "Shopify Development",
+            webapp: "Custom Web Application",
             automation: "Automation/Integration",
             consulting: "Technical Consulting",
             employment: "Full-Time / Employment Opportunity",
@@ -76,6 +78,7 @@ export async function sendContactForm(data: z.infer<typeof contactSchema>) {
         <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3 style="color: #4338ca; margin-top: 0;">Project Details</h3>
           <p><strong>Project Type:</strong> ${projectTypeLabels[validatedData.projectType]}</p>
+          ${validatedData.selectedTier ? `<p><strong>Service Interest:</strong> ${validatedData.selectedTier}</p>` : ""}
           <p><strong>Budget:</strong> ${validatedData.budget}</p>
           <p><strong>Timeline:</strong> ${validatedData.timeline}</p>
         </div>
@@ -99,7 +102,7 @@ Contact Information
 - Company: ${validatedData.company || "Not provided"}
 
 Project Details
-- Project Type: ${projectTypeLabels[validatedData.projectType]}
+- Project Type: ${projectTypeLabels[validatedData.projectType]}${validatedData.selectedTier ? `\n- Service Interest: ${validatedData.selectedTier}` : ""}
 - Budget: ${validatedData.budget}
 - Timeline: ${validatedData.timeline}
 
@@ -113,7 +116,7 @@ Sent at ${beirutTime} (Asia/Beirut)
             from: `Bechara - Portfolio <${fromAddress}>`,
             to: contactEmail,
             replyTo: validatedData.email,
-            subject: `[Contact Form] ${projectTypeLabels[validatedData.projectType]} - ${validatedData.name}`,
+            subject: `[Contact Form] ${projectTypeLabels[validatedData.projectType]}${validatedData.selectedTier ? ` (${validatedData.selectedTier})` : ""} - ${validatedData.name}`,
             html,
             text,
             headers: {

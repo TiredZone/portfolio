@@ -249,7 +249,7 @@ const webAppTiers: PricingTier[] = [
             "14-day warranty",
         ],
         timeline: "4–6 weeks",
-        serviceParam: "shopify",
+        serviceParam: "webapp",
         budgetHint: "5-10k",
     },
     {
@@ -272,7 +272,7 @@ const webAppTiers: PricingTier[] = [
             "30-day warranty & support",
         ],
         timeline: "8–12 weeks",
-        serviceParam: "shopify",
+        serviceParam: "webapp",
         budgetHint: "10-25k",
     },
 ];

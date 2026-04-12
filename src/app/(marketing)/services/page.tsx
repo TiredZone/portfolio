@@ -3,6 +3,7 @@ import { generateMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/config";
 import { FloatingElements } from "@/components/common/floating-elements";
 import { PricingTableSegmented } from "@/components/features/pricing-table-segmented";
+import { ProcessTimeline } from "@/components/features/process-timeline";
 import {
     ShoppingCart,
     Code2,
@@ -12,14 +13,9 @@ import {
     Check,
     Sparkles,
     Users,
-    Target,
     Globe,
     BarChart3,
     Clock,
-    CheckCircle,
-    Lightbulb,
-    Rocket,
-    Shield,
     Heart,
     TrendingUp,
     Award,
@@ -81,7 +77,7 @@ const services = [
     {
         title: "Custom Web Applications",
         icon: Code2,
-        serviceParam: "shopify",
+        serviceParam: "webapp",
         description:
             "Full-stack web applications from MVP to enterprise—built with modern technologies for performance, scalability, and exceptional UX.",
         features: [
@@ -183,48 +179,6 @@ const achievements = [
     },
 ];
 
-const process = [
-    {
-        step: "1",
-        title: "Free CRO Audit",
-        description:
-            "I review your store live, identify the biggest conversion killers, and give you 3 actionable wins. If we're a fit, I'll propose next steps.",
-        icon: Lightbulb,
-        color: "from-blue-500 to-cyan-500",
-    },
-    {
-        step: "2",
-        title: "Proposal & Planning",
-        description:
-            "I provide a detailed proposal with timeline, milestones, and technical approach tailored to your needs.",
-        icon: Target,
-        color: "from-green-500 to-emerald-500",
-    },
-    {
-        step: "3",
-        title: "Development & Iteration",
-        description:
-            "Regular updates and check-ins ensure alignment throughout development with room for feedback.",
-        icon: Rocket,
-        color: "from-purple-500 to-violet-500",
-    },
-    {
-        step: "4",
-        title: "Testing & Launch",
-        description:
-            "Thorough testing, performance optimization, and a smooth launch with post-launch support.",
-        icon: CheckCircle,
-        color: "from-orange-500 to-red-500",
-    },
-    {
-        step: "5",
-        title: "Ongoing Support",
-        description:
-            "Continued maintenance, updates, and optimization to ensure long-term success.",
-        icon: Shield,
-        color: "from-royal-500 to-gold-500",
-    },
-];
 
 const whyChooseMe = [
     {
@@ -469,112 +423,7 @@ export default function ServicesPage() {
             </section>
 
             {/* Process Section - Premium Timeline */}
-            <section className="py-20 bg-gradient-to-br from-gray-50 to-royal-50/30 dark:from-gray-800 dark:to-royal-900/20">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-6xl mx-auto">
-                        {/* Section Header */}
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-royal-900 dark:text-white mb-6">
-                                How I Work
-                            </h2>
-                            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                                A transparent, milestone-driven approach that
-                                keeps you informed and involved throughout your
-                                project
-                            </p>
-                        </div>
-
-                        {/* Premium Vertical Timeline */}
-                        <div className="relative flex flex-col items-center gap-0 px-2">
-                            {/* Timeline vertical line */}
-                            <div
-                                className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-royal-300 via-gold-300 to-royal-300 opacity-40 z-0"
-                                style={{ transform: "translateX(-50%)" }}
-                            />
-                            {process.map((item, idx) => (
-                                <div
-                                    key={idx}
-                                    className="relative z-10 flex flex-col items-center text-center w-full max-w-md mb-12 last:mb-0"
-                                >
-                                    {/* Step Circle */}
-                                    <div
-                                        className={`flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br ${item.color} shadow-xl border-4 border-white dark:border-gray-900 mb-4 relative`}
-                                    >
-                                        <span className="absolute -top-2 -right-2 bg-white dark:bg-gray-900 text-royal-700 dark:text-gold-400 text-xs font-bold px-2 py-0.5 rounded-full border border-gold-300 shadow">
-                                            {item.step}
-                                        </span>
-                                        <item.icon className="w-8 h-8 text-white" />
-                                    </div>
-                                    <h3 className="text-lg font-bold text-royal-900 dark:text-white mb-2">
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-gray-700 dark:text-gray-300 text-sm max-w-xs mb-2">
-                                        {item.description}
-                                    </p>
-                                    {/* Connector Line */}
-                                    {idx < process.length - 1 && (
-                                        <div className="flex flex-col items-center">
-                                            <div className="w-1 h-12 bg-gradient-to-b from-gold-300 to-royal-300 opacity-70" />
-                                            <svg
-                                                width="24"
-                                                height="24"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                className="my-2"
-                                            >
-                                                <path
-                                                    d="M12 0v20"
-                                                    stroke="#FFD700"
-                                                    strokeWidth="2"
-                                                    strokeDasharray="4 4"
-                                                />
-                                                <circle
-                                                    cx="12"
-                                                    cy="22"
-                                                    r="2"
-                                                    fill="#FFD700"
-                                                />
-                                            </svg>
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Process Benefits */}
-                        <div className="mt-16 grid md:grid-cols-3 gap-6 text-center">
-                            <div className="p-6 bg-white/50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700">
-                                <Clock className="w-8 h-8 text-royal-600 dark:text-royal-400 mx-auto mb-3" />
-                                <h4 className="font-bold text-royal-900 dark:text-white mb-2">
-                                    Weekly Updates
-                                </h4>
-                                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                    Regular progress reports and milestone
-                                    reviews
-                                </p>
-                            </div>
-                            <div className="p-6 bg-white/50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700">
-                                <Shield className="w-8 h-8 text-green-600 dark:text-green-400 mx-auto mb-3" />
-                                <h4 className="font-bold text-royal-900 dark:text-white mb-2">
-                                    Quality Assurance
-                                </h4>
-                                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                    Comprehensive testing at every stage
-                                </p>
-                            </div>
-                            <div className="p-6 bg-white/50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700">
-                                <Users className="w-8 h-8 text-gold-600 dark:text-gold-400 mx-auto mb-3" />
-                                <h4 className="font-bold text-royal-900 dark:text-white mb-2">
-                                    Direct Access
-                                </h4>
-                                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                                    Direct communication with me, no middlemen
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <ProcessTimeline />
 
             {/* Enhanced Why Choose Me Section */}
             <section className="py-20 bg-white dark:bg-gray-900">
