@@ -38,8 +38,8 @@ export function Footer() {
                             </div>
                         </Link>
                         <p className="text-royal-300 text-sm mb-6 max-w-xs mx-auto md:mx-0">
-                            Full-Stack Developer specializing in Shopify Plus,
-                            React, Node.js, and automation solutions.
+                            Shopify CRO specialist. I find where your store
+                            leaks revenue, fix it, and prove it worked.
                         </p>
                         <div className="flex items-center justify-center md:justify-start gap-4">
                             <a

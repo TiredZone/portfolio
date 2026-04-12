@@ -9,9 +9,9 @@ import { getAllBlogPosts } from "@/lib/mdx";
 import { FloatingElements } from "@/components/common/floating-elements";
 
 export const metadata: Metadata = {
-    title: "Blog - Technical Articles & Web Development Insights",
+    title: "Shopify CRO Blog — Conversion Optimization & Revenue Growth",
     description:
-        "Articles about web development, Shopify optimization, automation, and modern web technologies.",
+        "A/B test breakdowns, CRO tactics, and lessons from optimizing 7-to-9 figure Shopify stores.",
 };
 
 export default function BlogPage() {

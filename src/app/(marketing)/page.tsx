@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { getAllCaseStudies } from "@/lib/mdx";
 import { AnimatedHomepage } from "@/components/features/animated-homepage";
+
+export const metadata: Metadata = {
+    title: "Bechara El Maalouf — Shopify CRO Specialist | I Turn Traffic Into Revenue",
+    description:
+        "Shopify CRO Specialist. 3+ years optimizing 7-to-9 figure Shopify stores. $500K+ in documented CRO revenue. Book a free audit.",
+};
 
 export default async function HomePage() {
     // Get all case studies server-side

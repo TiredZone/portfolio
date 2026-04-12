@@ -27,9 +27,9 @@ import Link from "next/link";
 import { FloatingElements } from "@/components/common/floating-elements";
 
 export const metadata: Metadata = generateMetadata({
-    title: "About - Full-Stack Developer from Lebanon",
+    title: "About Bechara El Maalouf — From Web3 to $500K+ in CRO Revenue",
     description:
-        "Full-Stack Developer from Lebanon specializing in React, Node.js, and Shopify Plus. Learn about my background, experience, and approach to building exceptional web applications.",
+        "From building decentralized exchanges to generating $500K+ in CRO revenue for Shopify stores. The story of how I became a CRO specialist.",
     url: `${siteConfig.url}/about`,
 });
 
@@ -100,14 +100,6 @@ export default function AboutPage() {
         },
     ];
 
-    const techHighlights = [
-        { name: "React & Next.js", level: 95 },
-        { name: "Node.js & .NET", level: 90 },
-        { name: "Mobile Development", level: 85 },
-        { name: "DevOps & Cloud", level: 80 },
-        { name: "AI & Automation", level: 75 },
-    ];
-
     return (
         <div className="min-h-screen overflow-hidden">
             {/* Enhanced Hero Section */}
@@ -133,18 +125,17 @@ export default function AboutPage() {
                                     </div>
 
                                     <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight">
-                                        Building the
+                                        From Web3 to
                                         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-300 to-gold-500">
-                                            Future
+                                            Revenue.
                                         </span>
-                                        of Digital
+                                        How I Got Here.
                                     </h1>
 
                                     <p className="text-lg sm:text-xl md:text-2xl text-royal-100 leading-relaxed max-w-2xl">
-                                        I transform complex technical challenges
-                                        into elegant, high-performance solutions
-                                        that drive real business results across
-                                        web, mobile, and cloud platforms.
+                                        I went from building decentralized exchanges
+                                        to generating $500K+ in CRO revenue for
+                                        ecommerce brands. Here&apos;s the story.
                                     </p>
                                 </div>
 
@@ -306,33 +297,40 @@ export default function AboutPage() {
                                     </div>
                                 </div>
 
-                                {/* Tech Proficiency */}
+                                {/* What I Ship */}
                                 <div className="space-y-6">
                                     <h3 className="text-2xl font-bold text-royal-900 dark:text-white">
-                                        Technical Proficiency
+                                        What I Ship
                                     </h3>
-                                    <div className="space-y-4">
-                                        {techHighlights.map((tech) => (
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        {[
+                                            {
+                                                area: "Shopify & CRO",
+                                                detail: "Theme builds, A/B tests, checkout optimization — drove 32% revenue increases",
+                                            },
+                                            {
+                                                area: "Automation",
+                                                detail: "n8n workflows, ETL pipelines, lead processing — 50K+ leads/month",
+                                            },
+                                            {
+                                                area: "Full-Stack Web",
+                                                detail: "React/Next.js apps, Node.js APIs, TypeScript — production-grade systems",
+                                            },
+                                            {
+                                                area: "DevOps",
+                                                detail: "Docker, CI/CD, monitoring — 75% faster deployments",
+                                            },
+                                        ].map((item) => (
                                             <div
-                                                key={tech.name}
-                                                className="space-y-2"
+                                                key={item.area}
+                                                className="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700"
                                             >
-                                                <div className="flex justify-between items-center">
-                                                    <span className="font-medium text-gray-900 dark:text-white">
-                                                        {tech.name}
-                                                    </span>
-                                                    <span className="text-sm text-gray-600 dark:text-gray-400">
-                                                        {tech.level}%
-                                                    </span>
-                                                </div>
-                                                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                                                    <div
-                                                        className="bg-gradient-to-r from-royal-500 to-gold-500 h-2 rounded-full transition-all duration-1000"
-                                                        style={{
-                                                            width: `${tech.level}%`,
-                                                        }}
-                                                    />
-                                                </div>
+                                                <h4 className="font-bold text-royal-900 dark:text-white mb-1">
+                                                    {item.area}
+                                                </h4>
+                                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                                    {item.detail}
+                                                </p>
                                             </div>
                                         ))}
                                     </div>
@@ -506,14 +504,14 @@ export default function AboutPage() {
                     <div className="max-w-4xl mx-auto text-center space-y-8">
                         <div className="space-y-6">
                             <h2 className="text-4xl md:text-5xl font-serif font-bold text-white">
-                                Ready to Build Something Amazing?
+                                Let&apos;s Find the Revenue You&apos;re
+                                Leaving on the Table
                             </h2>
                             <p className="text-xl text-royal-100 max-w-2xl mx-auto">
-                                I&apos;m always interested in hearing about new
-                                projects and opportunities. Whether you need a
-                                full-stack developer, mobile app expert, DevOps
-                                engineer, or automation specialist, let&apos;s
-                                create something extraordinary together.
+                                Whether you need CRO optimization, automation
+                                pipelines, or a Shopify overhaul — I work with
+                                global teams across 4 languages to ship results
+                                that move the needle.
                             </p>
                         </div>
 

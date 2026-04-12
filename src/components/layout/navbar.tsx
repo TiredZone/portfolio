@@ -269,7 +269,7 @@ export function Navbar() {
                                     >
                                         <Calendar className="w-4 h-4 mr-2" />
                                     </motion.div>
-                                    Book a Call
+                                    Book a Free Audit
                                 </Link>
                             </Button>
                         </motion.div>
@@ -335,7 +335,7 @@ export function Navbar() {
                                             >
                                                 <Calendar className="w-4 h-4 mr-2" />
                                             </motion.div>
-                                            Book a Call
+                                            Book a Free Audit
                                         </Link>
                                     </Button>
                                 </motion.div>

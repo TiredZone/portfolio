@@ -28,9 +28,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata: Metadata = generateMetadata({
-    title: "Services - Web Development & Shopify Plus",
+    title: "Shopify CRO & Development Services — Transparent Pricing",
     description:
-        "Professional web development services: Shopify Plus development, custom web applications, automation & integrations, and technical consulting. Delivering measurable results for growing businesses.",
+        "CRO audits, Shopify optimization, automation, and consulting. Transparent pricing. Every engagement measured by revenue generated.",
     url: `${siteConfig.url}/services`,
 });
 
@@ -249,18 +249,17 @@ export default function ServicesPage() {
                             {/* Main Heading */}
                             <div className="space-y-6">
                                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight">
-                                    Expert
+                                    Development That
                                     <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-300 to-gold-500">
-                                        Development
+                                        Pays for
                                     </span>
-                                    Services
+                                    Itself
                                 </h1>
 
                                 <p className="text-lg sm:text-xl md:text-2xl text-royal-100 leading-relaxed max-w-4xl mx-auto">
-                                    From Shopify Plus optimization to custom web
-                                    applications and intelligent automation — I
-                                    deliver solutions that drive measurable
-                                    business growth and operational excellence.
+                                    Shopify optimization, automation, and custom
+                                    builds — priced transparently and measured by
+                                    the revenue they generate, not the hours they take.
                                 </p>
                             </div>
 

@@ -19,9 +19,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Work - Case Studies & Portfolio Projects",
+    title: "CRO Case Studies — $500K+ Revenue Generated for Shopify Stores",
     description:
-        "Explore my portfolio of successful projects including Shopify Plus optimizations, web applications, and automation solutions that drove real business results.",
+        "Real CRO case studies with documented results. 32% revenue increases, 167% conversion lifts, 90+ A/B tests across 8+ DTC brands.",
 };
 
 export default function WorkPage() {
@@ -106,18 +106,17 @@ export default function WorkPage() {
                             {/* Main Heading */}
                             <div className="space-y-6">
                                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight">
-                                    Proven
+                                    $500K+ in
                                     <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-300 to-gold-500">
-                                        Results
+                                        Revenue.
                                     </span>
-                                    & Impact
+                                    Here&apos;s How.
                                 </h1>
 
                                 <p className="text-lg sm:text-xl md:text-2xl text-royal-100 leading-relaxed max-w-4xl mx-auto">
-                                    Real projects, measurable outcomes. Explore
-                                    how I transform complex technical challenges
-                                    into solutions that drive significant
-                                    business growth and operational efficiency.
+                                    CRO wins, automation pipelines, and Shopify
+                                    builds with real data and measurable outcomes.
+                                    Every project here drove revenue or saved hours.
                                 </p>
                             </div>
 

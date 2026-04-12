@@ -10,9 +10,9 @@ import { Section } from "@/components/layout/section";
 import { FAQ } from "@/components/features/faq";
 
 export const metadata: Metadata = generateMetadata({
-    title: "Contact - Let's Work Together",
+    title: "Work With Me — Book a Free Shopify CRO Audit",
     description:
-        "Get in touch with Bechara El Maalouf for your next web development project. Book a free consultation or send a message to discuss Shopify, web apps, or automation needs.",
+        "Book a free 30-minute CRO audit. I'll review your Shopify store, identify conversion killers, and give you 3 actionable wins.",
     url: `${siteConfig.url}/contact`,
 });
 
