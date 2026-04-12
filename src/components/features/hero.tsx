@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Calendar, Sparkles, Code, Zap } from "lucide-react";
+import { ArrowRight, Calendar, Sparkles, Code, Zap, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
 
@@ -40,7 +40,7 @@ export function Hero() {
     return (
         <motion.section
             ref={ref}
-            className="relative min-h-screen flex items-center justify-center overflow-hidden"
+            className="relative min-h-screen flex items-center justify-center overflow-hidden -mt-16 md:-mt-20 pt-16 md:pt-20"
             style={isMounted ? { y, opacity, scale } : {}}
         >
             {/* Dynamic background with parallax */}
@@ -160,7 +160,7 @@ export function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 mb-8 text-sm font-medium text-gold-400 bg-gold-400/10 rounded-full border border-gold-400/20 backdrop-blur-sm"
+                    className="inline-flex items-center gap-2 px-6 py-3 mb-6 text-sm font-medium text-gold-400 bg-gold-400/10 rounded-full border border-gold-400/20 backdrop-blur-sm"
                 >
                     <motion.div
                         animate={{ rotate: 360 }}
@@ -185,7 +185,7 @@ export function Hero() {
                 </motion.div>
 
                 {/* Main heading with stagger animation */}
-                <div className="mb-8">
+                <div className="mb-6">
                     <motion.h1
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -215,7 +215,7 @@ export function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
-                    className="mb-12 max-w-4xl mx-auto"
+                    className="mb-8 max-w-4xl mx-auto"
                 >
                     <p className="text-xl md:text-2xl lg:text-3xl text-royal-100 leading-relaxed font-light">
                         I fix{" "}
@@ -249,7 +249,7 @@ export function Hero() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 1 }}
-                    className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
+                    className="flex flex-col sm:flex-row gap-6 justify-center mb-6"
                 >
                     <motion.div
                         whileHover={{ scale: 1.05 }}
@@ -296,12 +296,23 @@ export function Hero() {
                     </motion.div>
                 </motion.div>
 
-                {/* Subtle scroll indicator */}
+            </div>
+
+            {/* Bottom group: trust strip + scroll chevron — pinned to section bottom */}
+            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center gap-3">
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.2, duration: 0.8 }}
+                    className="text-sm text-royal-200/70"
+                >
+                    Trusted by brands generating $2M+/mo in revenue
+                </motion.p>
+
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2, duration: 1 }}
-                    className="absolute bottom-2 left-1/2 transform -translate-x-1/2"
                 >
                     <motion.div
                         animate={{ y: [0, 8, 0] }}
@@ -313,23 +324,13 @@ export function Hero() {
                         className="cursor-pointer group"
                         onClick={() => {
                             window.scrollTo({
-                                top: window.innerHeight,
+                                top: window.innerHeight - 100,
                                 behavior: "smooth",
                             });
                         }}
                     >
-                        <motion.div
-                            className="w-6 h-10 border border-white/30 rounded-full flex items-start justify-center pt-2 group-hover:border-gold-400/50 transition-colors"
-                            whileHover={{ scale: 1.1 }}
-                        >
-                            <motion.div
-                                className="w-1 h-2 bg-white/60 rounded-full group-hover:bg-gold-400 transition-colors"
-                                animate={{
-                                    y: [0, 16, 0],
-                                    opacity: [1, 0.3, 1],
-                                }}
-                                transition={{ duration: 2, repeat: Infinity }}
-                            />
+                        <motion.div whileHover={{ scale: 1.1 }}>
+                            <ChevronDown className="w-6 h-6 text-white/60 group-hover:text-gold-400 transition-colors" />
                         </motion.div>
                     </motion.div>
                 </motion.div>

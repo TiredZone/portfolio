@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /d/projects/01-active/personal/my_portfolio/bechara-portfolio/src -type f \\\\\\(-name *.tsx -o -name *.ts -o -name *.jsx -o -name *.js \\\\\\))",
+      "Bash(du -sh /d/projects/01-active/personal/my_portfolio/bechara-portfolio/public/images/*)",
+      "Bash(npm audit:*)",
+      "Bash(cd:*)",
+      "Bash(npm install:*)",
+      "Bash(npm ls:*)",
+      "Bash(node -e \"console.log\\(require\\(''./package.json''\\).dependencies.next\\)\")",
+      "Bash(npx next:*)",
+      "Bash(npx tsc:*)",
+      "Bash(head -10 content/blog/*.mdx)",
+      "Bash(head -10 content/case-studies/*.mdx)",
+      "Bash(done)",
+      "Bash(node -e \"const pkg = require\\(''./package.json''\\); const deps = {...pkg.dependencies, ...pkg.devDependencies}; Object.keys\\(deps\\).filter\\(d => d.includes\\(''contentlayer''\\) || d.includes\\(''content-collections''\\)\\).forEach\\(d => console.log\\(d, deps[d]\\)\\)\")",
+      "Bash(npm uninstall:*)",
+      "Bash(git push:*)",
+      "Bash(gh run:*)",
+      "Bash(npm run:*)",
+      "Bash(npx eslint:*)"
+    ]
+  }
+}

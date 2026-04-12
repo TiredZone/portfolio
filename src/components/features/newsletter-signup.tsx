@@ -38,7 +38,7 @@ export function NewsletterSignup() {
 
     return (
         <form ref={formRef} action={handleSubmit} className="w-full">
-            <div className="flex gap-3">
+            <div className="flex items-center gap-3">
                 <div className="relative flex-1">
                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-royal-400" />
                     <Input
@@ -46,13 +46,13 @@ export function NewsletterSignup() {
                         name="email"
                         placeholder="your@email.com"
                         required
-                        className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-royal-300 focus:border-gold-400"
+                        className="h-10 pl-10 bg-white/10 border-white/20 text-white placeholder:text-royal-300 focus:border-gold-400"
                     />
                 </div>
                 <Button
                     type="submit"
                     disabled={status === "loading"}
-                    className="bg-gold-500 hover:bg-gold-600 text-royal-900 font-semibold whitespace-nowrap"
+                    className="h-10 bg-gold-500 hover:bg-gold-600 text-royal-900 font-semibold whitespace-nowrap"
                 >
                     {status === "loading" ? (
                         <Loader2 className="w-4 h-4 animate-spin" />

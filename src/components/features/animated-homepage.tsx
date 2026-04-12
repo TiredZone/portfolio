@@ -1,9 +1,8 @@
 "use client";
 
 import { Hero } from "@/components/features/hero";
-import { LogoWall } from "@/components/features/logo-wall";
+import { MetricsImpact } from "@/components/features/metrics-impact";
 import { SkillsGrid } from "@/components/features/skills-grid";
-import { Testimonials } from "@/components/features/testimonials";
 import { PricingTable } from "@/components/features/pricing-table";
 import { FAQ } from "@/components/features/faq";
 import { NewsletterSignup } from "@/components/features/newsletter-signup";
@@ -31,7 +30,6 @@ export function AnimatedHomepage({
     const resultsRef = useRef(null);
     const featuredRef = useRef(null);
     const skillsRef = useRef(null);
-    const testimonialsRef = useRef(null);
     const pricingRef = useRef(null);
     const faqRef = useRef(null);
     const ctaRef = useRef(null);
@@ -46,10 +44,6 @@ export function AnimatedHomepage({
         margin: "0px 0px -100px 0px",
     });
     const skillsInView = useInView(skillsRef, {
-        once: true,
-        margin: "0px 0px -100px 0px",
-    });
-    const testimonialsInView = useInView(testimonialsRef, {
         once: true,
         margin: "0px 0px -100px 0px",
     });
@@ -104,147 +98,8 @@ export function AnimatedHomepage({
             {/* Hero Section */}
             <Hero />
 
-            {/* Animated Transition Section */}
-            <Section className="bg-gradient-to-b from-royal-900 via-royal-800 to-royal-50 dark:to-royal-950/20 py-20">
-                <Container>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2 }}
-                        className="text-center"
-                    >
-                        {/* Animated Stats Bar */}
-                        <motion.div
-                            initial={{ scaleX: 0 }}
-                            whileInView={{ scaleX: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.5, delay: 0.3 }}
-                            className="grid grid-cols-3 gap-8 max-w-4xl mx-auto mb-16"
-                        >
-                            <motion.div
-                                className="text-center"
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.5 }}
-                            >
-                                <motion.div
-                                    className="text-4xl md:text-5xl font-bold text-gold-400 mb-2"
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{
-                                        delay: 0.7,
-                                        type: "spring",
-                                        stiffness: 200,
-                                    }}
-                                >
-                                    50+
-                                </motion.div>
-                                <div className="text-royal-200 text-sm uppercase tracking-wide">
-                                    Projects Delivered
-                                </div>
-                            </motion.div>
-
-                            <motion.div
-                                className="text-center"
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.7 }}
-                            >
-                                <motion.div
-                                    className="text-4xl md:text-5xl font-bold text-gold-400 mb-2"
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{
-                                        delay: 0.9,
-                                        type: "spring",
-                                        stiffness: 200,
-                                    }}
-                                >
-                                    95%
-                                </motion.div>
-                                <div className="text-royal-200 text-sm uppercase tracking-wide">
-                                    Client Satisfaction
-                                </div>
-                            </motion.div>
-
-                            <motion.div
-                                className="text-center"
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.9 }}
-                            >
-                                <motion.div
-                                    className="text-4xl md:text-5xl font-bold text-gold-400 mb-2"
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{
-                                        delay: 1.1,
-                                        type: "spring",
-                                        stiffness: 200,
-                                    }}
-                                >
-                                    24/7
-                                </motion.div>
-                                <div className="text-royal-200 text-sm uppercase tracking-wide">
-                                    Support Available
-                                </div>
-                            </motion.div>
-                        </motion.div>
-
-                        {/* Floating Elements */}
-                        <div className="relative">
-                            {[
-                                { left: 20, top: 45 },
-                                { left: 35, top: 65 },
-                                { left: 50, top: 40 },
-                                { left: 65, top: 60 },
-                                { left: 80, top: 35 },
-                                { left: 95, top: 55 },
-                            ].map((position, i) => (
-                                <motion.div
-                                    key={i}
-                                    className="absolute w-2 h-2 bg-gold-400/20 rounded-full"
-                                    style={{
-                                        left: `${position.left}%`,
-                                        top: `${position.top}%`,
-                                    }}
-                                    animate={{
-                                        y: [0, -20, 0],
-                                        opacity: [0.2, 0.8, 0.2],
-                                        scale: [1, 1.5, 1],
-                                    }}
-                                    transition={{
-                                        duration: 3 + i * 0.5,
-                                        repeat: Infinity,
-                                        delay: i * 0.3,
-                                    }}
-                                />
-                            ))}
-                        </div>
-                    </motion.div>
-                </Container>
-            </Section>
-
-            {/* Client Logos */}
-            <Section className="bg-royal-50 dark:bg-royal-950/20">
-                <Container>
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                    >
-                        <LogoWall />
-                    </motion.div>
-                </Container>
-            </Section>
+            {/* Metrics Impact */}
+            <MetricsImpact />
 
             {/* Results Showcase */}
             <motion.div
@@ -369,12 +224,11 @@ export function AnimatedHomepage({
                                                 ? slideInLeft
                                                 : slideInRight
                                         }
-                                        whileHover={{ y: -10, scale: 1.02 }}
-                                        className="group"
+                                        className="group h-full"
                                     >
                                         <Link
                                             href={`/work/${study.slug}`}
-                                            className="flex flex-col h-full bg-royal-50 dark:bg-royal-900/20 rounded-lg overflow-hidden border border-royal-200 dark:border-royal-800 hover:border-gold-500 dark:hover:border-gold-500 transition-all hover:shadow-xl"
+                                            className="flex flex-col h-full bg-royal-50 dark:bg-royal-900/20 rounded-lg overflow-hidden border border-royal-200 dark:border-royal-800 hover:border-gold-500 dark:hover:border-gold-500 transition-all duration-150 hover:shadow-xl hover:-translate-y-1"
                                         >
                                             <div className="p-6 flex flex-col h-full">
                                                 <div className="text-sm font-semibold text-gold-600 dark:text-gold-400 mb-2">
@@ -383,42 +237,44 @@ export function AnimatedHomepage({
                                                 <h3 className="text-xl font-bold text-royal-900 dark:text-white mb-3 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
                                                     {study.frontmatter.title}
                                                 </h3>
-                                                <p className="text-sm text-royal-700 dark:text-royal-300 mb-4 flex-grow">
+                                                <p className="text-sm text-royal-700 dark:text-royal-300 mb-4">
                                                     {
                                                         study.frontmatter
                                                             .description
                                                     }
                                                 </p>
 
-                                                {study.frontmatter.metrics &&
-                                                    study.frontmatter.metrics
-                                                        .length > 0 && (
-                                                        <div className="flex flex-wrap gap-2 mb-4">
-                                                            {study.frontmatter.metrics
-                                                                .slice(0, 2)
-                                                                .map(
-                                                                    (
-                                                                        metric,
-                                                                        idx
-                                                                    ) => (
-                                                                        <div
-                                                                            key={
-                                                                                idx
-                                                                            }
-                                                                            className="text-xs px-3 py-1 bg-gold-100 dark:bg-gold-900/20 text-gold-700 dark:text-gold-400 rounded-full"
-                                                                        >
-                                                                            {
-                                                                                metric.value
-                                                                            }
-                                                                        </div>
-                                                                    )
-                                                                )}
-                                                        </div>
-                                                    )}
+                                                <div className="mt-auto">
+                                                    {study.frontmatter.metrics &&
+                                                        study.frontmatter.metrics
+                                                            .length > 0 && (
+                                                            <div className="flex flex-wrap gap-2 mb-4">
+                                                                {study.frontmatter.metrics
+                                                                    .slice(0, 2)
+                                                                    .map(
+                                                                        (
+                                                                            metric,
+                                                                            idx
+                                                                        ) => (
+                                                                            <div
+                                                                                key={
+                                                                                    idx
+                                                                                }
+                                                                                className="text-xs px-3 py-1 bg-gold-100 dark:bg-gold-900/20 text-gold-700 dark:text-gold-400 rounded-full"
+                                                                            >
+                                                                                {
+                                                                                    metric.value
+                                                                                }
+                                                                            </div>
+                                                                        )
+                                                                    )}
+                                                            </div>
+                                                        )}
 
-                                                <div className="flex items-center text-sm font-medium text-gold-600 dark:text-gold-400 group-hover:gap-2 transition-all mt-auto">
-                                                    View Case Study
-                                                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                                                    <div className="flex items-center text-sm font-medium text-gold-600 dark:text-gold-400 group-hover:gap-2 transition-all">
+                                                        View Case Study
+                                                        <ArrowRight className="w-4 h-4 ml-1 translate-y-[1px] group-hover:translate-x-1 transition-transform" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </Link>
@@ -482,41 +338,6 @@ export function AnimatedHomepage({
                         </motion.div>
                         <motion.div variants={scaleIn}>
                             <SkillsGrid />
-                        </motion.div>
-                    </Container>
-                </Section>
-            </motion.div>
-
-            {/* Testimonials */}
-            <motion.div
-                ref={testimonialsRef}
-                initial="initial"
-                animate={testimonialsInView ? "animate" : "initial"}
-                variants={staggerContainer}
-            >
-                <Section className="relative overflow-hidden">
-                    <FloatingElements density="medium" colors="mixed" />
-                    <GradientOrb
-                        size="medium"
-                        position="bottom-left"
-                        colors="gold-to-orange"
-                        className="opacity-40"
-                    />
-                    <Container>
-                        <motion.div
-                            className="text-center mb-12"
-                            variants={fadeInUp}
-                        >
-                            <h2 className="text-3xl md:text-4xl font-serif font-bold text-royal-900 dark:text-white mb-4">
-                                What Clients Say
-                            </h2>
-                            <p className="text-lg text-royal-700 dark:text-royal-300 max-w-2xl mx-auto">
-                                Trusted by businesses that value quality,
-                                reliability, and results
-                            </p>
-                        </motion.div>
-                        <motion.div variants={slideInLeft}>
-                            <Testimonials />
                         </motion.div>
                     </Container>
                 </Section>
@@ -599,6 +420,14 @@ export function AnimatedHomepage({
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
+                        <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
+                            Stay in the Loop
+                        </h2>
+                        <p className="text-lg text-royal-200 mb-8 max-w-2xl mx-auto">
+                            Get insights on e-commerce optimization,
+                            automation, and development — delivered to
+                            your inbox.
+                        </p>
                         <NewsletterSignup />
                     </motion.div>
                 </Container>

@@ -22,14 +22,14 @@ export function Footer() {
     return (
         <footer className="bg-royal-950 dark:bg-black text-royal-100">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-center md:text-left">
                     {/* Brand Column */}
                     <div className="lg:col-span-1">
                         <Link href="/" className="inline-block mb-4">
-                            <div className="flex items-center space-x-3 group">
-                                <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-110">
+                            <div className="flex items-center justify-center md:justify-start space-x-3 group">
+                                <div className="relative w-16 h-16 transition-transform duration-300 group-hover:scale-110">
                                     <Image
-                                        src="/images/logo.png"
+                                        src="/images/logo_transparent.png"
                                         alt="Bechara El Maalouf - Full-Stack Developer"
                                         fill
                                         className="object-contain"
@@ -37,11 +37,11 @@ export function Footer() {
                                 </div>
                             </div>
                         </Link>
-                        <p className="text-royal-300 text-sm mb-6 max-w-xs">
+                        <p className="text-royal-300 text-sm mb-6 max-w-xs mx-auto md:mx-0">
                             Full-Stack Developer specializing in Shopify Plus,
                             React, Node.js, and automation solutions.
                         </p>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center justify-center md:justify-start gap-4">
                             <a
                                 href="https://github.com/TiredZone"
                                 target="_blank"
@@ -114,8 +114,8 @@ export function Footer() {
                             Get in Touch
                         </h3>
                         <ul className="space-y-3">
-                            <li className="flex items-start gap-2 text-royal-300 text-sm">
-                                <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                            <li className="flex items-center md:items-start justify-center md:justify-start gap-2 text-royal-300 text-sm">
+                                <Mail className="w-4 h-4 flex-shrink-0" />
                                 <a
                                     href="mailto:contact@becharaelmaalouf.dev"
                                     className="hover:text-gold-400 transition-colors"
@@ -123,8 +123,8 @@ export function Footer() {
                                     contact@becharaelmaalouf.dev
                                 </a>
                             </li>
-                            <li className="flex items-start gap-2 text-royal-300 text-sm">
-                                <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                            <li className="flex items-center md:items-start justify-center md:justify-start gap-2 text-royal-300 text-sm">
+                                <Phone className="w-4 h-4 flex-shrink-0" />
                                 <a
                                     href="tel:+96171998976"
                                     className="hover:text-gold-400 transition-colors"
@@ -132,8 +132,8 @@ export function Footer() {
                                     +961 71 898 976
                                 </a>
                             </li>
-                            <li className="flex items-start gap-2 text-royal-300 text-sm">
-                                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                            <li className="flex items-center md:items-start justify-center md:justify-start gap-2 text-royal-300 text-sm">
+                                <MapPin className="w-4 h-4 flex-shrink-0" />
                                 <span>Zouk Mosbeh, Lebanon</span>
                             </li>
                         </ul>

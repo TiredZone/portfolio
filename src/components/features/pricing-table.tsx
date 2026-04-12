@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Check, Star, Zap, Shield, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useState } from "react";
 
 const pricingPlans = [
     {
@@ -77,8 +76,6 @@ const pricingPlans = [
 ];
 
 export function PricingTable() {
-    const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
-
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -128,9 +125,7 @@ export function PricingTable() {
                         ease: [0.25, 0.46, 0.45, 0.94],
                         delay: index * 0.1,
                     }}
-                    className="relative group"
-                    onMouseEnter={() => setHoveredPlan(index)}
-                    onMouseLeave={() => setHoveredPlan(null)}
+                    className="relative group transition-transform duration-150 ease-out hover:-translate-y-2"
                 >
                     {/* Popular badge */}
                     {plan.popular && (
@@ -149,27 +144,13 @@ export function PricingTable() {
                         </motion.div>
                     )}
 
-                    {/* Animated background glow */}
-                    <motion.div
-                        className={`absolute inset-0 rounded-2xl opacity-0 ${plan.hoverGlow} blur-xl transition-opacity duration-500`}
-                        animate={{
-                            opacity: hoveredPlan === index ? 0.4 : 0,
-                            scale: hoveredPlan === index ? 1.05 : 1,
-                        }}
-                        transition={{ duration: 0.3 }}
-                    />
-
                     {/* Card content */}
-                    <motion.div
-                        className={`relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl border-2 ${plan.borderColor} shadow-lg transition-all duration-300 h-full flex flex-col ${
+                    <div
+                        className={`relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-8 rounded-2xl border-2 ${plan.borderColor} shadow-lg h-full flex flex-col transition-shadow duration-150 group-hover:shadow-xl ${
                             plan.popular
                                 ? "ring-2 ring-gold-500/20 dark:ring-gold-400/20"
                                 : ""
                         }`}
-                        whileHover={{
-                            y: -8,
-                            transition: { duration: 0.3 },
-                        }}
                     >
                         {/* Floating particles */}
                         <div className="absolute top-4 right-4 opacity-10">
@@ -197,16 +178,11 @@ export function PricingTable() {
 
                         {/* Header */}
                         <div className="text-center mb-6">
-                            <motion.div
+                            <div
                                 className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-r ${plan.gradient} text-white mb-4 shadow-lg`}
-                                animate={{
-                                    rotateY: hoveredPlan === index ? 180 : 0,
-                                    scale: hoveredPlan === index ? 1.1 : 1,
-                                }}
-                                transition={{ duration: 0.5 }}
                             >
                                 <plan.icon className="w-8 h-8" />
-                            </motion.div>
+                            </div>
 
                             <h3 className="text-2xl font-bold text-royal-900 dark:text-white mb-2">
                                 {plan.name}
@@ -294,7 +270,7 @@ export function PricingTable() {
                                 </Link>
                             </Button>
                         </motion.div>
-                    </motion.div>
+                    </div>
                 </motion.div>
             ))}
         </motion.div>

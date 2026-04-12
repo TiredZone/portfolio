@@ -57,14 +57,10 @@ const faqs = [
 ];
 
 export function FAQ() {
-    const [openItems, setOpenItems] = useState<number[]>([]);
+    const [openItem, setOpenItem] = useState<number | null>(null);
 
     const toggleItem = (id: number) => {
-        setOpenItems((prev) =>
-            prev.includes(id)
-                ? prev.filter((item) => item !== id)
-                : [...prev, id]
-        );
+        setOpenItem((prev) => (prev === id ? null : id));
     };
 
     const containerVariants = {
@@ -110,12 +106,8 @@ export function FAQ() {
                     }}
                     className="group"
                 >
-                    <motion.div
-                        className="bg-gradient-to-br from-white to-royal-50/50 dark:from-gray-800 dark:to-gray-900/50 rounded-xl border border-royal-200/50 dark:border-royal-700/50 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
-                        whileHover={{
-                            y: -2,
-                            transition: { duration: 0.2 },
-                        }}
+                    <div
+                        className="bg-gradient-to-br from-white to-royal-50/50 dark:from-gray-800 dark:to-gray-900/50 rounded-xl border border-royal-200/50 dark:border-royal-700/50 shadow-sm hover:shadow-md transition-shadow duration-150 overflow-hidden"
                     >
                         {/* Question header */}
                         <motion.button
@@ -128,10 +120,10 @@ export function FAQ() {
                                 <motion.div
                                     className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-r from-royal-500 to-royal-600 dark:from-royal-400 dark:to-royal-500 flex items-center justify-center"
                                     animate={{
-                                        rotate: openItems.includes(faq.id)
+                                        rotate: openItem === faq.id
                                             ? 180
                                             : 0,
-                                        scale: openItems.includes(faq.id)
+                                        scale: openItem === faq.id
                                             ? 1.1
                                             : 1,
                                     }}
@@ -157,7 +149,7 @@ export function FAQ() {
                             <motion.div
                                 className="flex-shrink-0 w-8 h-8 rounded-full bg-royal-100 dark:bg-royal-800 flex items-center justify-center"
                                 animate={{
-                                    backgroundColor: openItems.includes(faq.id)
+                                    backgroundColor: openItem === faq.id
                                         ? "rgb(59 130 246)" // blue-500 for better contrast
                                         : undefined,
                                 }}
@@ -165,7 +157,7 @@ export function FAQ() {
                                 whileHover={{ scale: 1.1 }}
                             >
                                 <AnimatePresence mode="wait">
-                                    {openItems.includes(faq.id) ? (
+                                    {openItem === faq.id ? (
                                         <motion.div
                                             key="minus"
                                             initial={{
@@ -198,7 +190,7 @@ export function FAQ() {
 
                         {/* Answer content */}
                         <AnimatePresence>
-                            {openItems.includes(faq.id) && (
+                            {openItem === faq.id && (
                                 <motion.div
                                     initial={{ height: 0, opacity: 0 }}
                                     animate={{
@@ -261,7 +253,7 @@ export function FAQ() {
                                 </motion.div>
                             )}
                         </AnimatePresence>
-                    </motion.div>
+                    </div>
                 </motion.div>
             ))}
 

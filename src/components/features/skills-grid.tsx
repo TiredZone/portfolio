@@ -219,74 +219,22 @@ export function SkillsGrid() {
                     }}
                     className="group relative"
                 >
-                    {/* Animated background glow */}
-                    <motion.div
-                        className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${skillGroup.glowColor} blur-xl`}
-                        initial={{ scale: 0.8 }}
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                    />
-
                     {/* Card content */}
-                    <motion.div
-                        className={`relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl border ${skillGroup.borderColor} shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col`}
-                        whileHover={{
-                            y: -8,
-                            rotateY: 2,
-                        }}
-                        transition={{ duration: 0.3 }}
+                    <div
+                        className={`relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl border ${skillGroup.borderColor} shadow-lg hover:shadow-xl transition-all duration-150 hover:-translate-y-1 overflow-hidden h-full flex flex-col`}
                     >
-                        {/* Floating particles */}
-                        <div className="absolute top-0 right-0 w-20 h-20 opacity-5">
-                            {[...Array(3)].map((_, i) => (
-                                <motion.div
-                                    key={i}
-                                    className={`absolute w-2 h-2 ${skillGroup.bgColor} rounded-full`}
-                                    animate={{
-                                        x: [0, 10, 0],
-                                        y: [0, -15, 0],
-                                        opacity: [0.3, 0.7, 0.3],
-                                    }}
-                                    transition={{
-                                        duration: 3 + i,
-                                        repeat: Infinity,
-                                        delay: i * 0.5,
-                                    }}
-                                    style={{
-                                        top: `${20 + i * 15}%`,
-                                        right: `${15 + i * 10}%`,
-                                    }}
-                                />
-                            ))}
-                        </div>
-
-                        {/* Header with animated icon */}
+                        {/* Header */}
                         <div className="flex items-center gap-3 mb-6">
-                            <motion.div
-                                className={`p-3 rounded-lg ${skillGroup.bgColor} group-hover:scale-110 transition-transform duration-300`}
-                                animate={{
-                                    y: [0, -10, 0],
-                                    rotateY: [0, 5, 0],
-                                }}
-                                transition={{
-                                    duration: 4,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                }}
-                                whileHover={{
-                                    rotateZ: 5,
-                                }}
+                            <div
+                                className={`p-3 rounded-lg ${skillGroup.bgColor}`}
                             >
                                 <skillGroup.icon
                                     className={`w-6 h-6 ${skillGroup.color}`}
                                 />
-                            </motion.div>
-                            <motion.h3
-                                className="text-xl font-bold text-royal-900 dark:text-white group-hover:text-royal-700 dark:group-hover:text-royal-300 transition-colors duration-300"
-                                whileHover={{ scale: 1.05 }}
-                            >
+                            </div>
+                            <h3 className="text-xl font-bold text-royal-900 dark:text-white">
                                 {skillGroup.category}
-                            </motion.h3>
+                            </h3>
                         </div>
 
                         {/* Skills tags with staggered animation - UNIFORM DESIGN */}
@@ -312,26 +260,17 @@ export function SkillsGrid() {
                                         duration: 0.3,
                                         ease: [0.68, -0.55, 0.265, 1.55],
                                     }}
-                                    className={`group/tag px-4 py-2 text-sm font-medium whitespace-nowrap
+                                    className={`px-4 py-2 text-sm font-medium whitespace-nowrap
                                         bg-gradient-to-r from-white to-gray-50 dark:from-gray-800 dark:to-gray-900
                                         border-2 ${skillGroup.borderColor}
                                         ${skillGroup.color}
                                         rounded-lg
-                                        hover:shadow-lg hover:shadow-${skillGroup.glowColor}
-                                        hover:scale-105 hover:-translate-y-1
-                                        transition-all duration-300 cursor-default
+                                        transition-shadow duration-150 cursor-default
                                         inline-flex items-center justify-center
                                         min-h-[36px]
                                     `}
-                                    whileHover={{
-                                        scale: 1.08,
-                                        y: -3,
-                                    }}
-                                    whileTap={{ scale: 0.98 }}
                                 >
-                                    <span className="relative z-10">
-                                        {skill}
-                                    </span>
+                                    {skill}
                                 </motion.span>
                             ))}
                         </motion.div>
@@ -379,7 +318,7 @@ export function SkillsGrid() {
                                 }}
                             />
                         </motion.div>
-                    </motion.div>
+                    </div>
                 </motion.div>
             ))}
         </div>

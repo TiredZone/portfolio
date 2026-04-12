@@ -99,21 +99,59 @@ export function Navbar() {
             }`}
         >
             <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16 md:h-20">
-                    {/* Logo */}
-                    <motion.div variants={itemVariants}>
+                <div className="relative flex items-center justify-between h-16 md:h-20">
+                    {/* Left zone: Hamburger (mobile) / Logo (desktop) */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="flex items-center min-w-0"
+                    >
+                        {/* Mobile hamburger */}
+                        <motion.button
+                            type="button"
+                            className="md:hidden text-royal-700 dark:text-royal-200 p-2 -ml-2 rounded-lg hover:bg-royal-100 dark:hover:bg-royal-800 transition-colors"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <span className="sr-only">Toggle menu</span>
+                            <AnimatePresence mode="wait">
+                                {mobileMenuOpen ? (
+                                    <motion.div
+                                        key="close"
+                                        initial={{ rotate: 0 }}
+                                        animate={{ rotate: 180 }}
+                                        exit={{ rotate: 0 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <X className="h-6 w-6" />
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key="menu"
+                                        initial={{ rotate: 180 }}
+                                        animate={{ rotate: 0 }}
+                                        exit={{ rotate: 180 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <Menu className="h-6 w-6" />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.button>
+
+                        {/* Desktop logo */}
                         <Link
                             href="/"
-                            className="flex items-center space-x-2 group"
+                            className="hidden md:flex items-center group"
                         >
                             <motion.div
-                                className="relative w-8 h-8 md:w-10 md:h-10"
+                                className="relative w-14 h-14"
                                 whileHover={{ scale: 1.1, rotate: 5 }}
                                 whileTap={{ scale: 0.95 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <Image
-                                    src="/images/logo.png"
+                                    src="/images/logo_transparent.png"
                                     alt="Bechara El Maalouf Logo"
                                     fill
                                     className="object-contain"
@@ -123,10 +161,33 @@ export function Navbar() {
                         </Link>
                     </motion.div>
 
-                    {/* Desktop Navigation */}
-                    <motion.div
+                    {/* Center zone: Logo (mobile) / Nav links (desktop) */}
+                    {/* Mobile logo — centered */}
+                    <Link
+                        href="/"
+                        className="md:hidden absolute left-1/2 -translate-x-1/2 group"
+                    >
+                        <motion.div
+                            variants={itemVariants}
+                            className="relative w-10 h-10"
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                        >
+                            <Image
+                                src="/images/logo_transparent.png"
+                                alt="Bechara El Maalouf Logo"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
+                        </motion.div>
+                    </Link>
+
+                    {/* Desktop nav links — centered */}
+                    <motion.nav
                         variants={itemVariants}
-                        className="hidden md:flex items-center gap-8"
+                        className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2"
                     >
                         {navigation.map((item) => (
                             <motion.div
@@ -172,9 +233,14 @@ export function Navbar() {
                                 </Link>
                             </motion.div>
                         ))}
+                    </motion.nav>
 
+                    {/* Right zone: ThemeToggle (mobile) / ThemeToggle + CTA (desktop) */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="flex items-center gap-4"
+                    >
                         <motion.div
-                            variants={itemVariants}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
@@ -182,7 +248,7 @@ export function Navbar() {
                         </motion.div>
 
                         <motion.div
-                            variants={itemVariants}
+                            className="hidden md:block"
                             whileHover={{ scale: 1.05, y: -2 }}
                             whileTap={{ scale: 0.95 }}
                             transition={{ type: "spring", stiffness: 300 }}
@@ -207,51 +273,6 @@ export function Navbar() {
                                 </Link>
                             </Button>
                         </motion.div>
-                    </motion.div>
-
-                    {/* Mobile menu button */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="flex md:hidden items-center gap-4"
-                    >
-                        <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <ThemeToggle />
-                        </motion.div>
-                        <motion.button
-                            type="button"
-                            className="text-royal-700 dark:text-royal-200 p-2 rounded-lg hover:bg-royal-100 dark:hover:bg-royal-800 transition-colors"
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <span className="sr-only">Toggle menu</span>
-                            <AnimatePresence mode="wait">
-                                {mobileMenuOpen ? (
-                                    <motion.div
-                                        key="close"
-                                        initial={{ rotate: 0 }}
-                                        animate={{ rotate: 180 }}
-                                        exit={{ rotate: 0 }}
-                                        transition={{ duration: 0.2 }}
-                                    >
-                                        <X className="h-6 w-6" />
-                                    </motion.div>
-                                ) : (
-                                    <motion.div
-                                        key="menu"
-                                        initial={{ rotate: 180 }}
-                                        animate={{ rotate: 0 }}
-                                        exit={{ rotate: 180 }}
-                                        transition={{ duration: 0.2 }}
-                                    >
-                                        <Menu className="h-6 w-6" />
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </motion.button>
                     </motion.div>
                 </div>
 

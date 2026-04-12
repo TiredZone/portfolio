@@ -36,7 +36,7 @@ const experiences = [
         title: "CRO Web Developer",
         company: "BAD Marketing (Remote)",
         description:
-            "Generated $500K+ revenue through conversion optimization across 8+ DTC brands. ClariGenZ (+52%), BetterBrand (+22%), Genex (9.31% CR), Casa Di Lumo (+386% vs ReConvert).",
+            "Generated $500K+ revenue through conversion optimization across 8+ DTC brands. Drove 52% revenue growth, 22% conversion lift, 9.31% peak CR, and 386% upsell improvement.",
         icon: Award,
         metrics: ["$500K+ revenue generated", "8+ brands optimized"],
     },
