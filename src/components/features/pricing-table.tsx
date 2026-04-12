@@ -29,7 +29,7 @@ const pricingPlans = [
     },
     {
         name: "CRO Sprint",
-        price: "$2,500–$5,000",
+        price: "$5,000–$8,000",
         period: "one-time",
         description:
             "A focused conversion optimization project: research, implement, test, and prove results in 4–6 weeks.",

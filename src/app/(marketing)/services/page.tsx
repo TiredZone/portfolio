@@ -68,7 +68,7 @@ const services = [
             "Conversion rate optimization",
         ],
         results: "-30–60% LCP, +10–30% CVR",
-        price: "From $1.8k",
+        price: "From $3k",
         color: "from-green-500 to-emerald-600",
         bgColor: "bg-green-50 dark:bg-green-900/10",
         iconColor: "text-green-600 dark:text-green-400",
@@ -90,7 +90,7 @@ const services = [
             "Performance & SEO optimization",
         ],
         results: "Sub-2s load, 99.9% uptime targets",
-        price: "From $4k",
+        price: "From $6k",
         color: "from-blue-500 to-cyan-600",
         bgColor: "bg-blue-50 dark:bg-blue-900/10",
         iconColor: "text-blue-600 dark:text-blue-400",
@@ -305,35 +305,31 @@ export default function ServicesPage() {
                                 >
                                     {/* Service Header */}
                                     <div
-                                        className={`relative p-8 bg-gradient-to-br ${service.color} text-white`}
+                                        className={`relative p-5 sm:p-8 bg-gradient-to-br ${service.color} text-white`}
                                     >
-                                        <div className="flex items-center gap-4 mb-4">
-                                            <div
-                                                className={`p-3 ${service.bgColor} rounded-2xl`}
-                                            >
-                                                <service.icon
-                                                    className={`w-8 h-8 ${service.iconColor}`}
-                                                />
-                                            </div>
-                                            <div className="flex-1">
-                                                <h3 className="text-2xl font-bold mb-2">
-                                                    {service.title}
-                                                </h3>
-                                                <p className="text-white/90 text-sm">
-                                                    {service.description}
-                                                </p>
-                                                {service.whoFor && (
-                                                    <p className="text-sm text-white/80 font-medium mt-2">
-                                                        <span className="text-gold-300 font-semibold">Who it&apos;s for:</span>{" "}
-                                                        {service.whoFor}
-                                                    </p>
-                                                )}
-                                            </div>
+                                        <div
+                                            className={`inline-flex p-2.5 sm:p-3 ${service.bgColor} rounded-xl sm:rounded-2xl mb-3 sm:mb-4`}
+                                        >
+                                            <service.icon
+                                                className={`w-6 h-6 sm:w-8 sm:h-8 ${service.iconColor}`}
+                                            />
                                         </div>
+                                        <h3 className="text-xl sm:text-2xl font-bold mb-2">
+                                            {service.title}
+                                        </h3>
+                                        <p className="text-white text-sm leading-relaxed mb-2">
+                                            {service.description}
+                                        </p>
+                                        {service.whoFor && (
+                                            <p className="text-sm text-white/90 font-medium">
+                                                <span className="text-gold-300 font-semibold">Who it&apos;s for:</span>{" "}
+                                                {service.whoFor}
+                                            </p>
+                                        )}
 
-                                        {/* Results & Pricing in Header */}
-                                        <div className="flex items-center justify-between text-sm">
-                                            <div className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
+                                        {/* Results & Pricing */}
+                                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mt-4 pt-4 border-t border-white/20">
+                                            <div className="bg-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm self-start">
                                                 <span className="font-medium">
                                                     Typical Results:{" "}
                                                 </span>
@@ -341,19 +337,19 @@ export default function ServicesPage() {
                                                     {service.results}
                                                 </span>
                                             </div>
-                                            <div className="text-right">
-                                                <div className="text-white/80 text-xs">
+                                            <div className="sm:text-right">
+                                                <span className="text-white/80 text-xs mr-1 sm:mr-0 sm:block">
                                                     Starting at
-                                                </div>
-                                                <div className="text-xl font-bold">
+                                                </span>
+                                                <span className="text-xl font-bold">
                                                     {service.price}
-                                                </div>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* Service Content */}
-                                    <div className="p-8 flex flex-col flex-1">
+                                    <div className="p-5 sm:p-8 flex flex-col flex-1">
                                         {/* Features List */}
                                         <div className="mb-6 flex-1">
                                             <h4 className="text-lg font-semibold text-royal-900 dark:text-white mb-4">
