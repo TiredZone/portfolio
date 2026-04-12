@@ -21,7 +21,9 @@ export const metadata: Metadata = generateMetadata({
 export default function ContactPage() {
     return (
         <>
-            <HashScroll />
+            <Suspense fallback={null}>
+                <HashScroll />
+            </Suspense>
             <FloatingElements />
 
             {/* Hero */}
