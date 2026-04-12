@@ -9,6 +9,7 @@ import { FloatingElements } from "@/components/common/floating-elements";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { FAQ } from "@/components/features/faq";
+import { HashScroll } from "@/components/common/hash-scroll";
 
 export const metadata: Metadata = generateMetadata({
     title: "Work With Me — Book a Free Shopify CRO Audit",
@@ -20,6 +21,7 @@ export const metadata: Metadata = generateMetadata({
 export default function ContactPage() {
     return (
         <>
+            <HashScroll />
             <FloatingElements />
 
             {/* Hero */}
@@ -125,7 +127,7 @@ export default function ContactPage() {
             </Section>
 
             {/* Booking Calendar */}
-            <Section id="booking" className="scroll-mt-24 bg-gradient-to-br from-royal-50/30 to-gold-50/30 dark:from-royal-900/20 dark:to-black/20">
+            <Section id="booking" className="scroll-mt-28 bg-gradient-to-br from-royal-50/30 to-gold-50/30 dark:from-royal-900/20 dark:to-black/20">
                 <Container>
                     <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-12">
