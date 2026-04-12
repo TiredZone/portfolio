@@ -12,20 +12,18 @@ export function DeferredCalEmbed() {
     const handleCalReady = useCallback(() => {
         if (!scrollTarget) return;
 
-        const targetId = scrollTarget === "form" ? "contact-form" : scrollTarget === "booking" ? "booking" : null;
-        if (!targetId) return;
+        // Save current scroll position BEFORE Cal.com hijacks it
+        const savedY = window.scrollY;
 
-        // Cal.com hijacks scroll on init — fight back after a short delay
-        const resnap = () => {
-            const el = document.getElementById(targetId);
-            if (!el) return;
-            const navbarHeight = 80;
-            const y = el.getBoundingClientRect().top + window.scrollY - navbarHeight;
-            window.scrollTo({ top: y, behavior: "instant" });
-        };
+        // Block all scroll attempts for the next 2 seconds
+        const blockScroll = () => window.scrollTo({ top: savedY, behavior: "instant" });
 
-        // Let Cal.com finish its scroll hijack, then snap back once
-        setTimeout(resnap, 600);
+        window.addEventListener("scroll", blockScroll);
+
+        // Release after 2 seconds
+        setTimeout(() => {
+            window.removeEventListener("scroll", blockScroll);
+        }, 2000);
     }, [scrollTarget]);
 
     return <CalEmbed defer={shouldDefer} onReady={handleCalReady} />;
