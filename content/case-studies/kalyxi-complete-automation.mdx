@@ -1,0 +1,499 @@
+---
+title: "Kalyxi: Complete Automation Ecosystem — Content, Leads & Sales Analysis"
+description: "Built a comprehensive automation ecosystem at Kalyxi: AI-powered content generation, intelligent lead processing with ZeroBounce validation, and automated sales call analysis — reducing manual work by 75%."
+client: "Kalyxi"
+duration: "October 2024 - Present"
+role: "Automation Engineer (Part-time)"
+tech:
+    [
+        "n8n",
+        "OpenAI GPT-4",
+        "ZeroBounce API",
+        "SerpAPI",
+        "Fathom API",
+        "Google Sheets",
+        "Google Docs",
+        "JavaScript",
+    ]
+featured: true
+metrics:
+    - { label: "Workflows Deployed", value: "3 Core Systems" }
+    - { label: "Manual Work Reduction", value: "75%" }
+    - { label: "Processing Efficiency", value: "10x Faster" }
+    - { label: "Data Quality", value: "80% Improved" }
+publishedAt: "2026-03-01"
+---
+
+## Transforming Operations Through Automation
+
+Kalyxi, an AI-focused content and lead generation company, was struggling with manual processes across their core operations. Their content team spent 4+ hours weekly researching trending AI topics. Lead data arrived from multiple sources with inconsistent quality, formatting, and completeness -- taking 2-3 hours per batch to clean manually. Sales calls went unreviewed or received delayed, subjective feedback days after the conversation happened.
+
+I designed and implemented three interconnected n8n workflows that addressed each operational bottleneck. The approach was deliberately modular: each system solves a specific problem independently, but they share common patterns -- OpenAI for intelligent analysis, Google Workspace for data management, Slack for team coordination, and robust error handling throughout. Together, they reduced manual work by 75% and increased processing capacity by 10x.
+
+The choice of n8n as the automation platform was strategic. Its visual workflow interface let non-technical team members understand, trust, and eventually modify the systems. This proved critical for adoption -- the team could see exactly what each workflow did, trace execution paths when something looked off, and build confidence in the automation incrementally.
+
+## Content Generation Pipeline
+
+Kalyxi's content team was spending 4+ hours weekly researching trending AI topics, analyzing search data, and managing their content pipeline. The process was time-intensive, inconsistent, and reactive -- missing trending opportunities due to slow discovery.
+
+### Workflow Architecture
+
+I developed an intelligent n8n workflow that automates the entire content discovery and pipeline management process:
+
+```javascript
+// Core trend analysis logic from n8n workflow
+const SYSTEM_PROMPT = `
+You are a content analyst for Kalyxi.
+
+Goal:
+Pick EXACTLY 5 NEW blog topics from trend candidates.
+- Prefer highest 'trend_score'
+- Must be clearly about AI (LLMs, agents, copilots, regulation/safety, chips/infra)
+- Exclude generic definitions, celebrity names, non-AI queries
+- Do NOT return any topic whose kebab-case slug already appears in existing_slugs
+- If fewer than 5 remain, CREATE new topics inspired by trending themes
+`;
+```
+
+The workflow runs weekly on a schedule trigger, executing these steps:
+
+1. **SerpAPI Trend Monitoring**: Queries "AI" keyword trends over 7-day periods, extracting both rising and top related queries with trend scores
+2. **Duplicate Prevention**: Pulls existing content slugs from Google Sheets to avoid repeating topics
+3. **GPT-4 Topic Selection**: Analyzes all trend candidates against existing content and selects the 5 most promising topics
+4. **Pipeline Management**: Automatically creates rows in Google Sheets with topic details, trend scores, and selection reasoning
+5. **Team Notification**: Posts to Slack with the selected topics for team awareness
+
+### Intelligent Trend Detection
+
+```javascript
+// Trend data normalization and filtering
+function processTrendData(serpApiResults) {
+    const relatedQueries = serpApiResults.related_queries || {};
+    const candidates = [];
+
+    ["rising", "top"].forEach((section) => {
+        (relatedQueries[section] || []).forEach((query, index) => {
+            candidates.push({
+                topic_raw: query.query.trim(),
+                trend_score: extractTrendScore(query.value),
+                source: `related_queries_${section}`,
+                rank: index + 1,
+                trend_window: "7 days",
+            });
+        });
+    });
+
+    return candidates.filter(
+        (candidate) =>
+            isAIRelevant(candidate.topic_raw) && candidate.trend_score > 0
+    );
+}
+```
+
+### AI-Powered Content Analysis
+
+GPT-4 handles the qualitative topic evaluation that's difficult to code with rules -- assessing commercial potential, audience relevance, and content differentiation:
+
+```javascript
+async function selectTopics(candidates, existingSlugs) {
+    const response = await openai.chat.completions.create({
+        model: "gpt-4",
+        messages: [{ role: "user", content: prompt }],
+        response_format: { type: "json_object" },
+    });
+
+    // Returns exactly 5 topics with normalized titles, slugs,
+    // scores, and reasoning for each selection
+    return JSON.parse(response.choices[0].message.content);
+}
+```
+
+### Content Pipeline Results
+
+- **Research time**: 4 hours/week reduced to 10 minutes automated
+- **Topic quality**: Consistent AI-focused, trending content ideas
+- **Coverage**: 100% trend capture vs. 30% manual discovery
+- **Content volume**: 5 high-quality topics weekly vs. 2-3 manual
+- **Execution success rate**: 98% successful weekly runs
+
+## Lead Processing & Validation
+
+Kalyxi was receiving lead data from multiple sources with inconsistent quality, formatting, and completeness. Different team members applied different cleaning standards. Manual email validation missed deliverability issues. Lead processing delays affected campaign launch times.
+
+### Hybrid Processing Architecture
+
+The key insight was that 85% of lead data issues follow predictable patterns that rules handle efficiently, while the remaining 15% require contextual understanding that AI excels at. This hybrid approach optimizes both cost and quality:
+
+```javascript
+function cleanAndScoreLead(rawLead) {
+    // Stage 1: Rule-based normalization
+    const cleanLead = {
+        email: sanitizeEmail(rawLead.email),
+        firstName: properCase(rawLead.firstName),
+        lastName: properCase(rawLead.lastName),
+        company: cleanCompanyName(rawLead.company),
+        title: normalizeJobTitle(rawLead.title),
+    };
+
+    // Stage 2: Quality assessment
+    const qualityChecks = {
+        emailValid: validateEmailFormat(cleanLead.email),
+        nameComplete: checkNameCompleteness(cleanLead),
+        titleRelevant: assessTitleRelevance(cleanLead.title),
+        companyValid: validateCompanyName(cleanLead.company),
+    };
+
+    // Stage 3: Only use AI for complex edge cases
+    const needsAI = !(
+        qualityChecks.emailValid &&
+        qualityChecks.nameComplete &&
+        qualityChecks.titleRelevant &&
+        qualityChecks.companyValid
+    );
+
+    return { ...cleanLead, qualityChecks, needsAI };
+}
+```
+
+### Rule-Based Cleaning Engine
+
+The rule engine handles name normalization with cultural awareness (particles like "van", "von", "de"), company name standardization (stripping legal suffixes), and job title normalization:
+
+```javascript
+function properCaseName(name) {
+    const particles = ["van", "von", "de", "del", "della", "der", "den"];
+
+    return name
+        .split(/\s+/)
+        .map((word, index) => {
+            if (index > 0 && particles.includes(word.toLowerCase())) {
+                return word.toLowerCase();
+            }
+            return word
+                .split(/([-'])/)
+                .map((segment, i) => {
+                    if (i % 2 === 1) return segment;
+                    if (!segment) return segment;
+                    if (/^[A-Z]{2,}$/.test(segment)) return segment;
+                    return (
+                        segment.charAt(0).toUpperCase() +
+                        segment.slice(1).toLowerCase()
+                    );
+                })
+                .join("");
+        })
+        .join(" ");
+}
+```
+
+### ZeroBounce Email Validation
+
+Professional email verification with multi-factor deliverability scoring:
+
+```javascript
+async function validateEmailWithZeroBounce(email) {
+    const data = await response.json();
+
+    return {
+        email: data.address,
+        status: mapValidationStatus(data.status),
+        deliverabilityScore: calculateDeliverabilityScore(data),
+        suggestions: data.did_you_mean || null,
+        provider: data.smtp_provider || "unknown",
+    };
+}
+
+function calculateDeliverabilityScore(validationData) {
+    let score = 0;
+
+    // Base score from validation status
+    switch (validationData.status) {
+        case "valid": score += 40; break;
+        case "catch-all": score += 25; break;
+        case "invalid": score += 0; break;
+        default: score += 15;
+    }
+
+    // Domain reputation factors
+    if (validationData.mx_found === "true") score += 20;
+    if (validationData.smtp_check === "true") score += 15;
+    if (validationData.smtp_provider !== "unknown") score += 10;
+
+    // Negative factors
+    if (validationData.free_email === "true") score -= 10;
+    if (validationData.disposable === "true") score -= 30;
+
+    return Math.max(0, Math.min(100, score));
+}
+```
+
+### AI Enhancement for Complex Cases
+
+When rule-based cleaning can't resolve an issue, OpenAI handles the edge cases:
+
+```javascript
+const AI_CLEANING_PROMPT = `
+You are a deterministic lead cleaner. Follow the rules exactly.
+
+Output MUST be a single JSON object with a key "leads" containing an array.
+Each lead object must have exactly these keys:
+- email, first_name, last_name, job_title, company_name, needs_review, review_reasons
+
+Rules:
+1. Names: proper-case; keep compounds (de la, van)
+2. Job titles: humanize; acronyms uppercase; commas to " & "
+3. Companies: strip ONE legal suffix (Inc, LLC, Ltd, Corp, Co)
+4. Flag for review: ambiguous names, unclear titles, suspicious data
+`;
+```
+
+### Multi-Factor Lead Scoring
+
+```javascript
+function calculateLeadScore(lead, validationResult) {
+    const scores = {
+        emailQuality: validationResult.deliverabilityScore,
+        dataCompleteness: calculateCompleteness(lead),
+        businessRelevance: assessBusinessValue(lead),
+        titleSeniority: scoreTitleSeniority(lead.title),
+    };
+
+    const weights = {
+        emailQuality: 0.4,
+        dataCompleteness: 0.2,
+        businessRelevance: 0.3,
+        titleSeniority: 0.1,
+    };
+
+    const totalScore = Object.entries(scores).reduce(
+        (sum, [key, score]) => sum + score * weights[key],
+        0
+    );
+
+    return {
+        overallScore: Math.round(totalScore),
+        breakdown: scores,
+        segment: determineSegment(totalScore), // A/B/C/D
+        priority: determinePriority(totalScore, lead),
+    };
+}
+```
+
+### Lead Processing Results
+
+- **Processing speed**: 2-3 hours reduced to 15 minutes per batch
+- **Batch capacity**: 1000+ leads vs. 500 manual limit
+- **Email validation accuracy**: 95% vs. 70% manual checking
+- **Data consistency**: 100% standardized formatting
+- **Manual review reduction**: 70% through automated scoring
+- **Campaign performance**: 25% improvement in email open rates
+- **ZeroBounce cost optimization**: Smart batching reduces costs by 40%
+
+## Sales Call Analysis & Coaching
+
+Kalyxi's sales team conducted numerous calls but lacked systematic feedback. Manual reviews were inconsistent, delayed by days, and couldn't scale with team growth. Only about 20% of calls received any review at all.
+
+### AI-Powered Analysis Engine
+
+I developed an n8n workflow that automatically analyzes every sales call using a carefully engineered GPT-4 prompt:
+
+```javascript
+const SALES_ANALYSIS_PROMPT = `
+You are a world-class sales strategist reviewing a sales call transcript.
+Evaluate like an elite sales coach -- critical, prescriptive, and high-signal.
+
+CRITICAL REQUIREMENTS:
+1. Read the ENTIRE transcript thoroughly - every detail matters
+2. Reference online sales training resources for best practices
+3. Identify exact quotes and timestamps for all feedback
+4. Look for payment information to confirm closed deals
+5. USE SLACK EMOJI CODES (like :point_right:) NOT ACTUAL EMOJIS
+
+Evaluate these specific areas:
+- DISCOVERY & QUALIFICATION: Question quality, pain point identification, budget/timeline
+- PRESENTATION & DEMO: Solution alignment, value proposition clarity
+- OBJECTION HANDLING: Recognition, empathy, evidence provision
+- CLOSING & NEXT STEPS: Trial close attempts, commitment level, follow-up plan
+
+For each area, provide:
+- Performance score (1-10)
+- Specific quote examples
+- Improvement recommendations
+- Relevant training suggestions
+`;
+```
+
+### Multi-Source Knowledge Integration
+
+The system pulls training resources from multiple sources to make recommendations actionable:
+
+```javascript
+// Google Docs integration for internal knowledge base
+async function fetchTrainingDocuments(skillArea) {
+    const trainingDocs = {
+        discovery: "1k9h2HT4cfz0IM5qjR57LNvcmlzVsW2EvKAR3dXbZMkE",
+        objection_handling: "1Kz1eZo3Yco_8zvqtzn91cJQT55z1WCnEscZ_5seBTeI",
+        closing: "1E-RJo9d9rivRH-YGUh9V_Dp9zXB0VChLBIY1d5yUNIU",
+        best_practices: "1rHr4hrPA9DczbVu0nFqiKTZp05XkOUhd-LZrXxvIJko",
+    };
+
+    const docId = trainingDocs[skillArea];
+    if (!docId) return null;
+
+    const response = await googleDocs.documents.get({ documentId: docId });
+    return extractRelevantContent(response.data, skillArea);
+}
+
+// YouTube API for external training resources
+async function findTrainingVideos(improvementArea) {
+    const searchQueries = {
+        discovery: "sales discovery questions SPIN selling",
+        objection_handling: "sales objection handling techniques",
+        closing: "sales closing techniques trial close",
+        presentation: "sales presentation demo best practices",
+    };
+
+    const response = await youtube.search.list({
+        part: "snippet",
+        q: searchQueries[improvementArea] || "sales training",
+        type: "video",
+        maxResults: 3,
+        order: "relevance",
+    });
+
+    return response.data.items.map((video) => ({
+        title: video.snippet.title,
+        url: `https://www.youtube.com/watch?v=${video.id.videoId}`,
+        description: video.snippet.description.substring(0, 100) + "...",
+    }));
+}
+```
+
+### Workflow Pipeline
+
+1. **Fathom webhook** receives call transcript automatically when a call ends
+2. **GPT-4 analysis** evaluates the transcript against structured sales criteria with low temperature (0.3) for consistent output
+3. **Knowledge base lookup** matches identified improvement areas to internal training documents
+4. **YouTube search** finds relevant external training videos for each weak area
+5. **Slack delivery** posts the complete analysis with actionable buttons for training resources and coaching session scheduling
+
+### Structured Slack Delivery
+
+```javascript
+function formatAnalysisForSlack(analysis) {
+    return {
+        blocks: [
+            {
+                type: "header",
+                text: { type: "plain_text", text: "Sales Call Analysis Complete" },
+            },
+            {
+                type: "section",
+                text: { type: "mrkdwn", text: analysis },
+            },
+            {
+                type: "actions",
+                elements: [
+                    {
+                        type: "button",
+                        text: { type: "plain_text", text: "View Training Resources" },
+                        url: "https://docs.google.com/document/d/training-resources",
+                    },
+                    {
+                        type: "button",
+                        text: { type: "plain_text", text: "Schedule Coaching Session" },
+                        url: "https://calendly.com/sales-coaching",
+                    },
+                ],
+            },
+        ],
+    };
+}
+```
+
+### Sales Analysis Results
+
+- **Call coverage**: 100% automated vs. 20% manual review
+- **Feedback speed**: 2-3 minutes from call end vs. 2-3 day manager review delay
+- **Consistency**: Structured criteria vs. subjective manager opinions
+- **Manager time saved**: 80% reduction in manual call review
+- **Analysis success rate**: 98% successful call processing
+
+## System Architecture
+
+### Unified Automation Platform
+
+All three workflows share architectural patterns that make the overall system cohesive and maintainable:
+
+```javascript
+const KALYXI_AUTOMATION_STACK = {
+    contentGeneration: {
+        trigger: "weekly_schedule",
+        dataSource: "SerpAPI",
+        intelligence: "OpenAI_GPT4",
+        storage: "Google_Sheets",
+        notification: "Slack",
+    },
+    leadValidation: {
+        trigger: "file_upload_webhook",
+        validation: "ZeroBounce_API",
+        enhancement: "OpenAI_GPT4",
+        scoring: "custom_algorithm",
+        output: "processed_csv",
+    },
+    callAnalysis: {
+        trigger: "Fathom_webhook",
+        analysis: "OpenAI_GPT4",
+        knowledge: "Google_Docs_API",
+        resources: "YouTube_API",
+        delivery: "Slack_formatted",
+    },
+};
+```
+
+**Cross-System Design Principles**:
+
+- **Unified Notifications**: All workflows report to centralized Slack channels
+- **Consistent Data Formats**: Standardized structures across all processes
+- **Shared Error Handling**: Common retry logic and fallback patterns
+- **Modular Design**: Each system scales independently
+- **Visual Workflows**: n8n's interface keeps systems accessible to non-technical team members
+
+### Implementation Timeline
+
+The full ecosystem was built in 6 weeks:
+- **Weeks 1-2**: Foundation (process analysis, shared integrations, error handling framework)
+- **Weeks 2-3**: Content pipeline (SerpAPI + GPT-4 + Google Sheets)
+- **Weeks 3-4**: Lead processing (ZeroBounce + AI cleaning + scoring)
+- **Weeks 4-5**: Sales analysis (Fathom + GPT-4 + knowledge base + Slack)
+- **Week 6**: Integration testing, monitoring, documentation, and team training
+
+### Future Evolution
+
+Building on the success of these n8n prototypes, Kalyxi is transitioning to custom-coded solutions using the Mastra AI framework in TypeScript. The n8n workflows serve as proven prototypes -- requirements are well-understood and validated before building production-scale systems with enhanced data processing, custom APIs, and advanced ML models.
+
+## Key Results
+
+### Cross-Department Impact
+
+| Area | Before | After |
+|------|--------|-------|
+| Content research | 4 hours/week manual | 10 minutes automated |
+| Lead processing | 2-3 hours per batch | 15 minutes per batch |
+| Sales call review | 20% coverage, days delayed | 100% coverage, instant |
+| Data quality | Inconsistent, 60% complete | Standardized, 85% complete |
+| Team focus | Repetitive tasks | Strategic activities |
+
+### Aggregate Business Impact
+
+- **75% reduction** in manual work across all three systems
+- **10x faster** execution for routine tasks
+- **80% improvement** in lead data quality standards
+- **98% workflow reliability** across all automated processes
+- **Scalable architecture** supporting 10x business expansion without additional manual effort
+
+### Client Testimonial
+
+> "Bechara's comprehensive automation transformation revolutionized our entire operation. The three interconnected systems eliminated bottlenecks across content, leads, and sales. The 75% reduction in manual work allowed us to scale efficiently while maintaining quality. These n8n workflows provided the perfect foundation for our transition to custom development."
+>
+> **-- Operations Director, Kalyxi**
