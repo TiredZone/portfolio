@@ -273,8 +273,14 @@ export function FAQ() {
                         Still have questions? I&apos;d love to discuss your
                         project in detail.
                     </p>
-                    <motion.a
-                        href="/contact?scrollTo=booking"
+                    <motion.button
+                        onClick={() => {
+                            const el = document.getElementById("booking");
+                            if (el) {
+                                const y = el.getBoundingClientRect().top + window.scrollY - 80;
+                                window.scrollTo({ top: y, behavior: "smooth" });
+                            }
+                        }}
                         className="inline-flex items-center gap-2 text-gold-600 dark:text-gold-400 font-semibold hover:text-gold-700 dark:hover:text-gold-300 transition-colors duration-200"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -286,7 +292,7 @@ export function FAQ() {
                         >
                             →
                         </motion.span>
-                    </motion.a>
+                    </motion.button>
                 </motion.div>
             </motion.div>
         </motion.div>
