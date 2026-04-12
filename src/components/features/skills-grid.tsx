@@ -5,15 +5,12 @@ import {
     Code2,
     Database,
     ShoppingCart,
-    GitBranch,
-    Cloud,
     Bot,
-    Hexagon,
 } from "lucide-react";
 
 const skills = [
     {
-        category: "CRO & Analytics",
+        category: "CRO & Revenue Optimization",
         icon: ShoppingCart,
         color: "text-emerald-600 dark:text-emerald-400",
         bgColor: "bg-emerald-100 dark:bg-emerald-900/20",
@@ -22,35 +19,17 @@ const skills = [
         skills: [
             "Conversion Rate Optimization",
             "A/B Testing & Experimentation",
-            "GA4 & GTM Implementation",
+            "GA4 & GTM",
             "Microsoft Clarity",
-            "Core Web Vitals Optimization",
-            "Funnel Analysis",
+            "Core Web Vitals",
+            "Heatmap Analysis",
             "Revenue Attribution",
-            "User Behavior Analytics",
-            "E-commerce Performance",
+            "Funnel Analysis",
+            "Landing Page Optimization",
         ],
     },
     {
-        category: "Enterprise Automation",
-        icon: Bot,
-        color: "text-purple-600 dark:text-purple-400",
-        bgColor: "bg-purple-100 dark:bg-purple-900/20",
-        borderColor: "border-purple-200 dark:border-purple-700",
-        glowColor: "shadow-purple-500/20",
-        skills: [
-            "n8n Visual Workflows",
-            "ETL Pipeline Architecture",
-            "Multi-stage Lead Processing",
-            "API Orchestration",
-            "Data Validation & Quality",
-            "Error Recovery Systems",
-            "Production Monitoring",
-            "Process Optimization",
-        ],
-    },
-    {
-        category: "Ecommerce Platforms",
+        category: "Shopify & E-Commerce",
         icon: ShoppingCart,
         color: "text-green-600 dark:text-green-400",
         bgColor: "bg-green-100 dark:bg-green-900/20",
@@ -59,12 +38,30 @@ const skills = [
         skills: [
             "Shopify Plus",
             "Liquid Template Engine",
-            "Shopify Admin API",
+            "Dawn 2.0",
             "Custom Sections & Blocks",
             "Checkout Extensibility",
             "Theme Development",
             "Performance Optimization",
-            "Revenue Tracking",
+            "Shopify Admin API",
+        ],
+    },
+    {
+        category: "Automation & Data Pipelines",
+        icon: Bot,
+        color: "text-purple-600 dark:text-purple-400",
+        bgColor: "bg-purple-100 dark:bg-purple-900/20",
+        borderColor: "border-purple-200 dark:border-purple-700",
+        glowColor: "shadow-purple-500/20",
+        skills: [
+            "n8n Visual Workflows",
+            "ETL Pipeline Architecture",
+            "Lead Processing & Scoring",
+            "API Orchestration",
+            "Data Validation",
+            "AI/LLM Integrations",
+            "Production Monitoring",
+            "BigQuery",
         ],
     },
     {
@@ -78,16 +75,14 @@ const skills = [
             "React.js",
             "Next.js",
             "TypeScript",
-            "JavaScript",
-            "Angular",
-            "HTML/CSS",
             "Tailwind CSS",
             "Framer Motion",
-            "Redux",
+            "HTML/CSS",
+            "JavaScript",
         ],
     },
     {
-        category: "Backend & APIs",
+        category: "Backend & Infrastructure",
         icon: Database,
         color: "text-gold-600 dark:text-gold-400",
         bgColor: "bg-gold-100 dark:bg-gold-900/20",
@@ -95,88 +90,13 @@ const skills = [
         glowColor: "shadow-gold-500/20",
         skills: [
             "Node.js/Express",
-            ".NET Core/C#",
             "Python",
-            "REST APIs",
-            "GraphQL",
-            "RabbitMQ",
-            "Redis Caching",
-            "Microservices",
-            "WebSocket APIs",
-        ],
-    },
-    {
-        category: "Data & Analytics",
-        icon: Database,
-        color: "text-blue-600 dark:text-blue-400",
-        bgColor: "bg-blue-100 dark:bg-blue-900/20",
-        borderColor: "border-blue-200 dark:border-blue-700",
-        glowColor: "shadow-blue-500/20",
-        skills: [
-            "BigQuery",
-            "Google Sheets API",
-            "MongoDB",
-            "MS SQL Server",
-            "PostgreSQL",
-            "Data Transformation",
-            "ETL Pipelines",
-            "Business Intelligence",
-        ],
-    },
-    {
-        category: "DevOps & Cloud",
-        icon: Cloud,
-        color: "text-cyan-600 dark:text-cyan-400",
-        bgColor: "bg-cyan-100 dark:bg-cyan-900/20",
-        borderColor: "border-cyan-200 dark:border-cyan-700",
-        glowColor: "shadow-cyan-500/20",
-        skills: [
-            "Docker & Containerization",
+            "REST & GraphQL APIs",
+            "Docker",
             "Google Cloud Run",
-            "GitHub Actions CI/CD",
-            "Kubernetes",
-            "Production Monitoring",
-            "Error Tracking",
-            "Automated Deployments",
-            "Infrastructure as Code",
-        ],
-    },
-    {
-        category: "Blockchain & Web3",
-        icon: Hexagon,
-        color: "text-indigo-600 dark:text-indigo-400",
-        bgColor: "bg-indigo-100 dark:bg-indigo-900/20",
-        borderColor: "border-indigo-200 dark:border-indigo-700",
-        glowColor: "shadow-indigo-500/20",
-        skills: [
-            "Web3.js SDK Development",
-            "Multi-chain Architecture",
-            "Smart Contract Integration",
-            "Wallet Connect Integration",
-            "Decentralized Exchange (DEX)",
-            "NFT Platform Development",
-            "WalletConnect Protocol",
-            "MetaMask Integration",
-            "Redux Web3 State Management",
-            "Ethereum & Layer 2 Networks",
-        ],
-    },
-    {
-        category: "Business Integrations",
-        icon: GitBranch,
-        color: "text-orange-600 dark:text-orange-400",
-        bgColor: "bg-orange-100 dark:bg-orange-900/20",
-        borderColor: "border-orange-200 dark:border-orange-700",
-        glowColor: "shadow-orange-500/20",
-        skills: [
-            "Klaviyo API",
-            "ZeroBounce & MillionVerifier",
-            "Smartlead Integration",
-            "ClickUp API",
-            "Slack API",
-            "Fathom Analytics",
-            "SerpAPI",
-            "OpenAI API",
+            "CI/CD",
+            "PostgreSQL",
+            "Redis",
         ],
     },
 ];
@@ -289,24 +209,15 @@ export function SkillsGrid() {
                                     "Frontend Development"
                                         ? "bg-gradient-to-r from-royal-600 to-royal-400"
                                         : skillGroup.category ===
-                                            "Backend & APIs"
+                                            "Backend & Infrastructure"
                                           ? "bg-gradient-to-r from-gold-600 to-gold-400"
                                           : skillGroup.category ===
-                                              "Mobile Development"
-                                            ? "bg-gradient-to-r from-cyan-600 to-cyan-400"
+                                              "Shopify & E-Commerce"
+                                            ? "bg-gradient-to-r from-green-600 to-green-400"
                                             : skillGroup.category ===
-                                                "Ecommerce & CMS"
-                                              ? "bg-gradient-to-r from-green-600 to-green-400"
-                                              : skillGroup.category ===
-                                                  "DevOps & Cloud"
-                                                ? "bg-gradient-to-r from-blue-600 to-blue-400"
-                                                : skillGroup.category ===
-                                                    "AI & Automation"
-                                                  ? "bg-gradient-to-r from-purple-600 to-purple-400"
-                                                  : skillGroup.category ===
-                                                      "Blockchain & Web3"
-                                                    ? "bg-gradient-to-r from-indigo-600 to-indigo-400"
-                                                    : "bg-gradient-to-r from-orange-600 to-orange-400"
+                                                "Automation & Data Pipelines"
+                                              ? "bg-gradient-to-r from-purple-600 to-purple-400"
+                                              : "bg-gradient-to-r from-emerald-600 to-emerald-400"
                                 }`}
                                 initial={{ width: 0 }}
                                 whileInView={{ width: "100%" }}

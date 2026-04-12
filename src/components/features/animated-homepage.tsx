@@ -419,12 +419,12 @@ export function AnimatedHomepage({
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
-                            Stay in the Loop
+                            Free Shopify CRO Teardowns
                         </h2>
                         <p className="text-lg text-royal-200 mb-8 max-w-2xl mx-auto">
-                            Get insights on e-commerce optimization,
-                            automation, and development — delivered to
-                            your inbox.
+                            Every week, I audit a real Shopify store and
+                            share exactly what I&apos;d fix to increase
+                            conversions. Get the breakdown in your inbox.
                         </p>
                         <NewsletterSignup />
                     </motion.div>
@@ -489,9 +489,9 @@ export function AnimatedHomepage({
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.1 }}
                             >
-                                Book a free 30-minute strategy call. I&apos;ll
-                                audit your store, identify conversion leaks, and
-                                outline a plan to increase revenue.
+                                Book a free 30-minute CRO audit. I&apos;ll
+                                review your store, identify conversion leaks, and
+                                give you 3 actionable wins — no commitment.
                             </motion.p>
                             <motion.div
                                 className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -511,7 +511,7 @@ export function AnimatedHomepage({
                                         asChild
                                     >
                                         <Link href="/contact">
-                                            Schedule a Call
+                                            Book Your Free Audit
                                             <motion.div
                                                 className="ml-2"
                                                 animate={{ x: [0, 3, 0] }}
@@ -537,8 +537,8 @@ export function AnimatedHomepage({
                                         className="group shadow-lg hover:shadow-xl"
                                         asChild
                                     >
-                                        <Link href="/services">
-                                            View Services
+                                        <Link href="/work">
+                                            See My Results
                                             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </Button>

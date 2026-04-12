@@ -7,40 +7,39 @@ import { useState } from "react";
 const faqs = [
     {
         id: 1,
-        question: "What is your typical project timeline?",
-        answer: "Project timelines vary based on complexity and scope. A simple website might take 2-4 weeks, while a complex e-commerce platform could take 8-12 weeks. During our initial consultation, I'll provide a detailed timeline based on your specific requirements.",
-        category: "Timeline",
+        question: "What kind of results can I expect?",
+        answer: "Every store is different, but across 3+ years of CRO work for 7-to-9 figure Shopify stores, I've delivered results ranging from 32% revenue increases to 167% conversion rate lifts. I'll give you an honest assessment of what's realistic for your store during our free audit call.",
+        category: "Results",
     },
     {
         id: 2,
-        question: "Do you work with clients internationally?",
-        answer: "Yes! I work with clients globally and am comfortable with different time zones. Most communication happens through video calls, email, and project management tools. I've successfully delivered projects for clients in North America, Europe, and Asia.",
-        category: "Availability",
+        question: "What size store do you work with?",
+        answer: "I work best with Shopify stores doing $50K+/month in revenue with consistent traffic. At that level, even small conversion improvements translate to meaningful revenue gains. For stores with 10,000+ monthly sessions, I add formal A/B testing to validate changes with statistical confidence.",
+        category: "Fit",
     },
     {
         id: 3,
-        question: "What technologies do you specialize in?",
-        answer: "I specialize in modern web technologies including React, Next.js, Node.js, TypeScript, and various databases. For e-commerce, I'm a Shopify Plus expert with deep knowledge of Liquid, checkout extensions, and custom app development. I also work with cloud platforms like AWS and deployment tools.",
-        category: "Technical",
+        question: "Do you work with international clients?",
+        answer: "Yes. I'm based in Lebanon (GMT+3) but work primarily with US and global clients. I'm fluent in English, French, Arabic, and Spanish. Most communication happens async via Slack/Loom with weekly live check-ins.",
+        category: "Availability",
     },
     {
         id: 4,
-        question: "How do you handle project communication and updates?",
-        answer: "I believe in transparent communication. You'll receive regular progress updates, have access to a project management dashboard, and can schedule weekly check-ins. I use tools like Slack, GitHub, and project boards to keep everything organized and visible.",
+        question: "What's your process?",
+        answer: "Discovery call → CRO audit (heatmaps, analytics, heuristic review) → Prioritized roadmap → Implementation in your Shopify theme → Testing → Results reporting. I don't hand you a PDF and disappear — I find what's broken, build the fix, test it, and prove it worked.",
         category: "Process",
     },
     {
         id: 5,
-        question:
-            "What kind of support do you provide after project completion?",
-        answer: "I provide 30 days of free bug fixes and support after project delivery. Beyond that, I offer monthly retainer packages for ongoing maintenance, updates, and feature additions. I also provide documentation and training so your team can manage basic updates.",
-        category: "Support",
+        question: "Do you also do Shopify development?",
+        answer: "Yes. Unlike most CRO consultants who give you recommendations and leave, I'm also a Shopify developer. I implement changes directly in your Liquid theme — no need to hire a separate dev to execute on CRO recommendations.",
+        category: "Technical",
     },
     {
         id: 6,
-        question: "Can you help with existing projects or only new ones?",
-        answer: "I can definitely help with existing projects! Whether it's bug fixes, performance optimization, adding new features, or modernizing legacy code, I'm experienced in working with existing codebases. I'll first audit your current setup and provide recommendations.",
-        category: "Scope",
+        question: "What tools do you use?",
+        answer: "Google Analytics 4, Microsoft Clarity (heatmaps & session recordings), Google Tag Manager, Shopify analytics, and A/B testing platforms appropriate for your traffic level. Most tools are free or low-cost.",
+        category: "Technical",
     },
     {
         id: 7,
@@ -51,7 +50,7 @@ const faqs = [
     {
         id: 8,
         question: "What is your payment structure?",
-        answer: "For fixed-price projects, I typically require 50% upfront and 50% upon completion. For hourly work, I invoice weekly or bi-weekly. For longer projects, we can arrange milestone-based payments. All payments are secured through professional invoicing systems.",
+        answer: "For sprints: 50% upfront, 50% on completion. For retainers: monthly billing with 30-day cancellation after the initial 3-month commitment. All prices in USD.",
         category: "Payment",
     },
 ];
