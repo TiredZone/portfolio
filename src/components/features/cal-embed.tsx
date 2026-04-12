@@ -1,10 +1,25 @@
 "use client";
 
 import Cal, { getCalApi } from "@calcom/embed-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
 
-export function CalEmbed() {
+interface CalEmbedProps {
+    defer?: boolean;
+}
+
+export function CalEmbed({ defer = false }: CalEmbedProps) {
+    const [show, setShow] = useState(!defer);
+
     useEffect(() => {
+        if (!defer) return;
+        // Wait for scroll to settle, then render Cal
+        const timer = setTimeout(() => setShow(true), 800);
+        return () => clearTimeout(timer);
+    }, [defer]);
+
+    useEffect(() => {
+        if (!show) return;
         (async function () {
             const cal = await getCalApi({ namespace: "30min" });
             cal("ui", {
@@ -13,7 +28,7 @@ export function CalEmbed() {
                 theme: "auto",
                 styles: {
                     branding: {
-                        brandColor: "#D97706", // Gold brand color to match your theme
+                        brandColor: "#D97706",
                     },
                 },
                 cssVarsPerTheme: {
@@ -32,7 +47,6 @@ export function CalEmbed() {
                 },
             });
 
-            // Track when user successfully books
             cal("on", {
                 action: "bookingSuccessful",
                 callback: () => {
@@ -51,23 +65,29 @@ export function CalEmbed() {
                 },
             });
         })();
-    }, []);
+    }, [show]);
 
     return (
         <div className="w-full h-[600px] rounded-2xl overflow-hidden shadow-2xl border border-royal-200/50 dark:border-royal-800/50 bg-white dark:bg-royal-950 transition-all duration-300">
-            <Cal
-                namespace="30min"
-                calLink="becharaelmaalouf/strategy-call"
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    overflow: "scroll",
-                }}
-                config={{
-                    layout: "month_view",
-                    theme: "auto",
-                }}
-            />
+            {show ? (
+                <Cal
+                    namespace="30min"
+                    calLink="becharaelmaalouf/strategy-call"
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        overflow: "scroll",
+                    }}
+                    config={{
+                        layout: "month_view",
+                        theme: "auto",
+                    }}
+                />
+            ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                    <Loader2 className="w-8 h-8 text-royal-400 animate-spin" />
+                </div>
+            )}
         </div>
     );
 }

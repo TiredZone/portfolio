@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import { generateMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/config";
-import { CalEmbed } from "@/components/features/cal-embed";
+import { DeferredCalEmbed } from "@/components/features/deferred-cal-embed";
 import { Mail, Phone, MapPin, Clock, Linkedin, Github } from "lucide-react";
 import { ContactForm } from "@/components/features/contact-form";
 import { FloatingElements } from "@/components/common/floating-elements";
@@ -143,7 +143,9 @@ export default function ContactPage() {
                             </p>
                         </div>
                         <div className="max-w-4xl mx-auto">
-                            <CalEmbed />
+                            <Suspense fallback={null}>
+                                <DeferredCalEmbed />
+                            </Suspense>
                         </div>
                     </div>
                 </Container>
