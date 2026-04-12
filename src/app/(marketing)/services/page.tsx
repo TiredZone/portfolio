@@ -342,7 +342,7 @@ export default function ServicesPage() {
                             {services.map((service, index) => (
                                 <div
                                     key={index}
-                                    className="group relative overflow-hidden bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 hover:border-gold-400 dark:hover:border-gold-500 transition-all duration-500 hover:shadow-xl cursor-pointer"
+                                    className="group relative overflow-hidden bg-white dark:bg-gray-800 rounded-3xl border border-gray-200 dark:border-gray-700 hover:border-gold-400 dark:hover:border-gold-500 transition-all duration-500 hover:shadow-xl cursor-pointer flex flex-col"
                                 >
                                     {/* Service Header */}
                                     <div
@@ -364,8 +364,9 @@ export default function ServicesPage() {
                                                     {service.description}
                                                 </p>
                                                 {service.whoFor && (
-                                                    <p className="text-sm text-gold-600 dark:text-gold-400 font-medium mt-2">
-                                                        Who it&apos;s for: {service.whoFor}
+                                                    <p className="text-sm text-white/80 font-medium mt-2">
+                                                        <span className="text-gold-300 font-semibold">Who it&apos;s for:</span>{" "}
+                                                        {service.whoFor}
                                                     </p>
                                                 )}
                                             </div>
@@ -393,9 +394,9 @@ export default function ServicesPage() {
                                     </div>
 
                                     {/* Service Content */}
-                                    <div className="p-8">
+                                    <div className="p-8 flex flex-col flex-1">
                                         {/* Features List */}
-                                        <div className="mb-6">
+                                        <div className="mb-6 flex-1">
                                             <h4 className="text-lg font-semibold text-royal-900 dark:text-white mb-4">
                                                 What&apos;s Included:
                                             </h4>
@@ -420,7 +421,7 @@ export default function ServicesPage() {
 
                                         {/* CTA Button */}
                                         <Button
-                                            className="w-full bg-gradient-to-r from-royal-600 to-royal-700 hover:from-royal-700 hover:to-royal-800 text-white group/btn"
+                                            className="w-full mt-auto bg-gradient-to-r from-royal-600 to-royal-700 hover:from-royal-700 hover:to-royal-800 text-white group/btn"
                                             asChild
                                         >
                                             <Link href="/contact">
