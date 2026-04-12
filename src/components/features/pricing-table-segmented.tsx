@@ -7,31 +7,83 @@ import {
     Zap,
     Shield,
     ArrowRight,
-    Globe,
-    MapPin,
-    Info,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
 
-type Region = "global" | "mena";
-
 interface PricingTier {
     name: string;
-    globalPrice: string;
-    menaPrice: string;
+    price: string;
     description: string;
     scope: string[];
     deliverables: string[];
     timeline?: string;
 }
 
+const croTiers: PricingTier[] = [
+    {
+        name: "CRO Audit",
+        price: "$2,500",
+        description: "Full heuristic audit with prioritized roadmap and 5 actionable recommendations",
+        scope: [
+            "Full-site heuristic review",
+            "Heatmap & analytics setup",
+            "Funnel drop-off analysis",
+            "Mobile UX review",
+            "5 prioritized recommendations",
+            "Recorded Loom walkthrough",
+        ],
+        deliverables: [
+            "Written CRO audit report",
+            "Prioritized implementation roadmap",
+            "Analytics baseline documentation",
+        ],
+        timeline: "1–2 weeks",
+    },
+    {
+        name: "CRO Sprint",
+        price: "$5,000–$8,000",
+        description: "Audit + implementation of top 3–5 changes + testing + results report",
+        scope: [
+            "Everything in CRO Audit",
+            "Implementation of top 3–5 changes in Shopify",
+            "A/B testing setup (traffic permitting)",
+            "2 rounds of revisions",
+        ],
+        deliverables: [
+            "All audit deliverables",
+            "Implemented changes in theme",
+            "Before/after performance report",
+            "14-day post-launch monitoring",
+        ],
+        timeline: "4–6 weeks",
+    },
+    {
+        name: "Monthly CRO Retainer",
+        price: "$3,000–$5,000/mo",
+        description: "Ongoing optimization: monthly testing roadmap, implementation, reporting. 3-month minimum.",
+        scope: [
+            "Monthly testing roadmap",
+            "2–4 tests/changes per month",
+            "Continuous heatmap & analytics review",
+            "Shopify theme implementation",
+            "Weekly async updates (Loom)",
+            "Monthly results report",
+        ],
+        deliverables: [
+            "Monthly CRO report with revenue attribution",
+            "Ongoing test documentation",
+            "Quarterly strategy review call",
+        ],
+        timeline: "Ongoing",
+    },
+];
+
 const shopifyTiers: PricingTier[] = [
     {
         name: "Launch",
-        globalPrice: "from $3,000",
-        menaPrice: "from $1,800–$2,500",
+        price: "from $3,000",
         description:
             "Perfect for new stores or theme migrations with essential features",
         scope: [
@@ -52,8 +104,7 @@ const shopifyTiers: PricingTier[] = [
     },
     {
         name: "Scale",
-        globalPrice: "from $5,000",
-        menaPrice: "from $3,500–$4,500",
+        price: "from $5,000",
         description:
             "Advanced features, custom sections, and conversion optimization",
         scope: [
@@ -74,8 +125,7 @@ const shopifyTiers: PricingTier[] = [
     },
     {
         name: "Plus / Enterprise",
-        globalPrice: "$8,000–$20,000+",
-        menaPrice: "$6,000–$12,000+",
+        price: "$8,000–$20,000+",
         description:
             "Shopify Plus customizations, checkout extensibility, and enterprise features",
         scope: [
@@ -99,8 +149,7 @@ const shopifyTiers: PricingTier[] = [
 const automationTiers: PricingTier[] = [
     {
         name: "Starter",
-        globalPrice: "from $1,500",
-        menaPrice: "from $1,500",
+        price: "from $1,500",
         description:
             "Essential automation for small teams and simple workflows",
         scope: [
@@ -120,8 +169,7 @@ const automationTiers: PricingTier[] = [
     },
     {
         name: "Growth",
-        globalPrice: "from $3,000",
-        menaPrice: "from $3,000",
+        price: "from $3,000",
         description:
             "Multi-workflow automation with data syncs and business logic",
         scope: [
@@ -142,8 +190,7 @@ const automationTiers: PricingTier[] = [
     },
     {
         name: "Advanced",
-        globalPrice: "from $6,000+",
-        menaPrice: "from $6,000+",
+        price: "from $6,000+",
         description: "LLM-powered automation, complex ETL, and AI workflows",
         scope: [
             "Complex workflow orchestration",
@@ -166,8 +213,7 @@ const automationTiers: PricingTier[] = [
 const webAppTiers: PricingTier[] = [
     {
         name: "MVP",
-        globalPrice: "from $6,000–$8,000",
-        menaPrice: "from $4,000–$6,000",
+        price: "from $6,000–$8,000",
         description: "Launch-ready web app with core features and deployment",
         scope: [
             "User authentication",
@@ -187,8 +233,7 @@ const webAppTiers: PricingTier[] = [
     },
     {
         name: "Full Build",
-        globalPrice: "from $10,000",
-        menaPrice: "from $7,000–$9,000",
+        price: "from $10,000",
         description:
             "Production-ready application with advanced features and integrations",
         scope: [
@@ -212,9 +257,9 @@ const webAppTiers: PricingTier[] = [
 const consultingServices = [
     {
         type: "Hourly Consultation",
-        price: "$75/hour",
+        price: "$100/hour",
         description: "Technical guidance and strategic advice",
-        note: "Retainer discounts: 20h/mo → $68/hr | 40h/mo → $64/hr",
+        note: "Retainer discounts: 20h/mo → $90/hr | 40h/mo → $85/hr",
     },
     {
         type: "Performance Audit",
@@ -237,63 +282,34 @@ const consultingServices = [
 ];
 
 export function PricingTableSegmented() {
-    const [region, setRegion] = useState<Region>("global");
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-
-    const getPrice = (tier: PricingTier) => {
-        return region === "global" ? tier.globalPrice : tier.menaPrice;
-    };
 
     return (
         <div className="w-full">
-            {/* Region Toggle */}
-            <motion.div
-                className="flex flex-col items-center gap-4 mb-12"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-            >
-                <div className="flex items-center gap-2 text-royal-600 dark:text-royal-400 text-sm">
-                    <Info className="w-4 h-4" />
-                    <span>Select your region for tailored pricing</span>
+            {/* CRO & Conversion Optimization */}
+            <section className="mb-16">
+                <div className="text-center mb-8">
+                    <h3 className="text-2xl md:text-3xl font-serif font-bold text-royal-900 dark:text-white mb-3">
+                        CRO & Conversion Optimization
+                    </h3>
+                    <p className="text-royal-600 dark:text-royal-400 max-w-2xl mx-auto">
+                        Audits, sprints, and retainers to grow revenue from existing traffic
+                    </p>
                 </div>
 
-                <div className="inline-flex items-center gap-0 p-1.5 bg-gray-100 dark:bg-gray-800 rounded-full shadow-inner border border-gray-200 dark:border-gray-700">
-                    <button
-                        onClick={() => setRegion("global")}
-                        className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                            region === "global"
-                                ? "bg-gradient-to-r from-royal-600 to-royal-700 text-white shadow-lg"
-                                : "text-gray-600 dark:text-gray-400 hover:text-royal-700 dark:hover:text-royal-300"
-                        }`}
-                    >
-                        <Globe className="w-4 h-4" />
-                        Global
-                    </button>
-                    <button
-                        onClick={() => setRegion("mena")}
-                        className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                            region === "mena"
-                                ? "bg-gradient-to-r from-gold-500 to-gold-600 text-white shadow-lg"
-                                : "text-gray-600 dark:text-gray-400 hover:text-gold-600 dark:hover:text-gold-400"
-                        }`}
-                    >
-                        <MapPin className="w-4 h-4" />
-                        Lebanon & MENA
-                    </button>
+                <div className="grid md:grid-cols-3 gap-6">
+                    {croTiers.map((tier, index) => (
+                        <TierCard
+                            key={tier.name}
+                            tier={tier}
+                            index={index}
+                            hoveredCard={hoveredCard}
+                            setHoveredCard={setHoveredCard}
+                            gradient="from-orange-500 to-red-600"
+                        />
+                    ))}
                 </div>
-
-                {region === "mena" && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-gold-50 dark:bg-gold-900/20 border border-gold-200 dark:border-gold-800 rounded-full text-sm text-gold-700 dark:text-gold-400 font-medium"
-                    >
-                        <Star className="w-4 h-4" />
-                        Regional Partner Pricing – Up to 30% off
-                    </motion.div>
-                )}
-            </motion.div>
+            </section>
 
             {/* Shopify Development */}
             <section className="mb-16">
@@ -311,7 +327,6 @@ export function PricingTableSegmented() {
                         <TierCard
                             key={tier.name}
                             tier={tier}
-                            price={getPrice(tier)}
                             index={index}
                             hoveredCard={hoveredCard}
                             setHoveredCard={setHoveredCard}
@@ -338,7 +353,6 @@ export function PricingTableSegmented() {
                         <TierCard
                             key={tier.name}
                             tier={tier}
-                            price={getPrice(tier)}
                             index={index}
                             hoveredCard={hoveredCard}
                             setHoveredCard={setHoveredCard}
@@ -364,7 +378,6 @@ export function PricingTableSegmented() {
                         <TierCard
                             key={tier.name}
                             tier={tier}
-                            price={getPrice(tier)}
                             index={index}
                             hoveredCard={hoveredCard}
                             setHoveredCard={setHoveredCard}
@@ -479,7 +492,6 @@ export function PricingTableSegmented() {
 // Tier Card Component
 interface TierCardProps {
     tier: PricingTier;
-    price: string;
     index: number;
     hoveredCard: string | null;
     setHoveredCard: (id: string | null) => void;
@@ -488,7 +500,6 @@ interface TierCardProps {
 
 function TierCard({
     tier,
-    price,
     index,
     hoveredCard,
     setHoveredCard,
@@ -520,7 +531,7 @@ function TierCard({
                         {tier.name}
                     </h4>
                     <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-royal-600 to-gold-600 dark:from-royal-400 dark:to-gold-400 mb-2">
-                        {price}
+                        {tier.price}
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
                         {tier.description}
