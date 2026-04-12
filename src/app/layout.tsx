@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     },
     keywords: [
         "Bechara El Maalouf",
-        "Full-Stack Developer",
+        "Shopify CRO Specialist",
         "React",
         "Next.js",
         "Node.js",

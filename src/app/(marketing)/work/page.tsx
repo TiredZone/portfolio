@@ -369,7 +369,7 @@ export default function WorkPage() {
                                         asChild
                                     >
                                         <Link href="/contact">
-                                            Start a Project
+                                            Start a CRO Project
                                             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </Button>

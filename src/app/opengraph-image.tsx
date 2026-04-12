@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 // Image metadata
-export const alt = "Bechara El Maalouf — Full-Stack Developer";
+export const alt = "Bechara El Maalouf — Shopify CRO Specialist";
 export const size = {
     width: 1200,
     height: 630,
@@ -73,7 +73,7 @@ export default async function Image() {
                             margin: 0,
                         }}
                     >
-                        Full‑Stack Developer
+                        Shopify CRO Specialist
                     </div>
 
                     <p

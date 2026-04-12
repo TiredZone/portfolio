@@ -30,7 +30,7 @@ export function Footer() {
                                 <div className="relative w-16 h-16 transition-transform duration-300 group-hover:scale-110">
                                     <Image
                                         src="/images/logo_transparent.png"
-                                        alt="Bechara El Maalouf - Full-Stack Developer"
+                                        alt="Bechara El Maalouf - Shopify CRO Specialist"
                                         fill
                                         className="object-contain"
                                     />

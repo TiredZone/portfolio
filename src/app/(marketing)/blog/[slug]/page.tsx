@@ -179,10 +179,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                         Bechara El Maalouf
                                     </h3>
                                     <p className="text-royal-700 dark:text-royal-300 mb-3">
-                                        Full-Stack Developer specializing in
-                                        Shopify Plus, React, Node.js, and
-                                        automation solutions. Helping businesses
-                                        grow through strategic development.
+                                        Shopify CRO Specialist. I find where
+                                        your store leaks revenue, fix it, and
+                                        prove it worked.
                                     </p>
                                     <Button
                                         variant="outline"

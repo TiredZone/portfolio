@@ -641,7 +641,7 @@ export default function ServicesPage() {
                             >
                                 <Link href="/contact">
                                     <Users className="mr-3 h-5 w-5" />
-                                    Schedule a Call
+                                    Book Your Free Audit
                                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </Button>
