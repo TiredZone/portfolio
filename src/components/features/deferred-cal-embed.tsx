@@ -24,11 +24,8 @@ export function DeferredCalEmbed() {
             window.scrollTo({ top: y, behavior: "instant" });
         };
 
-        // Re-scroll multiple times to beat Cal.com's scroll hijack
-        setTimeout(resnap, 50);
-        setTimeout(resnap, 200);
-        setTimeout(resnap, 500);
-        setTimeout(resnap, 1000);
+        // Let Cal.com finish its scroll hijack, then snap back once
+        setTimeout(resnap, 600);
     }, [scrollTarget]);
 
     return <CalEmbed defer={shouldDefer} onReady={handleCalReady} />;
