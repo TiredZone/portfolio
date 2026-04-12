@@ -173,8 +173,7 @@ export function Hero() {
                         <Sparkles className="w-4 h-4" />
                     </motion.div>
                     <span>
-                        Advanced Systems & Operations Developer • CRO Expert •
-                        Enterprise Automation
+                        Shopify CRO Specialist — I Turn Traffic Into Revenue
                     </span>
                     <motion.div
                         animate={{ scale: [1, 1.2, 1] }}
@@ -234,13 +233,11 @@ export function Hero() {
                         transition={{ delay: 1.2 }}
                         className="text-lg md:text-xl text-royal-200 mt-4"
                     >
-                        Full-stack developer helping{" "}
+                        CRO specialist helping{" "}
                         <span className="text-gold-400 font-bold">
-                            $2M/mo brands
+                            7-to-9 figure Shopify stores
                         </span>{" "}
-                        turn performance problems into 32% revenue increases
-                        — through Shopify optimization, automation, and
-                        strategic development.
+                        turn performance problems into 32% revenue increases. I find where your funnel leaks money, fix it inside your Shopify theme, test it, and prove it worked.
                     </motion.p>
                 </motion.div>
 
@@ -262,7 +259,7 @@ export function Hero() {
                         >
                             <Link href="/contact">
                                 <Calendar className="mr-3 h-5 w-5" />
-                                Book a Strategy Call
+                                Get a Free CRO Audit
                                 <motion.div
                                     className="ml-3"
                                     animate={{ x: [0, 5, 0] }}
@@ -289,7 +286,7 @@ export function Hero() {
                         >
                             <Link href="/work">
                                 <Code className="mr-3 h-5 w-5" />
-                                View Case Studies
+                                See My Results
                                 <ArrowRight className="ml-3 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </Button>
@@ -306,7 +303,7 @@ export function Hero() {
                     transition={{ delay: 1.2, duration: 0.8 }}
                     className="text-sm text-royal-200/70"
                 >
-                    Trusted by brands generating $2M+/mo in revenue
+                    3+ years optimizing 7-to-9 figure Shopify stores at a performance marketing agency
                 </motion.p>
 
                 <motion.div

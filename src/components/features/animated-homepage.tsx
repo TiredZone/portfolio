@@ -13,7 +13,7 @@ import {
     FloatingElements,
     GradientOrb,
 } from "@/components/common/floating-elements";
-import { ArrowRight, Award, TrendingUp, Zap } from "lucide-react";
+import { ArrowRight, Award, TrendingUp, Zap, Target } from "lucide-react";
 import Link from "next/link";
 import { type CaseStudy } from "@/lib/mdx";
 import { motion, useInView } from "framer-motion";
@@ -152,16 +152,16 @@ export function AnimatedHomepage({
                                 whileHover={{ scale: 1.05, y: -5 }}
                             >
                                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-royal-600 text-white mb-4">
-                                    <Zap className="w-6 h-6" />
+                                    <Target className="w-6 h-6" />
                                 </div>
                                 <div className="text-4xl font-bold text-royal-900 dark:text-white mb-2">
-                                    15+
+                                    90+
                                 </div>
                                 <div className="text-sm text-royal-700 dark:text-royal-300">
-                                    Production Pipelines
+                                    A/B Tests Executed
                                 </div>
                                 <div className="text-xs text-royal-600 dark:text-royal-400 mt-1">
-                                    Enterprise Automation
+                                    Hypothesis-driven testing on real Shopify stores
                                 </div>
                             </motion.div>
 
@@ -206,9 +206,7 @@ export function AnimatedHomepage({
                                     Featured Work
                                 </h2>
                                 <p className="text-lg text-royal-700 dark:text-royal-300 max-w-2xl mx-auto">
-                                    Real projects, real results. See how I help
-                                    businesses grow through strategic
-                                    development.
+                                    Real CRO wins, real revenue. Every project here drove measurable business outcomes.
                                 </p>
                             </motion.div>
 
@@ -481,7 +479,8 @@ export function AnimatedHomepage({
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6 }}
                             >
-                                Ready to Build Something Amazing?
+                                Let&apos;s Find the Revenue You&apos;re Leaving
+                                on the Table
                             </motion.h2>
                             <motion.p
                                 className="text-lg text-royal-700 dark:text-royal-300 mb-8 max-w-2xl mx-auto"
@@ -490,9 +489,9 @@ export function AnimatedHomepage({
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.1 }}
                             >
-                                Let&apos;s discuss your project and how I can
-                                help you achieve your goals. Book a free
-                                30-minute strategy call.
+                                Book a free 30-minute strategy call. I&apos;ll
+                                audit your store, identify conversion leaks, and
+                                outline a plan to increase revenue.
                             </motion.p>
                             <motion.div
                                 className="flex flex-col sm:flex-row gap-4 justify-center"

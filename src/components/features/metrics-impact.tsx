@@ -39,10 +39,13 @@ function CountUp({
     duration?: number;
     started: boolean;
 }) {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(target);
+    const hasAnimated = useRef(false);
 
     useEffect(() => {
-        if (!started) return;
+        if (!started || hasAnimated.current) return;
+        hasAnimated.current = true;
+        setCount(0);
 
         let startTime: number | null = null;
         let rafId: number;
@@ -51,7 +54,6 @@ function CountUp({
             if (!startTime) startTime = timestamp;
             const elapsed = timestamp - startTime;
             const progress = Math.min(elapsed / (duration * 1000), 1);
-            // Ease out cubic
             const eased = 1 - Math.pow(1 - progress, 3);
             setCount(Math.round(eased * target));
 
@@ -148,8 +150,7 @@ export function MetricsImpact() {
                     animate={inView ? { opacity: 1 } : {}}
                     transition={{ duration: 0.5, delay: 0.8 }}
                 >
-                    Results from work at a performance marketing agency. Client
-                    names anonymized per confidentiality agreements.
+                    Real results from 3+ years of CRO work. Client names anonymized per confidentiality agreements — every number is documented.
                 </motion.p>
             </div>
         </section>
