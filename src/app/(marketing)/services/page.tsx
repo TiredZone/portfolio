@@ -429,7 +429,7 @@ export default function ServicesPage() {
                                             className="w-full mt-auto bg-gradient-to-r from-royal-600 to-royal-700 hover:from-royal-700 hover:to-royal-800 text-white group/btn"
                                             asChild
                                         >
-                                            <Link href={`/contact?service=${service.serviceParam}&tier=${encodeURIComponent(service.title)}#contact-form`}>
+                                            <Link href={`/contact?service=${service.serviceParam}&tier=${encodeURIComponent(service.title)}#contact-form`} scroll={false}>
                                                 <MessageSquare className="w-4 h-4 mr-2" />
                                                 Discuss This Service
                                                 <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
@@ -645,7 +645,7 @@ export default function ServicesPage() {
                                 className="bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-600 text-royal-900 font-semibold group px-8 py-4 text-lg shadow-xl shadow-gold-400/25"
                                 asChild
                             >
-                                <Link href="/contact#booking">
+                                <Link href="/contact#booking" scroll={false}>
                                     <Users className="mr-3 h-5 w-5" />
                                     Book Your Free Audit
                                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />

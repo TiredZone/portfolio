@@ -257,7 +257,7 @@ export function PricingTable() {
                                 }`}
                                 asChild
                             >
-                                <Link href={plan.buttonHref}>
+                                <Link href={plan.buttonHref} scroll={false}>
                                     {plan.buttonText}
                                     <motion.div
                                         className="ml-2 group-hover/btn:translate-x-1 transition-transform duration-200"

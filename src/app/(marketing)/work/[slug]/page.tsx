@@ -197,7 +197,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                                     className="bg-gold-500 hover:bg-gold-600 text-royal-900 font-semibold"
                                     asChild
                                 >
-                                    <Link href="/contact#booking">Book Your Free Audit</Link>
+                                    <Link href="/contact#booking" scroll={false}>Book Your Free Audit</Link>
                                 </Button>
                                 <Button
                                     size="lg"
