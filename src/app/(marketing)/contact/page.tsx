@@ -27,15 +27,13 @@ export default function ContactPage() {
                     <div className="max-w-5xl mx-auto text-center space-y-8">
                         <div className="space-y-6">
                             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-royal-900 via-royal-700 to-gold-600 dark:from-white dark:via-royal-100 dark:to-gold-400 bg-clip-text text-transparent leading-tight">
-                                Let&apos;s Work Together
+                                Let&apos;s Find Your Revenue Leaks
                             </h1>
                             <p className="text-xl md:text-2xl text-royal-700 dark:text-royal-200 max-w-3xl mx-auto leading-relaxed">
-                                Have a project in mind? I&apos;d love to hear
-                                about it.
-                                <span className="block mt-2 text-lg opacity-90">
-                                    Book a call or send a message and I&apos;ll
-                                    get back to you within 24 hours.
-                                </span>
+                                Book a free 30-minute CRO audit &mdash; I&apos;ll
+                                review your Shopify store live, identify the
+                                biggest conversion killers, and give you 3
+                                actionable wins. No pitch, no pressure.
                             </p>
                         </div>
                     </div>
@@ -131,7 +129,7 @@ export default function ContactPage() {
                     <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-12">
                             <h2 className="text-4xl md:text-5xl font-bold text-royal-900 dark:text-white mb-6">
-                                Book a Free Consultation
+                                Book Your Free CRO Audit
                             </h2>
                             <p className="text-lg md:text-xl text-royal-700 dark:text-royal-300 max-w-2xl mx-auto leading-relaxed">
                                 Schedule a 30-minute call to discuss your

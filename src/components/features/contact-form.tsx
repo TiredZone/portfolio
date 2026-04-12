@@ -15,7 +15,7 @@ type FormData = {
     name: string;
     email: string;
     company?: string;
-    projectType: "shopify" | "webapp" | "automation" | "consulting" | "other";
+    projectType: "cro_audit" | "shopify" | "automation" | "consulting" | "employment" | "other";
     budget: "<10k" | "10-25k" | "25-50k" | "50k+";
     timeline: "asap" | "1-2 months" | "3-6 months" | "6+ months";
     message: string;
@@ -178,14 +178,11 @@ export function ContactForm() {
                             }`}
                         >
                             <option value="">Select a type</option>
+                            <option value="cro_audit">CRO Audit &amp; Optimization</option>
                             <option value="shopify">Shopify Development</option>
-                            <option value="webapp">Web Application</option>
-                            <option value="automation">
-                                Automation/Integration
-                            </option>
-                            <option value="consulting">
-                                Technical Consulting
-                            </option>
+                            <option value="automation">Automation/Integration</option>
+                            <option value="consulting">Technical Consulting</option>
+                            <option value="employment">Full-Time / Employment Opportunity</option>
                             <option value="other">Other</option>
                         </select>
                         {errors.projectType && (

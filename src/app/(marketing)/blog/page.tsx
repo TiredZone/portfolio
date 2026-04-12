@@ -37,11 +37,12 @@ export default function BlogPage() {
                 <Container>
                     <div className="max-w-4xl mx-auto text-center space-y-6">
                         <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-royal-900 via-royal-700 to-gold-600 dark:from-white dark:via-royal-100 dark:to-gold-400 bg-clip-text text-transparent leading-tight">
-                            Blog
+                            Shopify CRO Insights
                         </h1>
                         <p className="text-xl md:text-2xl text-royal-700 dark:text-royal-200 max-w-2xl mx-auto leading-relaxed">
-                            Insights on web development, Shopify optimization,
-                            and building successful digital experiences
+                            A/B test breakdowns, conversion optimization
+                            tactics, and lessons from optimizing 7-to-9 figure
+                            Shopify stores.
                         </p>
                     </div>
                 </Container>
@@ -123,11 +124,12 @@ export default function BlogPage() {
                     <Container>
                         <div className="max-w-2xl mx-auto text-center">
                             <h2 className="text-3xl font-bold mb-4">
-                                Never Miss an Update
+                                Free Weekly CRO Teardown
                             </h2>
                             <p className="text-royal-100 mb-6">
-                                Get notified when I publish new articles about
-                                web development, Shopify, and automation.
+                                I audit a real Shopify store every week and
+                                share exactly what I&apos;d change. Get it in
+                                your inbox.
                             </p>
                             <NewsletterSignup />
                         </div>

@@ -10,7 +10,7 @@ const contactSchema = z.object({
     email: z.email("Invalid email address"),
     company: z.string().optional(),
     projectType: z.enum(
-        ["shopify", "webapp", "automation", "consulting", "other"],
+        ["cro_audit", "shopify", "automation", "consulting", "employment", "other"],
         "Please select a project type"
     ),
     budget: z.enum(
@@ -29,10 +29,11 @@ export async function sendContactForm(data: z.infer<typeof contactSchema>) {
         const validatedData = contactSchema.parse(data);
 
         const projectTypeLabels = {
+            cro_audit: "CRO Audit & Optimization",
             shopify: "Shopify Development",
-            webapp: "Web Application",
             automation: "Automation/Integration",
             consulting: "Technical Consulting",
+            employment: "Full-Time / Employment Opportunity",
             other: "Other",
         } as const;
 
