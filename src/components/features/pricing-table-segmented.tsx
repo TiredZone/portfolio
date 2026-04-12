@@ -502,7 +502,7 @@ export function PricingTableSegmented() {
                     className="bg-gradient-to-r from-royal-600 to-royal-700 hover:from-royal-700 hover:to-royal-800 text-white font-semibold group px-8 py-4 text-lg shadow-xl shadow-royal-600/25"
                     asChild
                 >
-                    <Link href="/contact#contact-form" scroll={false}>
+                    <Link href="/contact?scrollTo=form">
                         Get a Custom Quote
                         <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
@@ -534,7 +534,7 @@ function TierCard({
     const ctaHref = (() => {
         const base = `/contact?service=${tier.serviceParam ?? "cro_audit"}&tier=${encodeURIComponent(tier.name)}`;
         const withBudget = tier.budgetHint ? `${base}&budget=${tier.budgetHint}` : base;
-        return `${withBudget}#contact-form`;
+        return `${withBudget}&scrollTo=form`;
     })();
 
     return (
@@ -616,7 +616,7 @@ function TierCard({
                         className="w-full group/btn"
                         asChild
                     >
-                        <Link href={ctaHref} scroll={false}>
+                        <Link href={ctaHref}>
                             Discuss {tier.name}
                             <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Link>

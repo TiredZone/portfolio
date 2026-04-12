@@ -274,7 +274,7 @@ export function FAQ() {
                         project in detail.
                     </p>
                     <motion.a
-                        href="/contact#booking"
+                        href="/contact?scrollTo=booking"
                         className="inline-flex items-center gap-2 text-gold-600 dark:text-gold-400 font-semibold hover:text-gold-700 dark:hover:text-gold-300 transition-colors duration-200"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}

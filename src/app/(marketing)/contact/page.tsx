@@ -9,6 +9,7 @@ import { FloatingElements } from "@/components/common/floating-elements";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { FAQ } from "@/components/features/faq";
+import { ScrollToSection } from "@/components/common/scroll-to-section";
 
 export const metadata: Metadata = generateMetadata({
     title: "Work With Me — Book a Free Shopify CRO Audit",
@@ -20,6 +21,9 @@ export const metadata: Metadata = generateMetadata({
 export default function ContactPage() {
     return (
         <>
+            <Suspense fallback={null}>
+                <ScrollToSection />
+            </Suspense>
             <FloatingElements />
 
             {/* Hero */}

@@ -258,7 +258,7 @@ export function Navbar() {
                                 className="bg-gold-500 hover:bg-gold-600 text-royal-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                                 asChild
                             >
-                                <Link href="/contact#booking" scroll={false}>
+                                <Link href="/contact?scrollTo=booking">
                                     <motion.div
                                         animate={{ rotate: [0, 10, -10, 0] }}
                                         transition={{
@@ -322,7 +322,7 @@ export function Navbar() {
                                         className="bg-gold-500 hover:bg-gold-600 text-royal-900 font-semibold w-full shadow-lg hover:shadow-xl transition-all duration-300"
                                         asChild
                                     >
-                                        <Link href="/contact#booking" scroll={false}>
+                                        <Link href="/contact?scrollTo=booking">
                                             <motion.div
                                                 animate={{
                                                     rotate: [0, 10, -10, 0],

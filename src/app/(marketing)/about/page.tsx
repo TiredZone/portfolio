@@ -166,7 +166,7 @@ export default function AboutPage() {
                                         className="bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-600 text-royal-900 font-semibold group px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg shadow-xl shadow-gold-400/25 hover:shadow-gold-400/40 transition-all duration-300"
                                         asChild
                                     >
-                                        <Link href="/contact#booking" scroll={false}>
+                                        <Link href="/contact?scrollTo=booking">
                                             <Mail className="mr-3 h-5 w-5" />
                                             Let&apos;s Work Together
                                             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -544,7 +544,7 @@ export default function AboutPage() {
                                 className="bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-600 text-royal-900 font-semibold group px-8 py-4 text-lg shadow-xl shadow-gold-400/25"
                                 asChild
                             >
-                                <Link href="/contact?service=cro_audit#contact-form">
+                                <Link href="/contact?service=cro_audit&scrollTo=form">
                                     <Briefcase className="mr-3 h-5 w-5" />
                                     Start a CRO Project
                                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
