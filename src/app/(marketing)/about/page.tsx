@@ -21,6 +21,8 @@ import {
     Globe,
     Award,
     Briefcase,
+    BarChart3,
+    TrendingUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -37,36 +39,36 @@ export default function AboutPage() {
     const achievements = [
         {
             icon: Trophy,
-            value: "32%",
-            label: "Revenue Increase",
-            description: "Delivered for $2M/mo brands",
+            value: "$500K+",
+            label: "Revenue Generated",
+            description: "Through CRO optimization",
             color: "text-gold-600 dark:text-gold-400",
             bgColor: "bg-gold-100 dark:bg-gold-900/20",
             borderColor: "border-gold-200 dark:border-gold-700",
         },
         {
             icon: Code,
-            value: "25+",
-            label: "Technologies",
-            description: "Across full-stack development",
+            value: "8+",
+            label: "DTC Brands Optimized",
+            description: "Across Shopify stores",
             color: "text-royal-600 dark:text-royal-400",
             bgColor: "bg-royal-100 dark:bg-royal-900/20",
             borderColor: "border-royal-200 dark:border-royal-700",
         },
         {
             icon: Users,
-            value: "50K+",
-            label: "Leads Processed",
-            description: "Through automation systems",
+            value: "90+",
+            label: "A/B Tests Executed",
+            description: "Hypothesis-driven testing",
             color: "text-green-600 dark:text-green-400",
             bgColor: "bg-green-100 dark:bg-green-900/20",
             borderColor: "border-green-200 dark:border-green-700",
         },
         {
             icon: Clock,
-            value: "4+",
-            label: "Years Experience",
-            description: "Building scalable solutions",
+            value: "3+",
+            label: "Years of CRO",
+            description: "At a performance marketing agency",
             color: "text-blue-600 dark:text-blue-400",
             bgColor: "bg-blue-100 dark:bg-blue-900/20",
             borderColor: "border-blue-200 dark:border-blue-700",
@@ -75,26 +77,26 @@ export default function AboutPage() {
 
     const coreValues = [
         {
-            icon: Target,
-            title: "Results-Driven",
+            icon: BarChart3,
+            title: "Data Over Opinions",
             description:
-                "Every line of code serves a purpose - driving measurable business outcomes and user satisfaction.",
+                "I don't guess. Every change starts with analytics, heatmaps, and user behavior data. If I can't measure it, I don't ship it.",
             color: "text-gold-600 dark:text-gold-400",
             bgColor: "bg-gold-50 dark:bg-gold-900/10",
         },
         {
-            icon: Zap,
-            title: "Performance First",
+            icon: Code,
+            title: "Implementation, Not Recommendations",
             description:
-                "Obsessed with speed, efficiency, and scalability. From Core Web Vitals to database optimization.",
+                "Most CRO consultants hand you a PDF. I'm also a Shopify developer — I implement changes directly in your theme. No translation layer, no lost-in-handoff.",
             color: "text-royal-600 dark:text-royal-400",
             bgColor: "bg-royal-50 dark:bg-royal-900/10",
         },
         {
-            icon: Users,
-            title: "User-Centric",
+            icon: TrendingUp,
+            title: "Revenue Is the Only Metric",
             description:
-                "Building experiences that users love, with accessibility and usability at the forefront.",
+                "Conversion rate is a means, not an end. I optimize for revenue. Sometimes that means increasing AOV, not just CVR.",
             color: "text-green-600 dark:text-green-400",
             bgColor: "bg-green-50 dark:bg-green-900/10",
         },
@@ -121,30 +123,33 @@ export default function AboutPage() {
                                 <div className="space-y-6">
                                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-gold-400 text-sm font-medium">
                                         <Star className="w-4 h-4" />
-                                        Full-Stack Developer
+                                        Shopify CRO Specialist
                                     </div>
 
                                     <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight">
                                         From Web3 to
                                         <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-300 to-gold-500">
-                                            Revenue.
+                                            $500K+ in CRO
                                         </span>
-                                        How I Got Here.
+                                        Revenue.
                                     </h1>
 
                                     <p className="text-lg sm:text-xl md:text-2xl text-royal-100 leading-relaxed max-w-2xl">
-                                        I went from building decentralized exchanges
-                                        to generating $500K+ in CRO revenue for
-                                        ecommerce brands. Here&apos;s the story.
+                                        I spent 3+ years running CRO for 7-to-9
+                                        figure Shopify stores at a performance
+                                        marketing agency — real A/B tests, real
+                                        revenue lifts, real implementation inside
+                                        Shopify themes. Here&apos;s how I got here
+                                        and where I&apos;m going.
                                     </p>
                                 </div>
 
                                 <div className="flex flex-wrap gap-3">
                                     {[
-                                        "React & Next.js",
-                                        "Node.js & .NET",
-                                        "Mobile & Cloud",
-                                        "AI Automation",
+                                        "Shopify & CRO",
+                                        "A/B Testing & Analytics",
+                                        "Automation & ETL",
+                                        "Full-Stack Development",
                                     ].map((tech) => (
                                         <div
                                             key={tech}
@@ -252,46 +257,66 @@ export default function AboutPage() {
 
                                     <div className="prose prose-lg dark:prose-invert max-w-none space-y-6">
                                         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                            I&apos;m{" "}
-                                            <strong>Bechara El Maalouf</strong>,
-                                            a Full-Stack Developer with
-                                            comprehensive expertise spanning
-                                            modern web technologies, from
-                                            foundational HTML/CSS/JS to advanced
-                                            cloud architectures with Docker and
-                                            Kubernetes.
+                                            I started in Web3 — building
+                                            decentralized exchanges, SDKs, and
+                                            NFT platforms at Orcania. It was
+                                            technically fascinating but
+                                            disconnected from real business
+                                            impact.
                                         </p>
 
                                         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                            My technical journey covers the{" "}
-                                            <strong>full spectrum</strong>:
-                                            frontend development with
-                                            React/Angular, backend systems with
-                                            Node.js and .NET Core, database
-                                            management with MongoDB and MS SQL
-                                            Server, mobile apps with React
-                                            Native/Flutter, DevOps with
-                                            Docker/Kubernetes, AI automation
-                                            workflows, and blockchain/Web3
-                                            development.
+                                            Then I joined BAD Marketing as a CRO
+                                            Web Developer, and everything
+                                            changed. For the first time, I could
+                                            measure the exact revenue impact of
+                                            my code. A layout change I made based
+                                            on heatmap data? 77% homepage
+                                            conversion lift. A full-site CRO
+                                            overhaul for a luxury brand? 167%
+                                            conversion rate increase with half
+                                            the ad spend. Over 3 years, the CRO
+                                            work I led generated over $500K in
+                                            measurable revenue across 8+ DTC
+                                            brands.
+                                        </p>
+
+                                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                            Now I combine that CRO methodology
+                                            with Shopify development skills most
+                                            CRO consultants don&apos;t have. I
+                                            don&apos;t hand you a PDF of
+                                            recommendations. I find what&apos;s
+                                            broken, build the fix in your Liquid
+                                            theme, test it, and prove it worked.
+                                        </p>
+
+                                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                                            I also build high-converting funnels
+                                            and advertorials at CROEvolution for
+                                            7-to-9 figure DTC brands — custom
+                                            Shopify templates optimized for cold
+                                            traffic that lower customer
+                                            acquisition costs. And I&apos;m
+                                            building CROHound, a CRO agency
+                                            focused exclusively on Shopify
+                                            stores.
                                         </p>
 
                                         <div className="bg-gradient-to-r from-gold-50 to-royal-50 dark:from-gold-900/10 dark:to-royal-900/10 p-6 rounded-xl border border-gold-200 dark:border-gold-700">
                                             <p className="text-gray-800 dark:text-gray-200 font-medium">
                                                 <Award className="inline w-5 h-5 text-gold-600 mr-2" />
-                                                Key Achievement: Delivered{" "}
                                                 <span className="text-gold-600 dark:text-gold-400 font-bold">
-                                                    32% revenue increase{" "}
+                                                    32% revenue increase for a
+                                                    7-figure Shopify store — in
+                                                    15 days
                                                 </span>
-                                                for $2M/mo brands through
-                                                performance optimization and
-                                                built automation systems
-                                                processing
+                                                <br />
                                                 <span className="text-royal-600 dark:text-royal-400 font-bold">
-                                                    {" "}
-                                                    50,000+ leads monthly
+                                                    167% conversion rate lift for
+                                                    a luxury home brand — with
+                                                    half the ad spend
                                                 </span>
-                                                .
                                             </p>
                                         </div>
                                     </div>
@@ -306,19 +331,19 @@ export default function AboutPage() {
                                         {[
                                             {
                                                 area: "Shopify & CRO",
-                                                detail: "Theme builds, A/B tests, checkout optimization — drove 32% revenue increases",
+                                                detail: "Theme builds, A/B tests, checkout optimization — drove 32% revenue increases for 7-figure stores",
                                             },
                                             {
-                                                area: "Automation",
-                                                detail: "n8n workflows, ETL pipelines, lead processing — 50K+ leads/month",
+                                                area: "Automation & ETL",
+                                                detail: "n8n workflows, data pipelines, lead processing — 50K+ leads/month automated",
                                             },
                                             {
                                                 area: "Full-Stack Web",
                                                 detail: "React/Next.js apps, Node.js APIs, TypeScript — production-grade systems",
                                             },
                                             {
-                                                area: "DevOps",
-                                                detail: "Docker, CI/CD, monitoring — 75% faster deployments",
+                                                area: "DevOps & Monitoring",
+                                                detail: "Docker, CI/CD, BigQuery dashboards — 75% faster deployments",
                                             },
                                         ].map((item) => (
                                             <div

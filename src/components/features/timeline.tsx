@@ -1,9 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Building2, Award, Zap } from "lucide-react";
+import { Calendar, Building2, Award, Zap, TrendingUp } from "lucide-react";
 
 const experiences = [
+    {
+        year: "Oct 2025 - Present",
+        title: "CRO & Funnel Developer",
+        company: "CROEvolution (Part-time)",
+        description:
+            "Build high-converting funnels, advertorials, and listicles for 7-to-9 figure DTC brands. Custom Shopify templates optimized for cold traffic using AI-powered workflows, delivering in 10\u201314 days to lower customer acquisition costs.",
+        icon: TrendingUp,
+        metrics: ["10\u201314 day delivery", "Cold traffic funnels", "Native Shopify code"],
+    },
     {
         year: "Oct 2024 - Present",
         title: "Automation Engineer",
@@ -27,32 +36,27 @@ const experiences = [
         title: "Advanced Systems & Operations Developer",
         company: "BAD Marketing (Remote)",
         description:
-            "Promoted to build enterprise automation systems: modular ETL platforms, multi-stage lead pipelines, and production-grade monitoring. Lead the 'glue' that powers operations at scale.",
+            "Promoted to build enterprise automation: ETL platforms connecting ClickUp, BigQuery, and Klaviyo; multi-stage lead processing pipelines; production-grade monitoring systems. Reduced manual operations work by 75%.",
         icon: Award,
-        metrics: ["300+ line monolith → modular", "15+ production pipelines"],
+        metrics: ["300+ line monolith \u2192 modular", "15+ production pipelines"],
     },
     {
         year: "Sep 2022 - Sep 2025",
         title: "CRO Web Developer",
         company: "BAD Marketing (Remote)",
         description:
-            "Generated $500K+ revenue through conversion optimization across 8+ DTC brands. Drove 52% revenue growth, 22% conversion lift, 9.31% peak CR, and 386% upsell improvement.",
+            "Led conversion rate optimization for 8+ DTC Shopify brands generating $2M+/mo. Executed 90+ A/B tests, delivered 32% revenue increases, 167% CVR lifts, and $500K+ in attributable revenue. Built CRO tracking systems, heatmap analysis workflows, and testing playbooks.",
         icon: Award,
-        metrics: ["$500K+ revenue generated", "8+ brands optimized"],
+        metrics: ["$500K+ CRO revenue", "90+ A/B tests", "8+ brands optimized"],
     },
     {
         year: "Jan 2022 - Dec 2022",
         title: "Lead Web3 Developer",
         company: "Orcania (Remote)",
         description:
-            "Architected Celeste-JS SDK powering 5+ DApps, built multi-chain DEX supporting Ethereum/Boba networks, and developed BitNaft NFT analytics platform. Led complete Web3 infrastructure ecosystem.",
+            "Architected Web3 SDK and multi-chain DEX. Learned to build production systems at scale \u2014 then pivoted to where code drives revenue directly.",
         icon: Calendar,
-        metrics: [
-            "Celeste-JS SDK",
-            "Multi-chain DEX",
-            "NFT platform",
-            "5+ DApps powered",
-        ],
+        metrics: ["Celeste-JS SDK", "Multi-chain DEX"],
     },
 ];
 
