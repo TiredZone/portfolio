@@ -104,7 +104,7 @@ export function ContactForm() {
     };
 
     return (
-        <Card id="contact-form" className="p-8 border-royal-100 dark:border-royal-800">
+        <Card id="contact-form" className="scroll-mt-24 p-8 border-royal-100 dark:border-royal-800">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                     {/* Name */}

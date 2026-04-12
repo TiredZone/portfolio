@@ -125,7 +125,7 @@ export default function ContactPage() {
             </Section>
 
             {/* Booking Calendar */}
-            <Section id="booking" className="bg-gradient-to-br from-royal-50/30 to-gold-50/30 dark:from-royal-900/20 dark:to-black/20">
+            <Section id="booking" className="scroll-mt-24 bg-gradient-to-br from-royal-50/30 to-gold-50/30 dark:from-royal-900/20 dark:to-black/20">
                 <Container>
                     <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-12">
