@@ -19,6 +19,7 @@ const pricingPlans = [
             "Recorded Loom recap",
         ],
         buttonText: "Book Your Audit",
+        buttonHref: "/contact#booking",
         buttonVariant: "outline" as const,
         popular: false,
         icon: Shield,
@@ -40,6 +41,7 @@ const pricingPlans = [
             "Detailed results report",
         ],
         buttonText: "Start a Sprint",
+        buttonHref: "/contact?service=cro_audit&tier=CRO+Sprint&budget=10-25k#contact-form",
         buttonVariant: "default" as const,
         popular: true,
         icon: Zap,
@@ -61,6 +63,7 @@ const pricingPlans = [
             "Direct access — no middlemen",
         ],
         buttonText: "Apply for Retainer",
+        buttonHref: "/contact?service=cro_audit&tier=Monthly+CRO+Retainer&budget=25-50k#contact-form",
         buttonVariant: "outline" as const,
         popular: false,
         icon: Star,
@@ -254,7 +257,7 @@ export function PricingTable() {
                                 }`}
                                 asChild
                             >
-                                <Link href="/contact">
+                                <Link href={plan.buttonHref}>
                                     {plan.buttonText}
                                     <motion.div
                                         className="ml-2 group-hover/btn:translate-x-1 transition-transform duration-200"

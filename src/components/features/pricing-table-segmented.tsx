@@ -19,6 +19,8 @@ interface PricingTier {
     scope: string[];
     deliverables: string[];
     timeline?: string;
+    serviceParam?: string;
+    budgetHint?: string;
 }
 
 const croTiers: PricingTier[] = [
@@ -40,6 +42,8 @@ const croTiers: PricingTier[] = [
             "Analytics baseline documentation",
         ],
         timeline: "1–2 weeks",
+        serviceParam: "cro_audit",
+        budgetHint: "10-25k",
     },
     {
         name: "CRO Sprint",
@@ -58,6 +62,8 @@ const croTiers: PricingTier[] = [
             "14-day post-launch monitoring",
         ],
         timeline: "4–6 weeks",
+        serviceParam: "cro_audit",
+        budgetHint: "10-25k",
     },
     {
         name: "Monthly CRO Retainer",
@@ -77,6 +83,8 @@ const croTiers: PricingTier[] = [
             "Quarterly strategy review call",
         ],
         timeline: "Ongoing",
+        serviceParam: "cro_audit",
+        budgetHint: "25-50k",
     },
 ];
 
@@ -101,6 +109,8 @@ const shopifyTiers: PricingTier[] = [
             "14-day post-launch support",
         ],
         timeline: "2–3 weeks",
+        serviceParam: "shopify",
+        budgetHint: "10-25k",
     },
     {
         name: "Scale",
@@ -122,6 +132,8 @@ const shopifyTiers: PricingTier[] = [
             "30-day post-launch support",
         ],
         timeline: "3–5 weeks",
+        serviceParam: "shopify",
+        budgetHint: "10-25k",
     },
     {
         name: "Plus / Enterprise",
@@ -143,6 +155,8 @@ const shopifyTiers: PricingTier[] = [
             "60-day post-launch support",
         ],
         timeline: "6–12 weeks",
+        serviceParam: "shopify",
+        budgetHint: "25-50k",
     },
 ];
 
@@ -166,6 +180,7 @@ const automationTiers: PricingTier[] = [
             "1 week of adjustments",
         ],
         timeline: "1–2 weeks",
+        serviceParam: "automation",
     },
     {
         name: "Growth",
@@ -187,6 +202,8 @@ const automationTiers: PricingTier[] = [
             "2 weeks of support",
         ],
         timeline: "2–4 weeks",
+        serviceParam: "automation",
+        budgetHint: "10-25k",
     },
     {
         name: "Advanced",
@@ -207,6 +224,8 @@ const automationTiers: PricingTier[] = [
             "30-day support & maintenance",
         ],
         timeline: "4–8 weeks",
+        serviceParam: "automation",
+        budgetHint: "10-25k",
     },
 ];
 
@@ -230,6 +249,8 @@ const webAppTiers: PricingTier[] = [
             "14-day warranty",
         ],
         timeline: "4–6 weeks",
+        serviceParam: "shopify",
+        budgetHint: "10-25k",
     },
     {
         name: "Full Build",
@@ -251,6 +272,8 @@ const webAppTiers: PricingTier[] = [
             "30-day warranty & support",
         ],
         timeline: "8–12 weeks",
+        serviceParam: "shopify",
+        budgetHint: "25-50k",
     },
 ];
 
@@ -479,7 +502,7 @@ export function PricingTableSegmented() {
                     className="bg-gradient-to-r from-royal-600 to-royal-700 hover:from-royal-700 hover:to-royal-800 text-white font-semibold group px-8 py-4 text-lg shadow-xl shadow-royal-600/25"
                     asChild
                 >
-                    <Link href="/contact">
+                    <Link href="/contact#contact-form">
                         Get a Custom Quote
                         <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
@@ -507,6 +530,12 @@ function TierCard({
 }: TierCardProps) {
     const cardId = tier.name;
     const isHovered = hoveredCard === cardId;
+
+    const ctaHref = (() => {
+        const base = `/contact?service=${tier.serviceParam ?? "cro_audit"}&tier=${encodeURIComponent(tier.name)}`;
+        const withBudget = tier.budgetHint ? `${base}&budget=${tier.budgetHint}` : base;
+        return `${withBudget}#contact-form`;
+    })();
 
     return (
         <motion.div
@@ -587,7 +616,7 @@ function TierCard({
                         className="w-full group/btn"
                         asChild
                     >
-                        <Link href="/contact">
+                        <Link href={ctaHref}>
                             Discuss {tier.name}
                             <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Link>

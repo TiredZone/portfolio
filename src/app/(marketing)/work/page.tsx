@@ -368,7 +368,7 @@ export default function WorkPage() {
                                         className="bg-gradient-to-r from-royal-600 to-royal-700 hover:from-royal-700 hover:to-royal-800 text-white font-semibold group px-8 py-4 text-lg shadow-xl shadow-royal-600/25"
                                         asChild
                                     >
-                                        <Link href="/contact">
+                                        <Link href="/contact?service=cro_audit#contact-form">
                                             Start a CRO Project
                                             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                         </Link>

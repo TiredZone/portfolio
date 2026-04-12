@@ -11,10 +11,10 @@ const footerLinks = {
         { name: "Contact", href: "/contact" },
     ],
     services: [
-        { name: "Shopify Development", href: "/contact" },
-        { name: "Web Applications", href: "/contact" },
-        { name: "Automation & Integrations", href: "/contact" },
-        { name: "Technical Consulting", href: "/contact" },
+        { name: "Shopify Development", href: "/services" },
+        { name: "Web Applications", href: "/services" },
+        { name: "Automation & Integrations", href: "/services" },
+        { name: "Technical Consulting", href: "/services" },
     ],
 };
 

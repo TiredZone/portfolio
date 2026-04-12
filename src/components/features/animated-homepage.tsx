@@ -510,7 +510,7 @@ export function AnimatedHomepage({
                                         className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-white hover:text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group border-0"
                                         asChild
                                     >
-                                        <Link href="/contact">
+                                        <Link href="/contact#booking">
                                             Book Your Free Audit
                                             <motion.div
                                                 className="ml-2"

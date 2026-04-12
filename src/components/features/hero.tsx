@@ -257,7 +257,7 @@ export function Hero() {
                             className="bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-600 text-royal-900 font-semibold group px-8 py-4 text-lg shadow-xl shadow-gold-400/25"
                             asChild
                         >
-                            <Link href="/contact">
+                            <Link href="/contact#booking">
                                 <Calendar className="mr-3 h-5 w-5" />
                                 Get a Free CRO Audit
                                 <motion.div

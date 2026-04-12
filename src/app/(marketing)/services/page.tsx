@@ -38,6 +38,7 @@ const services = [
     {
         title: "CRO & Conversion Optimization",
         icon: TrendingUp,
+        serviceParam: "cro_audit",
         description:
             "I audit your Shopify store, identify where you're losing revenue, and implement data-backed changes that increase conversions. Research, implementation, testing, and proof — end to end.",
         features: [
@@ -59,6 +60,7 @@ const services = [
     {
         title: "Shopify Development",
         icon: ShoppingCart,
+        serviceParam: "shopify",
         description:
             "Professional Shopify development from store launches to Plus enterprise customizations—optimized for performance and conversions.",
         features: [
@@ -79,6 +81,7 @@ const services = [
     {
         title: "Custom Web Applications",
         icon: Code2,
+        serviceParam: "shopify",
         description:
             "Full-stack web applications from MVP to enterprise—built with modern technologies for performance, scalability, and exceptional UX.",
         features: [
@@ -100,6 +103,7 @@ const services = [
     {
         title: "Automation & Integrations",
         icon: Zap,
+        serviceParam: "automation",
         description:
             "Intelligent automation from simple workflows to AI-powered systems—eliminate manual work, process data at scale, and connect your tools seamlessly.",
         features: [
@@ -122,6 +126,7 @@ const services = [
     {
         title: "Technical Consulting",
         icon: MessageSquare,
+        serviceParam: "consulting",
         description:
             "Strategic technical guidance with hourly consulting or fixed-price audits—make the right decisions for your product, architecture, and technology stack.",
         features: [
@@ -424,7 +429,7 @@ export default function ServicesPage() {
                                             className="w-full mt-auto bg-gradient-to-r from-royal-600 to-royal-700 hover:from-royal-700 hover:to-royal-800 text-white group/btn"
                                             asChild
                                         >
-                                            <Link href="/contact">
+                                            <Link href={`/contact?service=${service.serviceParam}&tier=${encodeURIComponent(service.title)}#contact-form`}>
                                                 <MessageSquare className="w-4 h-4 mr-2" />
                                                 Discuss This Service
                                                 <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
@@ -640,7 +645,7 @@ export default function ServicesPage() {
                                 className="bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-600 text-royal-900 font-semibold group px-8 py-4 text-lg shadow-xl shadow-gold-400/25"
                                 asChild
                             >
-                                <Link href="/contact">
+                                <Link href="/contact#booking">
                                     <Users className="mr-3 h-5 w-5" />
                                     Book Your Free Audit
                                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
