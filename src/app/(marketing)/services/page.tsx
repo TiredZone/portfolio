@@ -36,6 +36,27 @@ export const metadata: Metadata = generateMetadata({
 
 const services = [
     {
+        title: "CRO & Conversion Optimization",
+        icon: TrendingUp,
+        description:
+            "I audit your Shopify store, identify where you're losing revenue, and implement data-backed changes that increase conversions. Research, implementation, testing, and proof — end to end.",
+        features: [
+            "Heuristic CRO audit",
+            "Heatmap & session recording setup",
+            "Analytics & funnel analysis",
+            "Prioritized conversion roadmap",
+            "Shopify theme implementation",
+            "A/B testing (traffic permitting)",
+            "Before/after results report",
+        ],
+        results: "+10\u201330% CVR, 32% revenue increase",
+        price: "From $2.5k",
+        color: "from-gold-500 to-orange-600",
+        bgColor: "bg-gold-50 dark:bg-gold-900/10",
+        iconColor: "text-gold-600 dark:text-gold-400",
+        whoFor: "Shopify stores doing $50K+/mo that have traffic but aren\u2019t converting.",
+    },
+    {
         title: "Shopify Development",
         icon: ShoppingCart,
         description:
@@ -53,6 +74,7 @@ const services = [
         color: "from-green-500 to-emerald-600",
         bgColor: "bg-green-50 dark:bg-green-900/10",
         iconColor: "text-green-600 dark:text-green-400",
+        whoFor: "Brands launching on Shopify, migrating themes, or needing custom Liquid development.",
     },
     {
         title: "Custom Web Applications",
@@ -73,6 +95,7 @@ const services = [
         color: "from-blue-500 to-cyan-600",
         bgColor: "bg-blue-50 dark:bg-blue-900/10",
         iconColor: "text-blue-600 dark:text-blue-400",
+        whoFor: "Startups and businesses needing custom web applications from MVP to enterprise.",
     },
     {
         title: "Automation & Integrations",
@@ -94,6 +117,7 @@ const services = [
         color: "from-purple-500 to-violet-600",
         bgColor: "bg-purple-50 dark:bg-purple-900/10",
         iconColor: "text-purple-600 dark:text-purple-400",
+        whoFor: "Teams drowning in manual data work, lead processing, or disconnected tools.",
     },
     {
         title: "Technical Consulting",
@@ -101,7 +125,7 @@ const services = [
         description:
             "Strategic technical guidance with hourly consulting or fixed-price audits—make the right decisions for your product, architecture, and technology stack.",
         features: [
-            "$75/hr (retainer discounts available)",
+            "$100/hr (retainer discounts available)",
             "Fixed mini-audits from $400–$600",
             "Architecture & technology selection",
             "Performance audits & optimization",
@@ -111,10 +135,11 @@ const services = [
             "Scalability planning",
         ],
         results: "Actionable recommendations",
-        price: "$75/hr or Fixed",
+        price: "$100/hr or Fixed",
         color: "from-orange-500 to-red-600",
         bgColor: "bg-orange-50 dark:bg-orange-900/10",
         iconColor: "text-orange-600 dark:text-orange-400",
+        whoFor: "Founders or teams needing expert guidance before committing to a build.",
     },
 ];
 
@@ -137,17 +162,17 @@ const achievements = [
     },
     {
         icon: BarChart3,
-        value: "$5M+",
-        label: "Revenue Managed",
-        description: "Client portfolios",
+        value: "$500K+",
+        label: "CRO Revenue Generated",
+        description: "Across 8+ DTC brands",
         color: "text-green-600 dark:text-green-400",
         bgColor: "bg-green-100 dark:bg-green-900/20",
     },
     {
         icon: Clock,
-        value: "99.9%",
-        label: "Uptime Target",
-        description: "Performance SLA",
+        value: "90+",
+        label: "A/B Tests Executed",
+        description: "Hypothesis-driven testing",
         color: "text-purple-600 dark:text-purple-400",
         bgColor: "bg-purple-100 dark:bg-purple-900/20",
     },
@@ -156,9 +181,9 @@ const achievements = [
 const process = [
     {
         step: "1",
-        title: "Discovery Call",
+        title: "Free CRO Audit",
         description:
-            "We discuss your goals, challenges, and requirements to understand the full scope of your project.",
+            "I review your store live, identify the biggest conversion killers, and give you 3 actionable wins. If we're a fit, I'll propose next steps.",
         icon: Lightbulb,
         color: "from-blue-500 to-cyan-500",
     },
@@ -174,7 +199,7 @@ const process = [
         step: "3",
         title: "Development & Iteration",
         description:
-            "Regular updates and check-ins ensure we're aligned throughout development with room for feedback.",
+            "Regular updates and check-ins ensure alignment throughout development with room for feedback.",
         icon: Rocket,
         color: "from-purple-500 to-violet-500",
     },
@@ -243,7 +268,7 @@ export default function ServicesPage() {
                             {/* Badge */}
                             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-gold-400 text-sm font-medium">
                                 <Sparkles className="w-4 h-4" />
-                                Professional Development Services
+                                CRO & Shopify Development Services
                             </div>
 
                             {/* Main Heading */}
@@ -257,8 +282,7 @@ export default function ServicesPage() {
                                 </h1>
 
                                 <p className="text-lg sm:text-xl md:text-2xl text-royal-100 leading-relaxed max-w-4xl mx-auto">
-                                    Shopify optimization, automation, and custom
-                                    builds — priced transparently and measured by
+                                    Shopify CRO, theme development, and automation — priced transparently and measured by
                                     the revenue they generate, not the hours they take.
                                 </p>
                             </div>
@@ -339,6 +363,11 @@ export default function ServicesPage() {
                                                 <p className="text-white/90 text-sm">
                                                     {service.description}
                                                 </p>
+                                                {service.whoFor && (
+                                                    <p className="text-sm text-gold-600 dark:text-gold-400 font-medium mt-2">
+                                                        Who it&apos;s for: {service.whoFor}
+                                                    </p>
+                                                )}
                                             </div>
                                         </div>
 
@@ -440,7 +469,7 @@ export default function ServicesPage() {
                         {/* Section Header */}
                         <div className="text-center mb-16">
                             <h2 className="text-4xl md:text-5xl font-serif font-bold text-royal-900 dark:text-white mb-6">
-                                Our Collaborative Process
+                                How I Work
                             </h2>
                             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
                                 A transparent, milestone-driven approach that
