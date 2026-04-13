@@ -6,7 +6,7 @@ export const siteConfig = {
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://becharaelmaalouf.dev",
     links: {
         email: "contact@becharaelmaalouf.dev",
-        linkedin: "https://www.linkedin.com/in/bechara-el-maalouf-920645200/",
+        linkedin: "https://www.linkedin.com/in/bechara-el-maalouf",
         github: "https://github.com/TiredZone",
         twitter: "https://twitter.com/becharaelm",
         cal: "https://cal.com/becharaelmaalouf",
@@ -20,7 +20,7 @@ export const siteConfig = {
     },
     social: {
         tiredZone: "https://github.com/TiredZone",
-        linkedin: "https://www.linkedin.com/in/bechara-el-maalouf-920645200/",
+        linkedin: "https://www.linkedin.com/in/bechara-el-maalouf",
     },
 };
 

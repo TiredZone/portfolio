@@ -52,7 +52,7 @@ export function Footer() {
                                 <Github className="w-5 h-5" />
                             </a>
                             <a
-                                href="https://www.linkedin.com/in/bechara-el-maalouf-920645200/"
+                                href="https://www.linkedin.com/in/bechara-el-maalouf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-royal-300 hover:text-gold-400 transition-colors"

@@ -629,7 +629,7 @@ Please note that this project is released with a Contributor Code of Conduct. By
 ### Connect With Me
 
 - 🌐 **Portfolio**: [becharaelmaalouf.dev](https://becharaelmaalouf.dev)
-- 💼 **LinkedIn**: [bechara-el-maalouf-920645200](https://www.linkedin.com/in/bechara-el-maalouf-920645200/)
+- 💼 **LinkedIn**: [bechara-el-maalouf](https://www.linkedin.com/in/bechara-el-maalouf)
 - 👨‍💻 **GitHub**: [@TiredZone](https://github.com/TiredZone) 
 - 🐦 **Twitter**: [@becharaelm](https://twitter.com/becharaelm)
 
