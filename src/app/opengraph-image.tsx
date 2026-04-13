@@ -86,7 +86,7 @@ export default async function Image() {
                             lineHeight: 1.4,
                         }}
                     >
-                        Building scalable web, mobile, and automation systems
+                        I turn traffic into revenue for 7-to-9 figure Shopify stores
                     </p>
 
                     <div
@@ -98,15 +98,13 @@ export default async function Image() {
                             marginTop: "20px",
                         }}
                     >
-                        <span>React</span>
+                        <span>CRO</span>
                         <span>•</span>
-                        <span>Node.js</span>
+                        <span>A/B Testing</span>
                         <span>•</span>
-                        <span>.NET</span>
+                        <span>Shopify Plus</span>
                         <span>•</span>
-                        <span>Shopify</span>
-                        <span>•</span>
-                        <span>AI</span>
+                        <span>$500K+ Revenue</span>
                     </div>
                 </div>
 
