@@ -29,11 +29,11 @@ export const metadata: Metadata = {
         process.env.NEXT_PUBLIC_SITE_URL ?? "https://becharaelmaalouf.dev"
     ),
     title: {
-        default: "Bechara El Maalouf – Full‑Stack Developer",
+        default: "Bechara El Maalouf – Shopify CRO Specialist",
         template: "%s",
     },
     description:
-        "Full‑Stack Developer building scalable web, mobile, and automation systems — React/Next.js, Node.js, .NET Core, Shopify, React Native/Flutter, Docker & Kubernetes, and AI automation.",
+        "Shopify CRO Specialist. 3+ years optimizing 7-to-9 figure Shopify stores. $500K+ in documented CRO revenue across 8+ DTC brands.",
     icons: {
         icon: [
             { url: "/favicon.ico", sizes: "any" },
@@ -55,37 +55,36 @@ export const metadata: Metadata = {
     keywords: [
         "Bechara El Maalouf",
         "Shopify CRO Specialist",
+        "Conversion Rate Optimization",
+        "A/B Testing",
+        "Shopify Plus",
+        "Shopify Developer",
+        "CRO Consultant",
+        "Ecommerce Optimization",
+        "Revenue Optimization",
+        "Google Analytics 4",
         "React",
         "Next.js",
         "Node.js",
-        ".NET Core",
-        "Shopify",
-        "React Native",
-        "Flutter",
-        "Docker",
-        "Kubernetes",
-        "AI",
-        "Automation",
-        "DevOps",
-        "MongoDB",
-        "MS SQL Server",
+        "TypeScript",
+        "n8n Automation",
     ],
     authors: [{ name: "Bechara El Maalouf" }],
     openGraph: {
         type: "website",
         url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://becharaelmaalouf.dev",
         siteName: "Bechara El Maalouf",
-        title: "Bechara El Maalouf – Full‑Stack Developer",
+        title: "Bechara El Maalouf – Shopify CRO Specialist | I Turn Traffic Into Revenue",
         description:
-            "Full‑Stack Developer building scalable web, mobile, and automation systems — React/Next.js, Node.js, .NET Core, Shopify, mobile apps, cloud & DevOps, and AI automation.",
+            "Shopify CRO Specialist. 3+ years optimizing 7-to-9 figure Shopify stores. $500K+ in documented CRO revenue. Book a free audit.",
     },
     twitter: {
         card: "summary_large_image",
         site: "@becharaelm",
         creator: "@becharaelm",
-        title: "Bechara El Maalouf – Full‑Stack Developer",
+        title: "Bechara El Maalouf – Shopify CRO Specialist | I Turn Traffic Into Revenue",
         description:
-            "Full‑Stack Developer building scalable web, mobile, and automation systems (React, Node, .NET, Shopify, Docker, Kubernetes, AI).",
+            "Shopify CRO Specialist. 3+ years optimizing 7-to-9 figure Shopify stores. $500K+ in documented CRO revenue. Book a free audit.",
     },
 };
 
