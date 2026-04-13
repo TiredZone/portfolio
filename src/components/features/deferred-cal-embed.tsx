@@ -10,8 +10,6 @@ export function DeferredCalEmbed() {
     const shouldDefer = !!scrollTarget;
 
     const handleCalReady = useCallback(() => {
-        if (!scrollTarget) return;
-
         // Save current scroll position BEFORE Cal.com hijacks it
         const savedY = window.scrollY;
 
@@ -24,7 +22,7 @@ export function DeferredCalEmbed() {
         setTimeout(() => {
             window.removeEventListener("scroll", blockScroll);
         }, 2000);
-    }, [scrollTarget]);
+    }, []);
 
     return <CalEmbed defer={shouldDefer} onReady={handleCalReady} />;
 }
